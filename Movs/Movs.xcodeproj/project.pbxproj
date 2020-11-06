@@ -80,6 +80,7 @@
 		A8660ED425463F7B00D74934 /* GridGalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660ED325463F7B00D74934 /* GridGalleryCollectionView.swift */; };
 		A8705E682549262700E16B01 /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8705E672549262700E16B01 /* UICollectionView+Register.swift */; };
 		A8705E6A2549290600E16B01 /* GridGalleryCollectionViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8705E692549290600E16B01 /* GridGalleryCollectionViewFactory.swift */; };
+		A870EAAD2554B68A00BDC242 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870EAAC2554B68A00BDC242 /* main.swift */; };
 		A89723DB254F03390022FB06 /* TabBarViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89723DA254F03390022FB06 /* TabBarViewControllerDelegate.swift */; };
 		A89723E7254F282C0022FB06 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89723E6254F282C0022FB06 /* FilterViewController.swift */; };
 		A89723E9254F283C0022FB06 /* FilterScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89723E8254F283C0022FB06 /* FilterScreenFactory.swift */; };
@@ -93,7 +94,6 @@
 		A8AF17E0254F60C2007D8C4E /* FilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF17DF254F60C2007D8C4E /* FilterModels.swift */; };
 		A8AF17E2254F60F8007D8C4E /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF17E1254F60F8007D8C4E /* FilterPresenter.swift */; };
 		A8B1298325439DC70074654A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B1298225439DC70074654A /* AppDelegate.swift */; };
-		A8B1298525439DC70074654A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B1298425439DC70074654A /* SceneDelegate.swift */; };
 		A8B1298725439DC70074654A /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B1298625439DC70074654A /* MoviesViewController.swift */; };
 		A8B1298C25439DC70074654A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8B1298B25439DC70074654A /* Assets.xcassets */; };
 		A8B1298F25439DC70074654A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B1298D25439DC70074654A /* LaunchScreen.storyboard */; };
@@ -201,6 +201,7 @@
 		A8660ED325463F7B00D74934 /* GridGalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGalleryCollectionView.swift; sourceTree = "<group>"; };
 		A8705E672549262700E16B01 /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
 		A8705E692549290600E16B01 /* GridGalleryCollectionViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGalleryCollectionViewFactory.swift; sourceTree = "<group>"; };
+		A870EAAC2554B68A00BDC242 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A89723DA254F03390022FB06 /* TabBarViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A89723E6254F282C0022FB06 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		A89723E8254F283C0022FB06 /* FilterScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreenFactory.swift; sourceTree = "<group>"; };
@@ -215,7 +216,6 @@
 		A8AF17E1254F60F8007D8C4E /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
 		A8B1297F25439DC70074654A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B1298225439DC70074654A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A8B1298425439DC70074654A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A8B1298625439DC70074654A /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		A8B1298B25439DC70074654A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8B1298E25439DC70074654A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -536,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				A8B1299025439DC70074654A /* Info.plist */,
+				A870EAAC2554B68A00BDC242 /* main.swift */,
 				A8B129B62543B17B0074654A /* Resources */,
 				A8B129B22543A8C10074654A /* Sources */,
 			);
@@ -572,7 +573,6 @@
 				A8B129B72543B93B0074654A /* Scenes */,
 				A8660E52254545AA00D74934 /* Utils */,
 				A8B1298225439DC70074654A /* AppDelegate.swift */,
-				A8B1298425439DC70074654A /* SceneDelegate.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -951,7 +951,6 @@
 				A89723F0254F30E20022FB06 /* ListCheckItemViewModel.swift in Sources */,
 				A8458771254D1B6700829BBE /* MovieResponse.swift in Sources */,
 				A845875E254BBDC300829BBE /* GenreResponse.swift in Sources */,
-				A8B1298525439DC70074654A /* SceneDelegate.swift in Sources */,
 				A8660EC52545C5F900D74934 /* MoyaWorker.swift in Sources */,
 				A8B129C82544FEF40074654A /* MovieDbAPI.swift in Sources */,
 				A8A0F8C9254951B80049B5CB /* Kingfisher+Extension.swift in Sources */,
@@ -991,6 +990,7 @@
 				A8660EAD25455C7C00D74934 /* TabBarScreenFactory.swift in Sources */,
 				A864B8722548911B00B5BC29 /* GridGalleryItemViewModel.swift in Sources */,
 				A845877D254DE85100829BBE /* MovieRealmDbService.swift in Sources */,
+				A870EAAD2554B68A00BDC242 /* main.swift in Sources */,
 				A845871E254A3D0E00829BBE /* ErrorConfiguration.swift in Sources */,
 				A845878D254E5A2D00829BBE /* HorizontalInfoListItemView.swift in Sources */,
 				A8458749254BB51B00829BBE /* MovieDetailsModels.swift in Sources */,
