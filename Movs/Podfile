@@ -15,7 +15,7 @@ end
 target 'MovsTests' do
   common_pods
 
-  pod 'SnapshotTesting', '~> 1.8.1'
+  pod 'iOSSnapshotTestCase'
 end
 
 target 'MovsUITests' do
