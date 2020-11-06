@@ -1,0 +1,133 @@
+{
+    "page": 1,
+    "total_results": 10000,
+    "total_pages": 500,
+    "results": [
+        {
+            "popularity": 2115.001,
+            "vote_count": 72,
+            "video": false,
+            "poster_path": "/yGmO6NN4HuRdq5nKfo0WLGFmAND.jpg",
+            "id": 724989,
+            "adult": false,
+            "backdrop_path": "/86L8wqGMDbwURPni2t7FQ0nDjsH.jpg",
+            "original_language": "en",
+            "original_title": "Hard Kill",
+            "genre_ids": [
+                28,
+                53
+            ],
+            "title": "Hard Kill",
+            "vote_average": 4.8,
+            "overview": "O trabalho do bilionário CEO de tecnologia Donovan Chalmers (Willis) é tão valioso que ele contrata mercenários para protegê-lo e um grupo terrorista sequestra sua filha apenas para obtê-lo.",
+            "release_date": "2020-10-23"
+        },
+        {
+            "popularity": 1986.559,
+            "vote_count": 38,
+            "video": false,
+            "poster_path": "/m9cn5mhW519QKr1YGpGxNWi98VJ.jpg",
+            "id": 635302,
+            "adult": false,
+            "backdrop_path": "/xoqr4dMbRJnzuhsWDF3XNHQwJ9x.jpg",
+            "original_language": "ja",
+            "original_title": "劇場版「鬼滅の刃」無限列車編",
+            "genre_ids": [
+                16,
+                28,
+                36,
+                12,
+                14,
+                18
+            ],
+            "title": "Demon Slayer: O Trem Infinito",
+            "vote_average": 6.7,
+            "overview": "Tanjiro Kamado, junto com Inosuke Hashibira, um garoto criado por javalis que usa uma cabeça de javali, e Zenitsu Agatsuma, um garoto assustado que revela seu verdadeiro poder quando dorme, embarca no Trem Infinito em uma nova missão com o Hashira de Fogo, Kyojuro Rengoku, para derrotar um demônio que tem atormentado o povo e matado os caçadores de oni que se opõem a ele!",
+            "release_date": "2020-10-16"
+        },
+        {
+            "popularity": 1718.028,
+            "id": 531219,
+            "video": false,
+            "vote_count": 507,
+            "vote_average": 7.1,
+            "title": "Convenção das Bruxas",
+            "release_date": "2020-10-26",
+            "original_language": "en",
+            "original_title": "Roald Dahl's The Witches",
+            "genre_ids": [
+                14,
+                10751,
+                12,
+                35,
+                27
+            ],
+            "backdrop_path": "/8rIoyM6zYXJNjzGseT3MRusMPWl.jpg",
+            "adult": false,
+            "overview": "Um menino acaba descobrindo uma conferência de bruxas enquanto fica com a avó em um hotel e é transformado em rato pela Grande Bruxa.",
+            "poster_path": "/kQDfB6dPYoiuUtbSYusNopSXyVp.jpg"
+        },
+        {
+            "popularity": 1438.567,
+            "vote_count": 254,
+            "video": false,
+            "poster_path": "/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg",
+            "id": 528085,
+            "adult": false,
+            "backdrop_path": "/5UkzNSOK561c2QRy2Zr4AkADzLT.jpg",
+            "original_language": "en",
+            "original_title": "2067",
+            "genre_ids": [
+                878,
+                53,
+                18
+            ],
+            "title": "2067",
+            "vote_average": 5.1,
+            "overview": "Um grupo de humanos busca respostas no futuro após as florestas, vida selvagem e plantas do planeta serem devastados pela mudança climática.",
+            "release_date": "2020-10-01"
+        },
+        {
+            "popularity": 1075.915,
+            "id": 741074,
+            "video": false,
+            "vote_count": 94,
+            "vote_average": 7.5,
+            "title": "Era Uma Vez um Boneco de Neve",
+            "release_date": "2020-10-23",
+            "original_language": "en",
+            "original_title": "Once Upon a Snowman",
+            "genre_ids": [
+                16,
+                10751,
+                35,
+                14
+            ],
+            "backdrop_path": "/DA7gzvlBoxMNL0XmGgTZOyv67P.jpg",
+            "adult": false,
+            "overview": "Os primeiros passos de Olaf conforme ele ganha vida e busca sua identidade nas montanhas nevadas dos arredores de Arendelle.",
+            "poster_path": "/334CebHp60Kg8xhMnJrrTtgiRxK.jpg"
+        },
+        {
+            "popularity": 940.828,
+            "vote_count": 145,
+            "video": false,
+            "poster_path": "/elZ6JCzSEvFOq4gNjNeZsnRFsvj.jpg",
+            "id": 741067,
+            "adult": false,
+            "backdrop_path": "/aO5ILS7qnqtFIprbJ40zla0jhpu.jpg",
+            "original_language": "en",
+            "original_title": "Welcome to Sudden Death",
+            "genre_ids": [
+                28,
+                53,
+                12,
+                18
+            ],
+            "title": "Morte Súbita 2",
+            "vote_average": 6.4,
+            "overview": "Jesse Freeman é um ex-oficial das forças especiais e especialista em explosivos agora trabalhando regularmente como segurança em uma arena de basquete de última geração. Problemas irromperem quando um grupo de terroristas sequestra o dono da equipe e a filha de Jesse durante a noite de estreia. Enfrentando um relógio de tique-taque e probabilidades impossíveis, cabe a Jesse não apenas salvá-los, mas também uma casa cheia de fãs neste thriller de ação altamente carregado.",
+            "release_date": "2020-09-29"
+        }
+    ]
+}

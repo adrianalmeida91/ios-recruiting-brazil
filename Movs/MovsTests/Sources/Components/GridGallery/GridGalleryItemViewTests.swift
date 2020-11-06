@@ -62,7 +62,7 @@ final class GridGalleryItemViewTests: FBSnapshotTestCase {
         }
 
         // TODO - download image and cache (wait 1 second to download image)
-        wait(for: 1)
+        wait(for: 0)
 
         return sut
     }
