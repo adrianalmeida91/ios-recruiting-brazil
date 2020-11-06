@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.3.0)
+  - Fakery (4.1.1)
   - iOSSnapshotTestCase (6.2.0):
     - iOSSnapshotTestCase/SwiftSupport (= 6.2.0)
   - iOSSnapshotTestCase/Core (6.2.0)
@@ -19,6 +20,7 @@ PODS:
     - Realm (= 10.1.1)
 
 DEPENDENCIES:
+  - Fakery (~> 4.1.1)
   - iOSSnapshotTestCase
   - Kingfisher (~> 5.0)
   - Moya (~> 14.0)
@@ -27,6 +29,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Fakery
     - iOSSnapshotTestCase
     - Kingfisher
     - Moya
@@ -35,12 +38,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
+  Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
   Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Realm: 784ca1da1453e31a9c9adc14445421a81f316119
   RealmSwift: cc52fe0dcea56387274dff36e19219e055a3bb84
 
-PODFILE CHECKSUM: 8389676a51dd6949cd5505fad4e3bf541cce3c1a
+PODFILE CHECKSUM: f9583536d1407b0c0e4c7d618a1341125db75eb9
 
 COCOAPODS: 1.10.0

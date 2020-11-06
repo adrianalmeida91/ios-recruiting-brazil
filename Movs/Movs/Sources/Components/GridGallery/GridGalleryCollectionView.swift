@@ -37,10 +37,10 @@ final class GridGalleryCollectionView: UIView, UICollectionViewDelegate {
     // MARK: - Initializers
 
     convenience init(itemSize: CGSize, items: [GridGalleryItemViewModel]) {
-        self.init(itemSize: itemSize, items: items, flowLayout: GridGalleryCollectionViewFactory.makeFlowLayout(itemSize: itemSize))
+        self.init(items: items, flowLayout: GridGalleryCollectionViewFactory.makeFlowLayout(itemSize: itemSize))
     }
 
-    init(itemSize: CGSize, items: [GridGalleryItemViewModel], flowLayout: UICollectionViewFlowLayout) {
+    init(items: [GridGalleryItemViewModel], flowLayout: UICollectionViewFlowLayout) {
         collectionViewFlowLayout = flowLayout
 
         super.init(frame: .zero)

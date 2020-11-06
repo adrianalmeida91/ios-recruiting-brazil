@@ -17,6 +17,8 @@ final class ErrorViewTests: FBSnapshotTestCase {
         recordMode = false
     }
 
+    // MARK: - Test functions
+
     func testShouldShowErroView() {
         let sut = addErrorViewOnViewController()
 
