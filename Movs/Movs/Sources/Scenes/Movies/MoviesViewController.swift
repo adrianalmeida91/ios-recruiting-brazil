@@ -76,7 +76,7 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
         setup()
 
         // First time has delay only to simulate loading
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Utils.sleep, execute: { [weak self] in
             self?.view.showLoading()
             self?.fetchLocalMovies()
         })

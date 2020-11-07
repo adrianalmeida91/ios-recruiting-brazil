@@ -13,7 +13,7 @@ final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
 
-        recordMode = true
+        recordMode = false
     }
 
     // MARK: - Private constants
@@ -23,40 +23,57 @@ final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
     // MARK: - Test functions
 
     func testShouldShowGalleryCollectionView() {
-        let sut = addGridGalleryLayout()
+        let sut = GridGalleryCollectionView(itemSize: itemSize, items: getItems())
+        addGridGalleryLayout(galleryCollectionView: sut)
 
-        // TODO - verify why is not working (if call twice verify with wait it's work)
+        wait(for: Constants.Utils.sleep)
+
+        verify(sut)
+    }
+
+    func testShouldUpdateWithFavoriteGalleryCollectionView() {
+        let sut = GridGalleryCollectionView(itemSize: itemSize, items: getItems())
+        addGridGalleryLayout(galleryCollectionView: sut)
+
+        let itemsWithFavorites = getItems(isFavorite: true)
+        sut.setupDataSource(items: itemsWithFavorites)
+
+        wait(for: Constants.Utils.sleep)
+
+        verify(sut)
+    }
+
+    func testShouldFactoryGalleryCollectionView() {
+        let sut = GridGalleryCollectionViewFactory.make(itemSize: itemSize, items: getItems())
+        addGridGalleryLayout(galleryCollectionView: sut)
+
+        wait(for: Constants.Utils.sleep)
+
         verify(sut)
     }
 
     // MARK: - Private functions
 
-    private func addGridGalleryLayout() -> GridGalleryCollectionView {
-        let sut = GridGalleryCollectionView(itemSize: itemSize, items: getItems())
-
-        addSubviewForTest(sut) { (viewController: UIViewController) -> [NSLayoutConstraint] in
+    private func addGridGalleryLayout(galleryCollectionView: GridGalleryCollectionView) {
+        let sutViewController = addSubviewForTest(galleryCollectionView) { (viewController: UIViewController) -> [NSLayoutConstraint] in
             [
-                sut.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor),
-                sut.leadingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.leadingAnchor),
-                sut.trailingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.trailingAnchor),
-                sut.bottomAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor)
+                galleryCollectionView.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor),
+                galleryCollectionView.leadingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.leadingAnchor),
+                galleryCollectionView.trailingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.trailingAnchor),
+                galleryCollectionView.bottomAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor)
             ]
         }
 
-        wait(for: 0)
-
-        return sut
+        sutViewController.view.layoutIfNeeded()
     }
 
-    private func getItems() -> [GridGalleryItemViewModel] {
-        if let localData = MocksHelper.readLocalFile(forName: String(describing: MoviesPopulariesResponse.self)),
-                let moviesPopulariesResponse: MoviesPopulariesResponse = MocksHelper.parse(jsonData: localData) {
-
-            return moviesPopulariesResponse.moviesResponse.map { movieResponse -> GridGalleryItemViewModel in
-                GridGalleryItemViewModel(imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, isFavorite: false)
-            }
+    private func getItems(isFavorite: Bool = false) -> [GridGalleryItemViewModel] {
+        guard let moviesPopulariesResponse: MoviesPopulariesResponse = MocksHelper.getResponse() else {
+            return []
         }
 
-        return []
+        return moviesPopulariesResponse.moviesResponse.map { movieResponse -> GridGalleryItemViewModel in
+            GridGalleryItemViewModel(imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, isFavorite: isFavorite)
+        }
     }
 }

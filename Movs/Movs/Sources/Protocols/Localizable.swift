@@ -10,11 +10,17 @@ import Foundation
 
 protocol Localizable {
     var localizable: String { get }
+
+    var bundle: Bundle { get }
 }
 
 extension Localizable where Self: RawRepresentable, RawValue == String {
     var localizable: String {
-        return NSLocalizedString(rawValue, bundle: Bundle.main, comment: .empty)
+        return NSLocalizedString(rawValue, bundle: bundle, comment: .empty)
+    }
+
+    var bundle: Bundle {
+        return Bundle.main
     }
 
     // MARK: - Functions

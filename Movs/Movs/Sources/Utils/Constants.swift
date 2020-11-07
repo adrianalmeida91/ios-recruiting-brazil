@@ -10,6 +10,7 @@ enum Constants {
     struct Utils {
         static let dateFormat = "yyyy-MM-dd"
         static let genresSeparator = ", "
+        static let sleep = 1.0
     }
 
     // MARK: - Newtwork

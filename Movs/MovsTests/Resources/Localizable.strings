@@ -1,0 +1,14 @@
+/* 
+  File.strings
+  Movs
+
+  Created by Adrian Almeida on 07/11/20.
+  Copyright © 2020 Adrian Almeida. All rights reserved.
+*/
+
+"mock_main_dog_image_url" = "https://picsum.photos/id/237/200/300";
+"mock_secondary_dog_image_url" = "https://i.picsum.photos/id/1025/4951/3301.jpg?hmac=_aGh5AtoOChip_iaMo8ZvvytfEojcgqbCH7dzaz-H8Y";
+"mock_dog" = "Dog";
+"mock_other_dog" = "Other Dog";
+"mock_date" = "2020";
+"mock_overview" = "This film is nice";

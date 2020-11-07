@@ -18,9 +18,9 @@ final class GridGalleryItemViewTests: FBSnapshotTestCase {
 
     // MARK: - Private constants
 
-    private let loremImage = "https://picsum.photos/id/237/200/300"
+    private let loremImage = Strings.mockMainDogImageURL.localizable
 
-    private let titleLoren = "Dog"
+    private let titleLoren = Strings.mockDog.localizable
 
     private let itemSize = CGSize(width: 160, height: 200)
 
@@ -37,13 +37,12 @@ final class GridGalleryItemViewTests: FBSnapshotTestCase {
         var gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: loremImage, title: titleLoren, isFavorite: false)
         let sut = addGalleryItemOnViewController(viewModel: gridGalleryItemViewModel)
 
-        gridGalleryItemViewModel.imageURL = "https://i.picsum.photos/id/1025/4951/3301.jpg?hmac=_aGh5AtoOChip_iaMo8ZvvytfEojcgqbCH7dzaz-H8Y"
-        gridGalleryItemViewModel.title = "Other Dog"
+        gridGalleryItemViewModel.imageURL = Strings.mockSecondaryDogImageURL.localizable
+        gridGalleryItemViewModel.title = Strings.mockOtherDog.localizable
         gridGalleryItemViewModel.isFavorite = true
         sut.update(viewModel: gridGalleryItemViewModel)
 
-        // TODO - download image and cache (wait 1 second to download image)
-        wait(for: 1)
+        wait(for: Constants.Utils.sleep)
 
         verify(sut)
     }
@@ -61,8 +60,7 @@ final class GridGalleryItemViewTests: FBSnapshotTestCase {
             ]
         }
 
-        // TODO - download image and cache (wait 1 second to download image)
-        wait(for: 0)
+        wait(for: Constants.Utils.sleep)
 
         return sut
     }

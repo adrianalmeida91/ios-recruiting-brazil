@@ -6,7 +6,8 @@
 //  Copyright © 2020 Adrian Almeida. All rights reserved.
 //
 
-import Foundation
+import UIKit
+@testable import Movs
 
 final class MocksHelper {
     static func readLocalFile(forName name: String, ofType type: String = "json") -> Data? {
@@ -32,5 +33,32 @@ final class MocksHelper {
         }
 
         return nil
+    }
+
+//    static func getMoviesPopulariesResponse() -> MoviesPopulariesResponse? {
+//        guard let localData = readLocalFile(forName: String(describing: MoviesPopulariesResponse.self)),
+//            let moviesPopulariesResponse: MoviesPopulariesResponse = parse(jsonData: localData) else {
+//                return nil
+//        }
+//
+//        return moviesPopulariesResponse
+//    }
+//
+//    static func getMovieResponse() -> MovieResponse? {
+//        guard let localData = readLocalFile(forName: String(describing: MovieResponse.self)),
+//            let movieResponse: MovieResponse = parse(jsonData: localData) else {
+//                return nil
+//        }
+//
+//        return movieResponse
+//    }
+
+    static func getResponse<T: Decodable>() -> T? {
+        guard let localData = readLocalFile(forName: String(describing: T.self)),
+            let response: T = parse(jsonData: localData) else {
+                return nil
+        }
+
+        return response
     }
 }
