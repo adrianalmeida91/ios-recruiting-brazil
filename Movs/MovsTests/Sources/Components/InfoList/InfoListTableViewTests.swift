@@ -31,7 +31,8 @@ final class InfoListTableViewTests: FBSnapshotTestCase {
         let sut = InfoListTableView()
         sut.setupDataSource(items: getItems())
 
-        addSubviewForTest(equalConstraintsFor: sut)
+        let sutViewController = addSubviewForTest(equalConstraintsFor: sut)
+        sutViewController.view.layoutIfNeeded()
 
         let newViewModel: [InfoListItemViewModel] = getItems().reversed()
         sut.setupDataSource(items: newViewModel)
