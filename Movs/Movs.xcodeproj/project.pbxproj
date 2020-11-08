@@ -29,6 +29,8 @@
 		A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83758522557799700CB3F7E /* ListCheckItemViewTests.swift */; };
 		A8375855255836F700CB3F7E /* ListCheckItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375854255836F700CB3F7E /* ListCheckItemViewModelTests.swift */; };
 		A837585725583A5100CB3F7E /* ListCheckTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837585625583A5100CB3F7E /* ListCheckTableViewTests.swift */; };
+		A8375859255841AC00CB3F7E /* GenresResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = A8375858255841AC00CB3F7E /* GenresResponse.json */; };
+		A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837585A25584BE900CB3F7E /* Data+Extension.swift */; };
 		A845871C254A3B6700829BBE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871B254A3B6700829BBE /* ErrorView.swift */; };
 		A845871E254A3D0E00829BBE /* ErrorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */; };
 		A8458720254A48CC00829BBE /* ErrorViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871F254A48CC00829BBE /* ErrorViewFactory.swift */; };
@@ -167,6 +169,8 @@
 		A83758522557799700CB3F7E /* ListCheckItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckItemViewTests.swift; sourceTree = "<group>"; };
 		A8375854255836F700CB3F7E /* ListCheckItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckItemViewModelTests.swift; sourceTree = "<group>"; };
 		A837585625583A5100CB3F7E /* ListCheckTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckTableViewTests.swift; sourceTree = "<group>"; };
+		A8375858255841AC00CB3F7E /* GenresResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GenresResponse.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		A837585A25584BE900CB3F7E /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		A845871B254A3B6700829BBE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConfiguration.swift; sourceTree = "<group>"; };
 		A845871F254A48CC00829BBE /* ErrorViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewFactory.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 			children = (
 				A83255AF2551CAC100816318 /* FBSnapshotTestCase+Extension.swift */,
 				A8BFFF9125559B64002137A4 /* XCTestCase+Extension.swift */,
+				A837585A25584BE900CB3F7E /* Data+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 			children = (
 				A837583D2557175B00CB3F7E /* MovieResponse.json */,
 				A83758312555FF5200CB3F7E /* MoviesPopulariesResponse.json */,
+				A8375858255841AC00CB3F7E /* GenresResponse.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -902,6 +908,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A83758322555FF5200CB3F7E /* MoviesPopulariesResponse.json in Resources */,
+				A8375859255841AC00CB3F7E /* GenresResponse.json in Resources */,
 				A837583E2557175B00CB3F7E /* MovieResponse.json in Resources */,
 				A83758452557210800CB3F7E /* Localizable.strings in Resources */,
 			);
@@ -1150,6 +1157,7 @@
 				A837584E255763A200CB3F7E /* InfoListItemViewModelTests.swift in Sources */,
 				A837582F2555FC0300CB3F7E /* GridGalleryCollectionViewTest.swift in Sources */,
 				A837584925574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift in Sources */,
+				A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */,
 				A8375855255836F700CB3F7E /* ListCheckItemViewModelTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,
 			);

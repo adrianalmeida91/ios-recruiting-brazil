@@ -11,7 +11,7 @@ import XCTest
 @testable import Movs
 
 final class ListCheckItemViewModelTests: XCTestCase {
-    let faker = Faker(locale: Constants.MovieDefaultParameters.language)
+    private let faker = Faker(locale: Constants.MovieDefaultParameters.language)
 
     // MARK: - Test functions
 

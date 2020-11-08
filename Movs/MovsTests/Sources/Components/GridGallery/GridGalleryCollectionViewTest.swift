@@ -68,7 +68,7 @@ final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
     }
 
     private func getItems(isFavorite: Bool = false) -> [GridGalleryItemViewModel] {
-        guard let moviesPopulariesResponse: MoviesPopulariesResponse = MocksHelper.getResponse() else {
+        guard let moviesPopulariesResponse = MocksHelper.getMockedMoviesPopulariesResponse() else {
             return []
         }
 

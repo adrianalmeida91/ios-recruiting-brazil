@@ -34,7 +34,7 @@ extension XCTestCase {
         )
     }
 
-    func wait(for duration: TimeInterval) {
+    func wait(for duration: TimeInterval = 0) {
         let waitExpectation = expectation(description: "Waiting")
 
         let when = DispatchTime.now() + duration
