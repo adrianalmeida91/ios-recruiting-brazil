@@ -45,7 +45,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
 
     // MARK: - Test functions
 
-    func testInitializers() {
+    func testInitialization() {
         _ = sut
 
         XCTAssertFalse(interactorSpy.invokedFetchLocalMovies)

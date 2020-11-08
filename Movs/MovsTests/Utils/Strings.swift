@@ -13,6 +13,7 @@ enum Strings: String, Localizable {
     case mockDate = "mock_date"
     case mockDog = "mock_dog"
     case mockGenres = "mock_genres"
+    case mockKill = "mock_kill"
     case mockMainDogImageURL = "mock_main_dog_image_url"
     case mockOtherDog = "mock_other_dog"
     case mockOverview = "mock_overview"

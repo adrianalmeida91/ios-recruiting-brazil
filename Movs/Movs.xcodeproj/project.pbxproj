@@ -32,6 +32,10 @@
 		A8375859255841AC00CB3F7E /* GenresResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = A8375858255841AC00CB3F7E /* GenresResponse.json */; };
 		A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837585A25584BE900CB3F7E /* Data+Extension.swift */; };
 		A837585D25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837585C25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift */; };
+		A837585F2558714600CB3F7E /* MoviesInteratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837585E2558714600CB3F7E /* MoviesInteratorTests.swift */; };
+		A8375861255878FB00CB3F7E /* MoviesPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375860255878FB00CB3F7E /* MoviesPresenterSpy.swift */; };
+		A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837586425587A4700CB3F7E /* RealmWorkerSpy.swift */; };
+		A837586725587B5E00CB3F7E /* MoyaWorkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837586625587B5E00CB3F7E /* MoyaWorkerSpy.swift */; };
 		A845871C254A3B6700829BBE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871B254A3B6700829BBE /* ErrorView.swift */; };
 		A845871E254A3D0E00829BBE /* ErrorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */; };
 		A8458720254A48CC00829BBE /* ErrorViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871F254A48CC00829BBE /* ErrorViewFactory.swift */; };
@@ -173,6 +177,10 @@
 		A8375858255841AC00CB3F7E /* GenresResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GenresResponse.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		A837585A25584BE900CB3F7E /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		A837585C25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesScreenFactoryTests.swift; sourceTree = "<group>"; };
+		A837585E2558714600CB3F7E /* MoviesInteratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesInteratorTests.swift; sourceTree = "<group>"; };
+		A8375860255878FB00CB3F7E /* MoviesPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPresenterSpy.swift; sourceTree = "<group>"; };
+		A837586425587A4700CB3F7E /* RealmWorkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmWorkerSpy.swift; sourceTree = "<group>"; };
+		A837586625587B5E00CB3F7E /* MoyaWorkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaWorkerSpy.swift; sourceTree = "<group>"; };
 		A845871B254A3B6700829BBE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConfiguration.swift; sourceTree = "<group>"; };
 		A845871F254A48CC00829BBE /* ErrorViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewFactory.swift; sourceTree = "<group>"; };
@@ -360,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				A83255B8255202C000816318 /* Movies */,
+				A8375862255879F500CB3F7E /* Workers */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -367,6 +376,7 @@
 		A83255B8255202C000816318 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				A837585E2558714600CB3F7E /* MoviesInteratorTests.swift */,
 				A837585C25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift */,
 				A83255B9255202F700816318 /* MoviesViewControllerTests.swift */,
 				A83255BB2552043200816318 /* Spies */,
@@ -378,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				A83255BC2552047500816318 /* MoviesInteractorSpy.swift */,
+				A8375860255878FB00CB3F7E /* MoviesPresenterSpy.swift */,
 				A83255BE2552059A00816318 /* MoviesViewControllerDelegateSpy.swift */,
 			);
 			path = Spies;
@@ -454,6 +465,23 @@
 				A837585625583A5100CB3F7E /* ListCheckTableViewTests.swift */,
 			);
 			path = ListCheck;
+			sourceTree = "<group>";
+		};
+		A8375862255879F500CB3F7E /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				A837586325587A0400CB3F7E /* Spies */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		A837586325587A0400CB3F7E /* Spies */ = {
+			isa = PBXGroup;
+			children = (
+				A837586425587A4700CB3F7E /* RealmWorkerSpy.swift */,
+				A837586625587B5E00CB3F7E /* MoyaWorkerSpy.swift */,
+			);
+			path = Spies;
 			sourceTree = "<group>";
 		};
 		A845871A254A3B3D00829BBE /* Error */ = {
@@ -1146,21 +1174,25 @@
 				A83255BD2552047500816318 /* MoviesInteractorSpy.swift in Sources */,
 				A837585725583A5100CB3F7E /* ListCheckTableViewTests.swift in Sources */,
 				A837584C255755DA00CB3F7E /* InfoListItemViewTests.swift in Sources */,
+				A837585F2558714600CB3F7E /* MoviesInteratorTests.swift in Sources */,
 				A83255BF2552059A00816318 /* MoviesViewControllerDelegateSpy.swift in Sources */,
 				A8B1299A25439DC70074654A /* MovsTests.swift in Sources */,
 				A837583A2557166F00CB3F7E /* HorizontalInfoListItemTests.swift in Sources */,
 				A83758502557742B00CB3F7E /* InfoListTableViewTests.swift in Sources */,
 				A83255B02551CAC100816318 /* FBSnapshotTestCase+Extension.swift in Sources */,
 				A837582D2555DD5200CB3F7E /* GridGalleryItemViewTests.swift in Sources */,
+				A837586725587B5E00CB3F7E /* MoyaWorkerSpy.swift in Sources */,
 				A83758372556076400CB3F7E /* MocksHelper.swift in Sources */,
 				A83758472557212F00CB3F7E /* Strings.swift in Sources */,
 				A83255BA255202F700816318 /* MoviesViewControllerTests.swift in Sources */,
 				A8BFFF942555A2D1002137A4 /* ErrorViewTests.swift in Sources */,
+				A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */,
 				A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */,
 				A837584E255763A200CB3F7E /* InfoListItemViewModelTests.swift in Sources */,
 				A837582F2555FC0300CB3F7E /* GridGalleryCollectionViewTest.swift in Sources */,
 				A837584925574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift in Sources */,
 				A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */,
+				A8375861255878FB00CB3F7E /* MoviesPresenterSpy.swift in Sources */,
 				A8375855255836F700CB3F7E /* ListCheckItemViewModelTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,
 				A837585D25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift in Sources */,
