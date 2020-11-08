@@ -27,6 +27,15 @@ final class InfoListTableViewTests: FBSnapshotTestCase {
         verify(sut)
     }
 
+    func testShouldCreateInfoListTableViewByFactory() {
+        let sut = InfoListTableViewFactory.make()
+        sut.setupDataSource(items: getItems())
+
+        addSubviewForTest(equalConstraintsFor: sut)
+
+        verify(sut)
+    }
+
     func testShouldUpdateInfoListTableView() {
         let sut = InfoListTableView()
         sut.setupDataSource(items: getItems())
@@ -36,15 +45,6 @@ final class InfoListTableViewTests: FBSnapshotTestCase {
 
         let newViewModel: [InfoListItemViewModel] = getItems().reversed()
         sut.setupDataSource(items: newViewModel)
-
-        verify(sut)
-    }
-
-    func testShouldCreateInfoListTableViewByFactory() {
-        let sut = InfoListTableViewFactory.make()
-        sut.setupDataSource(items: getItems())
-
-        addSubviewForTest(equalConstraintsFor: sut)
 
         verify(sut)
     }

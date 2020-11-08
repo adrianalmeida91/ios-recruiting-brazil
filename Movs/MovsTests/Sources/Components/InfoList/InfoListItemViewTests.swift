@@ -24,11 +24,7 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
         }
 
         let viewModel = InfoListItemViewModel(title: movieResponse.title, icon: .favoriteEmptyIcon, descriptionText: movieResponse.overview)
-        let sut = InfoListItemView(viewModel: viewModel)
-
-        addSubviewForTest(sut)
-
-        verify(sut)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemTitleAndIcon() {
@@ -37,11 +33,7 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
         }
 
         let viewModel = InfoListItemViewModel(title: movieResponse.title, icon: .favoriteEmptyIcon)
-        let sut = InfoListItemView(viewModel: viewModel)
-
-        addSubviewForTest(sut)
-
-        verify(sut)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemTitleAndOverview() {
@@ -50,11 +42,7 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
         }
 
         let viewModel = InfoListItemViewModel(title: movieResponse.title, descriptionText: movieResponse.overview)
-        let sut = InfoListItemView(viewModel: viewModel)
-
-        addSubviewForTest(sut)
-
-        verify(sut)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemIconAndOverview() {
@@ -63,29 +51,17 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
         }
 
         let viewModel = InfoListItemViewModel(icon: .favoriteFullIcon, descriptionText: movieResponse.overview)
-        let sut = InfoListItemView(viewModel: viewModel)
-
-        addSubviewForTest(sut)
-
-        verify(sut)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemTitle() {
         let viewModel = InfoListItemViewModel(title: Strings.mockDate.localizable)
-        let sut = InfoListItemView(viewModel: viewModel)
-
-        addSubviewForTest(sut)
-
-        verify(sut)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemIcon() {
         let viewModel = InfoListItemViewModel(icon: .favoriteFullIcon)
-        let sut = InfoListItemView(viewModel: viewModel)
-
-        addSubviewForTest(sut)
-
-        verify(sut)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemOverview() {
@@ -94,11 +70,7 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
         }
 
         let viewModel = InfoListItemViewModel(descriptionText: movieResponse.overview)
-        let sut = InfoListItemView(viewModel: viewModel)
-
-        addSubviewForTest(sut)
-
-        verify(sut)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldUpdateInfoListItem() {
@@ -118,6 +90,13 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
     }
 
     // MARK: - Private functions()
+
+    private func snapshot(viewModel: InfoListItemViewModel) {
+        let sut = InfoListItemView(viewModel: viewModel)
+        addSubviewForTest(sut)
+
+        verify(sut)
+    }
 
     private func getItem() -> MovieResponse? {
         guard let movieResponse: MovieResponse = MocksHelper.getResponse() else {

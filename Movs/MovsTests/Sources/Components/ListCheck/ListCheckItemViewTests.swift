@@ -18,13 +18,44 @@ final class ListCheckItemViewTests: FBSnapshotTestCase {
 
     // MARK: - Test functions
 
+    func testShouldNotShowListCheckItemEmpty() {
+        let viewModel = ListCheckItemViewModel()
+        snapshot(viewModel: viewModel)
+    }
+
     func testShouldShowListCheckItem() {
         let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable, value: Strings.mockDate.localizable, icon: .checkIcon)
-        let sut = ListCheckItemView(viewModel: viewModel)
+        snapshot(viewModel: viewModel)
+    }
 
-        addSubviewForTest(equalConstraintsFor: sut)
+    func testShouldShowListCheckItemWithTitle() {
+        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable)
+        snapshot(viewModel: viewModel)
+    }
 
-        verify(sut)
+    func testShouldShowListCheckItemWithValue() {
+        let viewModel = ListCheckItemViewModel(value: Strings.mockDate.localizable)
+        snapshot(viewModel: viewModel)
+    }
+
+    func testShouldShowListCheckItemWithIcon() {
+        let viewModel = ListCheckItemViewModel(icon: .checkIcon)
+        snapshot(viewModel: viewModel)
+    }
+
+    func testShouldShowListCheckItemWithTitleAndValue() {
+        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable, value: Strings.mockGenres.localizable)
+        snapshot(viewModel: viewModel)
+    }
+
+    func testShouldShowListCheckItemWithTitleAndIcon() {
+        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable, icon: .arrowForward)
+        snapshot(viewModel: viewModel)
+    }
+
+    func testShouldShowListCheckItemWithValueAndIcon() {
+        let viewModel = ListCheckItemViewModel(value: Strings.mockDate.localizable, icon: .arrowForward)
+        snapshot(viewModel: viewModel)
     }
 
     func testShouldUpdateListCheckItem() {
@@ -39,10 +70,10 @@ final class ListCheckItemViewTests: FBSnapshotTestCase {
         verify(sut)
     }
 
-    func testShouldShowListCheckItemWithoutTitle() {
-        let viewModel = ListCheckItemViewModel(value: Strings.mockDate.localizable, icon: .arrowForward)
-        let sut = ListCheckItemView(viewModel: viewModel)
+    // MARK: - Private functions
 
+    private func snapshot(viewModel: ListCheckItemViewModel) {
+        let sut = ListCheckItemView(viewModel: viewModel)
         addSubviewForTest(equalConstraintsFor: sut)
 
         verify(sut)
