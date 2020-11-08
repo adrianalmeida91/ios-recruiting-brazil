@@ -45,7 +45,7 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
         verify(sut)
     }
 
-    func testShouldFactoryHorizontalInfoListTableView() {
+    func testShouldCreateHorizontalInfoListTableViewByFactory() {
         let sut = HorizontalInfoListFactory.make()
         sut.setupDataSource(items: getItems())
 

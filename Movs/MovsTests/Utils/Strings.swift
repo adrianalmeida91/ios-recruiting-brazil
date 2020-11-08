@@ -10,12 +10,13 @@ import Foundation
 @testable import Movs
 
 enum Strings: String, Localizable {
-    case mockMainDogImageURL = "mock_main_dog_image_url"
-    case mockSecondaryDogImageURL = "mock_secondary_dog_image_url"
-    case mockDog = "mock_dog"
-    case mockOtherDog = "mock_other_dog"
     case mockDate = "mock_date"
+    case mockDog = "mock_dog"
+    case mockGenres = "mock_genres"
+    case mockMainDogImageURL = "mock_main_dog_image_url"
+    case mockOtherDog = "mock_other_dog"
     case mockOverview = "mock_overview"
+    case mockSecondaryDogImageURL = "mock_secondary_dog_image_url"
 
     // MARK: - Computed variables
 

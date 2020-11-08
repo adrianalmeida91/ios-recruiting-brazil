@@ -23,6 +23,9 @@
 		A83758452557210800CB3F7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A83758442557210800CB3F7E /* Localizable.strings */; };
 		A83758472557212F00CB3F7E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83758462557212F00CB3F7E /* Strings.swift */; };
 		A837584925574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584825574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift */; };
+		A837584C255755DA00CB3F7E /* InfoListItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584B255755DA00CB3F7E /* InfoListItemViewTests.swift */; };
+		A837584E255763A200CB3F7E /* InfoListItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584D255763A200CB3F7E /* InfoListItemViewModelTests.swift */; };
+		A83758502557742B00CB3F7E /* InfoListTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584F2557742B00CB3F7E /* InfoListTableViewTests.swift */; };
 		A845871C254A3B6700829BBE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871B254A3B6700829BBE /* ErrorView.swift */; };
 		A845871E254A3D0E00829BBE /* ErrorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */; };
 		A8458720254A48CC00829BBE /* ErrorViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871F254A48CC00829BBE /* ErrorViewFactory.swift */; };
@@ -155,6 +158,9 @@
 		A83758442557210800CB3F7E /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A83758462557212F00CB3F7E /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A837584825574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalInfoListTableViewTests.swift; sourceTree = "<group>"; };
+		A837584B255755DA00CB3F7E /* InfoListItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListItemViewTests.swift; sourceTree = "<group>"; };
+		A837584D255763A200CB3F7E /* InfoListItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListItemViewModelTests.swift; sourceTree = "<group>"; };
+		A837584F2557742B00CB3F7E /* InfoListTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListTableViewTests.swift; sourceTree = "<group>"; };
 		A845871B254A3B6700829BBE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConfiguration.swift; sourceTree = "<group>"; };
 		A845871F254A48CC00829BBE /* ErrorViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewFactory.swift; sourceTree = "<group>"; };
@@ -314,6 +320,7 @@
 				A83255AB2550E02900816318 /* Error */,
 				A837582B2555D38000CB3F7E /* GridGallery */,
 				A83758382557161400CB3F7E /* HorizontalInfoList */,
+				A837584A255755AE00CB3F7E /* InfoList */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -411,6 +418,16 @@
 				A83758442557210800CB3F7E /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A837584A255755AE00CB3F7E /* InfoList */ = {
+			isa = PBXGroup;
+			children = (
+				A837584D255763A200CB3F7E /* InfoListItemViewModelTests.swift */,
+				A837584B255755DA00CB3F7E /* InfoListItemViewTests.swift */,
+				A837584F2557742B00CB3F7E /* InfoListTableViewTests.swift */,
+			);
+			path = InfoList;
 			sourceTree = "<group>";
 		};
 		A845871A254A3B3D00829BBE /* Error */ = {
@@ -1100,15 +1117,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A83255BD2552047500816318 /* MoviesInteractorSpy.swift in Sources */,
+				A837584C255755DA00CB3F7E /* InfoListItemViewTests.swift in Sources */,
 				A83255BF2552059A00816318 /* MoviesViewControllerDelegateSpy.swift in Sources */,
 				A8B1299A25439DC70074654A /* MovsTests.swift in Sources */,
 				A837583A2557166F00CB3F7E /* HorizontalInfoListItemTests.swift in Sources */,
+				A83758502557742B00CB3F7E /* InfoListTableViewTests.swift in Sources */,
 				A83255B02551CAC100816318 /* FBSnapshotTestCase+Extension.swift in Sources */,
 				A837582D2555DD5200CB3F7E /* GridGalleryItemViewTests.swift in Sources */,
 				A83758372556076400CB3F7E /* MocksHelper.swift in Sources */,
 				A83758472557212F00CB3F7E /* Strings.swift in Sources */,
 				A83255BA255202F700816318 /* MoviesViewControllerTests.swift in Sources */,
 				A8BFFF942555A2D1002137A4 /* ErrorViewTests.swift in Sources */,
+				A837584E255763A200CB3F7E /* InfoListItemViewModelTests.swift in Sources */,
 				A837582F2555FC0300CB3F7E /* GridGalleryCollectionViewTest.swift in Sources */,
 				A837584925574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,

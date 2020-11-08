@@ -6,7 +6,6 @@
 //  Copyright © 2020 Adrian Almeida. All rights reserved.
 //
 
-import Foundation
 import XCTest
 @testable import Movs
 
