@@ -8,7 +8,6 @@
 
 import Fakery
 import FBSnapshotTestCase
-import XCTest
 @testable import Movs
 
 final class MoviesViewControllerTests: FBSnapshotTestCase {
