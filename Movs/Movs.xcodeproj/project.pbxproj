@@ -36,6 +36,8 @@
 		A8375861255878FB00CB3F7E /* MoviesPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375860255878FB00CB3F7E /* MoviesPresenterSpy.swift */; };
 		A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837586425587A4700CB3F7E /* RealmWorkerSpy.swift */; };
 		A837586725587B5E00CB3F7E /* MoyaWorkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837586625587B5E00CB3F7E /* MoyaWorkerSpy.swift */; };
+		A8375869255970AC00CB3F7E /* MoviesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375868255970AC00CB3F7E /* MoviesPresenterTests.swift */; };
+		A837586B2559720F00CB3F7E /* MoviesViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837586A2559720F00CB3F7E /* MoviesViewSpy.swift */; };
 		A845871C254A3B6700829BBE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871B254A3B6700829BBE /* ErrorView.swift */; };
 		A845871E254A3D0E00829BBE /* ErrorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */; };
 		A8458720254A48CC00829BBE /* ErrorViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845871F254A48CC00829BBE /* ErrorViewFactory.swift */; };
@@ -181,6 +183,8 @@
 		A8375860255878FB00CB3F7E /* MoviesPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPresenterSpy.swift; sourceTree = "<group>"; };
 		A837586425587A4700CB3F7E /* RealmWorkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmWorkerSpy.swift; sourceTree = "<group>"; };
 		A837586625587B5E00CB3F7E /* MoyaWorkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaWorkerSpy.swift; sourceTree = "<group>"; };
+		A8375868255970AC00CB3F7E /* MoviesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPresenterTests.swift; sourceTree = "<group>"; };
+		A837586A2559720F00CB3F7E /* MoviesViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewSpy.swift; sourceTree = "<group>"; };
 		A845871B254A3B6700829BBE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A845871D254A3D0E00829BBE /* ErrorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConfiguration.swift; sourceTree = "<group>"; };
 		A845871F254A48CC00829BBE /* ErrorViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewFactory.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				A837585E2558714600CB3F7E /* MoviesInteratorTests.swift */,
+				A8375868255970AC00CB3F7E /* MoviesPresenterTests.swift */,
 				A837585C25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift */,
 				A83255B9255202F700816318 /* MoviesViewControllerTests.swift */,
 				A83255BB2552043200816318 /* Spies */,
@@ -390,6 +395,7 @@
 				A83255BC2552047500816318 /* MoviesInteractorSpy.swift */,
 				A8375860255878FB00CB3F7E /* MoviesPresenterSpy.swift */,
 				A83255BE2552059A00816318 /* MoviesViewControllerDelegateSpy.swift */,
+				A837586A2559720F00CB3F7E /* MoviesViewSpy.swift */,
 			);
 			path = Spies;
 			sourceTree = "<group>";
@@ -1185,6 +1191,7 @@
 				A83758372556076400CB3F7E /* MocksHelper.swift in Sources */,
 				A83758472557212F00CB3F7E /* Strings.swift in Sources */,
 				A83255BA255202F700816318 /* MoviesViewControllerTests.swift in Sources */,
+				A837586B2559720F00CB3F7E /* MoviesViewSpy.swift in Sources */,
 				A8BFFF942555A2D1002137A4 /* ErrorViewTests.swift in Sources */,
 				A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */,
 				A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */,
@@ -1194,6 +1201,7 @@
 				A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */,
 				A8375861255878FB00CB3F7E /* MoviesPresenterSpy.swift in Sources */,
 				A8375855255836F700CB3F7E /* ListCheckItemViewModelTests.swift in Sources */,
+				A8375869255970AC00CB3F7E /* MoviesPresenterTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,
 				A837585D25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift in Sources */,
 			);
