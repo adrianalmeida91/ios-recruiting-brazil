@@ -24,10 +24,8 @@
 		A83758472557212F00CB3F7E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83758462557212F00CB3F7E /* Strings.swift */; };
 		A837584925574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584825574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift */; };
 		A837584C255755DA00CB3F7E /* InfoListItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584B255755DA00CB3F7E /* InfoListItemViewTests.swift */; };
-		A837584E255763A200CB3F7E /* InfoListItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584D255763A200CB3F7E /* InfoListItemViewModelTests.swift */; };
 		A83758502557742B00CB3F7E /* InfoListTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837584F2557742B00CB3F7E /* InfoListTableViewTests.swift */; };
 		A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83758522557799700CB3F7E /* ListCheckItemViewTests.swift */; };
-		A8375855255836F700CB3F7E /* ListCheckItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375854255836F700CB3F7E /* ListCheckItemViewModelTests.swift */; };
 		A837585725583A5100CB3F7E /* ListCheckTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837585625583A5100CB3F7E /* ListCheckTableViewTests.swift */; };
 		A8375859255841AC00CB3F7E /* GenresResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = A8375858255841AC00CB3F7E /* GenresResponse.json */; };
 		A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837585A25584BE900CB3F7E /* Data+Extension.swift */; };
@@ -171,10 +169,8 @@
 		A83758462557212F00CB3F7E /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A837584825574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalInfoListTableViewTests.swift; sourceTree = "<group>"; };
 		A837584B255755DA00CB3F7E /* InfoListItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListItemViewTests.swift; sourceTree = "<group>"; };
-		A837584D255763A200CB3F7E /* InfoListItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListItemViewModelTests.swift; sourceTree = "<group>"; };
 		A837584F2557742B00CB3F7E /* InfoListTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListTableViewTests.swift; sourceTree = "<group>"; };
 		A83758522557799700CB3F7E /* ListCheckItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckItemViewTests.swift; sourceTree = "<group>"; };
-		A8375854255836F700CB3F7E /* ListCheckItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckItemViewModelTests.swift; sourceTree = "<group>"; };
 		A837585625583A5100CB3F7E /* ListCheckTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckTableViewTests.swift; sourceTree = "<group>"; };
 		A8375858255841AC00CB3F7E /* GenresResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GenresResponse.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		A837585A25584BE900CB3F7E /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
@@ -456,7 +452,6 @@
 		A837584A255755AE00CB3F7E /* InfoList */ = {
 			isa = PBXGroup;
 			children = (
-				A837584D255763A200CB3F7E /* InfoListItemViewModelTests.swift */,
 				A837584B255755DA00CB3F7E /* InfoListItemViewTests.swift */,
 				A837584F2557742B00CB3F7E /* InfoListTableViewTests.swift */,
 			);
@@ -467,7 +462,6 @@
 			isa = PBXGroup;
 			children = (
 				A83758522557799700CB3F7E /* ListCheckItemViewTests.swift */,
-				A8375854255836F700CB3F7E /* ListCheckItemViewModelTests.swift */,
 				A837585625583A5100CB3F7E /* ListCheckTableViewTests.swift */,
 			);
 			path = ListCheck;
@@ -1195,12 +1189,10 @@
 				A8BFFF942555A2D1002137A4 /* ErrorViewTests.swift in Sources */,
 				A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */,
 				A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */,
-				A837584E255763A200CB3F7E /* InfoListItemViewModelTests.swift in Sources */,
 				A837582F2555FC0300CB3F7E /* GridGalleryCollectionViewTest.swift in Sources */,
 				A837584925574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift in Sources */,
 				A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */,
 				A8375861255878FB00CB3F7E /* MoviesPresenterSpy.swift in Sources */,
-				A8375855255836F700CB3F7E /* ListCheckItemViewModelTests.swift in Sources */,
 				A8375869255970AC00CB3F7E /* MoviesPresenterTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,
 				A837585D25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift in Sources */,
