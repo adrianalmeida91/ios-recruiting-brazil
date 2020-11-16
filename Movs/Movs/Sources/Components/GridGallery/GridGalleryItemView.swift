@@ -14,7 +14,7 @@ final class GridGalleryItemView: UIView {
 
     private lazy var title: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .appYellowLight
 
         return label
@@ -99,9 +99,7 @@ final class GridGalleryItemView: UIView {
 
         favoriteImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
 
-        imageURL = viewModel.imageURL
-        titleText = viewModel.title
-        isFavorite = viewModel.isFavorite
+        update(viewModel: viewModel)
 
         backgroundColor = .clear
     }

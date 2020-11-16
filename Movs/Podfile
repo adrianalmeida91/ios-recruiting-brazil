@@ -15,7 +15,8 @@ end
 target 'MovsTests' do
   common_pods
 
-  pod 'SnapshotTesting', '~> 1.8.1'
+  pod 'iOSSnapshotTestCase'
+  pod 'Fakery', '~> 4.1.1'
 end
 
 target 'MovsUITests' do

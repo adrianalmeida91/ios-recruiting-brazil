@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIImage {
-    enum Assets: String {
+    enum Assets: String, CaseIterable {
         case arrowBack = "arrow_back"
         case arrowForward = "arrow_forward"
         case checkIcon = "check_icon"

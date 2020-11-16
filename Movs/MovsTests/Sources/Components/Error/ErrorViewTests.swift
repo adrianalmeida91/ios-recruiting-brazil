@@ -6,74 +6,73 @@
 //  Copyright © 2020 Adrian Almeida. All rights reserved.
 //
 
-import SnapshotTesting
-import XCTest
+import FBSnapshotTestCase
 @testable import Movs
 
-final class ErrorViewTests: XCTestCase {
+final class ErrorViewTests: FBSnapshotTestCase {
 
-    override class func setUp() {
+    override func setUp() {
         super.setUp()
 
-        isRecording = false
+        recordMode = false
     }
 
-    func testShouldShowErroView() {
-        let sut = ErrorView()
+    // MARK: - Test functions
 
-        snapshot(sut: sut, named: #function)
+    func testShouldShowErroView() {
+        let sut = addErrorViewOnViewController()
+
+        verify(sut)
     }
 
     func testShoulShowErrorViewChangeIcon() throws {
-        let sut = ErrorView()
+        let sut = addErrorViewOnViewController()
         let favoriteFullIconImage = try XCTUnwrap(UIImage(assets: .favoriteFullIcon))
         sut.image = favoriteFullIconImage
 
-        snapshot(sut: sut, named: #function)
+        verify(sut)
     }
 
     func testShoulShowErrorViewChangeText() {
-        let sut = ErrorView()
+        let sut = addErrorViewOnViewController()
         sut.text = "Server error"
 
-        snapshot(sut: sut, named: #function)
+        verify(sut)
     }
 
     func testShouldShowErrorViewWithConfiguration() {
         let searchImage = UIImage(assets: .searchIcon)
         let errorMessage = "Communication error"
         let configuration = ErrorConfiguration(image: searchImage, text: errorMessage)
-        let sut = ErrorView(configuration: configuration)
+        let sut = addErrorViewOnViewController(configuration: configuration)
 
-        snapshot(sut: sut, named: #function)
+        verify(sut)
+    }
+
+    func testShouldShowErrorViewChangeConfiguration() {
+        let sut = addErrorViewOnViewController()
+        let searchImage = UIImage(assets: .favoriteEmptyIcon)
+        let errorMessage = "New communication error"
+        let configuration = ErrorConfiguration(image: searchImage, text: errorMessage)
+        sut.configuration = configuration
+
+        verify(sut)
     }
 
     func testShouldErroViewByFactoryMakeIsHidden() {
         let sut = ErrorViewFactory.make()
+        addSubviewForTest(equalConstraintsFor: sut)
 
-        snapshot(sut: sut, named: #function)
+        verify(sut)
     }
 
     // MARK: - Private functions
 
-    private func snapshot(sut: ErrorView, named: String) {
-        let sutViewController = addSubviewForTest(equalConstraintsFor: sut)
+    @discardableResult
+    private func addErrorViewOnViewController(configuration: ErrorConfiguration = ErrorConfiguration()) -> ErrorView {
+        let sut = ErrorView(configuration: configuration)
+        addSubviewForTest(equalConstraintsFor: sut)
 
-        assertSnapshot(matching: sutViewController, as: .image, named: named)
+        return sut
     }
-
-//    private func snapshot() -> UIViewController {
-//        let errorView = ErrorView()
-//
-//        let sut = addSubviewForTest(errorView) { (viewController: UIViewController) -> [NSLayoutConstraint] in
-//            [
-//                errorView.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor),
-//                errorView.leadingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.leadingAnchor),
-//                errorView.trailingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.trailingAnchor),
-//                errorView.bottomAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor)
-//            ]
-//        }
-//
-//        return sut
-//    }
 }
