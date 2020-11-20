@@ -10,6 +10,15 @@ import FBSnapshotTestCase
 @testable import Movs
 
 final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
+    private lazy var items: [GridGalleryItemViewModel] = {
+        let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
+        return moviesPopulariesResponse.moviesResponse.map { movieResponse -> GridGalleryItemViewModel in
+            GridGalleryItemViewModel(imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, isFavorite: false)
+        }
+    }()
+
+    // MARK: - Override functions
+
     override func setUp() {
         super.setUp()
 
@@ -23,7 +32,7 @@ final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
     // MARK: - Test functions
 
     func testShouldShowGalleryCollectionView() {
-        let sut = GridGalleryCollectionView(itemSize: itemSize, items: getItems())
+        let sut = GridGalleryCollectionView(itemSize: itemSize, items: items)
         addGridGalleryLayout(galleryCollectionView: sut)
 
         wait(for: Constants.Utils.sleep)
@@ -32,10 +41,13 @@ final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
     }
 
     func testShouldUpdateWithFavoriteGalleryCollectionView() {
-        let sut = GridGalleryCollectionView(itemSize: itemSize, items: getItems())
+        let sut = GridGalleryCollectionView(itemSize: itemSize, items: items)
         addGridGalleryLayout(galleryCollectionView: sut)
 
-        let itemsWithFavorites = getItems(isFavorite: true)
+        let itemsWithFavorites = items.map { item in
+            GridGalleryItemViewModel(imageURL: item.imageURL, title: item.title, isFavorite: true)
+        }
+
         sut.setupDataSource(items: itemsWithFavorites)
 
         wait(for: Constants.Utils.sleep)
@@ -44,7 +56,7 @@ final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
     }
 
     func testShouldFactoryGalleryCollectionView() {
-        let sut = GridGalleryCollectionViewFactory.make(itemSize: itemSize, items: getItems())
+        let sut = GridGalleryCollectionViewFactory.make(itemSize: itemSize, items: items)
         addGridGalleryLayout(galleryCollectionView: sut)
 
         wait(for: Constants.Utils.sleep)
@@ -65,15 +77,5 @@ final class GridGalleryCollectionViewTest: FBSnapshotTestCase {
         }
 
         sutViewController.view.layoutIfNeeded()
-    }
-
-    private func getItems(isFavorite: Bool = false) -> [GridGalleryItemViewModel] {
-        guard let moviesPopulariesResponse = MocksHelper.getMockedMoviesPopulariesResponse() else {
-            return []
-        }
-
-        return moviesPopulariesResponse.moviesResponse.map { movieResponse -> GridGalleryItemViewModel in
-            GridGalleryItemViewModel(imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, isFavorite: isFavorite)
-        }
     }
 }

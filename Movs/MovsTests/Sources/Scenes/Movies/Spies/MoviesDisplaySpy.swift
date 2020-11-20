@@ -8,7 +8,7 @@
 
 @testable import Movs
 
-final class MoviesViewSpy: MoviesDisplayLogic {
+final class MoviesDisplaySpy: MoviesDisplayLogic {
     private(set) var invokedOnFetchedLocalMovies = false
     private(set) var invokedOnFetchedLocalMoviesCount = 0
     private(set) var invokedOnFetchedLocalMoviesParameters: (viewModel: Movies.FetchLocalMovies.ViewModel, Void)?

@@ -19,37 +19,25 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
     // MARK: - Test functions
 
     func testShouldShowInfoListItemCompleted() {
-        guard let movieResponse = getItem() else {
-            return XCTFail()
-        }
-
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
         let viewModel = InfoListItemViewModel(title: movieResponse.title, icon: .favoriteEmptyIcon, descriptionText: movieResponse.overview)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemTitleAndIcon() {
-        guard let movieResponse = getItem() else {
-            return XCTFail()
-        }
-
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
         let viewModel = InfoListItemViewModel(title: movieResponse.title, icon: .favoriteEmptyIcon)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemTitleAndOverview() {
-        guard let movieResponse = getItem() else {
-            return XCTFail()
-        }
-
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
         let viewModel = InfoListItemViewModel(title: movieResponse.title, descriptionText: movieResponse.overview)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldShowInfoListItemIconAndOverview() {
-        guard let movieResponse = getItem() else {
-            return XCTFail()
-        }
-
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
         let viewModel = InfoListItemViewModel(icon: .favoriteFullIcon, descriptionText: movieResponse.overview)
         snapshot(viewModel: viewModel)
     }
@@ -65,19 +53,13 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
     }
 
     func testShouldShowInfoListItemOverview() {
-        guard let movieResponse = getItem() else {
-            return XCTFail()
-        }
-
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
         let viewModel = InfoListItemViewModel(descriptionText: movieResponse.overview)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldUpdateInfoListItem() {
-        guard let movieResponse = getItem() else {
-            return XCTFail()
-        }
-
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
         let viewModel = InfoListItemViewModel(title: movieResponse.title, icon: .favoriteEmptyIcon, descriptionText: movieResponse.overview)
         let sut = InfoListItemView(viewModel: viewModel)
 
@@ -96,13 +78,5 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
         addSubviewForTest(sut)
 
         verify(sut)
-    }
-
-    private func getItem() -> MovieResponse? {
-        guard let movieResponse: MovieResponse = MocksHelper.getResponse() else {
-            return nil
-        }
-
-        return movieResponse
     }
 }

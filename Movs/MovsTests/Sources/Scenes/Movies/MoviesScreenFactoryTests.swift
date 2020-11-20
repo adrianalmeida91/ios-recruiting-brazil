@@ -12,6 +12,8 @@ import XCTest
 final class MoviesScreenFactoryTests: XCTestCase {
     private lazy var sut = MoviesScreenFactory.make(delegate: delegateSpy)
 
+    // MARK: - Private constants
+
     private let delegateSpy = MoviesViewControllerDelegateSpy()
 
     // MARK: - Test functions

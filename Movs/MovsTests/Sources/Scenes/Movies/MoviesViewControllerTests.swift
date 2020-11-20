@@ -18,11 +18,11 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         return viewController
     }()
 
-    private var interactorSpy = MoviesInteractorSpy()
-
-    private var delegateSpy = MoviesViewControllerDelegateSpy()
-
     // MARK: - Private constants
+
+    private let interactorSpy = MoviesInteractorSpy()
+
+    private let delegateSpy = MoviesViewControllerDelegateSpy()
 
     private let faker = Faker(locale: Constants.MovieDefaultParameters.language)
 
@@ -67,13 +67,15 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
     }
 
-    func testFetchGenresAfterFetchedLocalMovies() {
+    func testFetchGenresAfterFetchedLocalMovies() throws {
         let movies = Movies.FetchLocalMovies.ViewModel(movies: MocksHelper.getRandomMovies())
         sut.onFetchedLocalMovies(viewModel: movies)
 
+        let parameters = try XCTUnwrap(interactorSpy.invokedFetchGenresParameters)
+
         XCTAssertTrue(interactorSpy.invokedFetchGenres)
         XCTAssertEqual(interactorSpy.invokedFetchGenresCount, 1)
-        XCTAssertEqual(interactorSpy.invokedFetchGenresParameters?.request.language, Constants.MovieDefaultParameters.language)
+        XCTAssertEqual(parameters.request.language, Constants.MovieDefaultParameters.language)
         XCTAssertEqual(interactorSpy.invokedFetchGenresParametersList.count, 1)
 
         XCTAssertFalse(interactorSpy.invokedFetchLocalMovies)
@@ -83,15 +85,17 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testFetchMoviesAfterFetchedGenres() throws {
-        let genres = try XCTUnwrap(MocksHelper.getMockedGenres()?.genres)
+        let genres = GenresResponse(path: JSONMocks.genresResponse.rawValue).genres
         let viewModel = Movies.FetchGenres.ViewModel(genres: genres)
         sut.onFetchedGenres(viewModel: viewModel)
 
+        let parameters = try XCTUnwrap(interactorSpy.invokedFetchMoviesParameters)
+
         XCTAssertTrue(interactorSpy.invokedFetchMovies)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesCount, 1)
-        XCTAssertEqual(interactorSpy.invokedFetchMoviesParameters?.request.language, Constants.MovieDefaultParameters.language)
-        XCTAssertEqual(interactorSpy.invokedFetchMoviesParameters?.request.page, Constants.MovieDefaultParameters.page)
-        XCTAssertEqual(interactorSpy.invokedFetchMoviesParameters?.request.genres.count, genres.count)
+        XCTAssertEqual(parameters.request.language, Constants.MovieDefaultParameters.language)
+        XCTAssertEqual(parameters.request.page, Constants.MovieDefaultParameters.page)
+        XCTAssertEqual(parameters.request.genres.count, genres.count)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesParametersList.count, 1)
 
         XCTAssertFalse(interactorSpy.invokedFetchGenres)
@@ -141,8 +145,8 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         verify(sut)
     }
 
-    func testDisplayGenericErrorAfterFetchMovies() throws {
-        let genres = try XCTUnwrap(MocksHelper.getMockedGenres()?.genres)
+    func testDisplayGenericErrorAfterFetchMovies() {
+        let genres = GenresResponse(path: JSONMocks.genresResponse.rawValue).genres
         sut.displayGenericError()
 
         let viewModel = Movies.FetchGenres.ViewModel(genres: genres)
@@ -151,14 +155,16 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         verify(sut)
     }
 
-    func testShouldFilterWithSearch() {
+    func testShouldFilterWithSearch() throws {
         let search = Strings.mockDog.localizable
         sut.filter(search: search)
 
+        let parameters = try XCTUnwrap(interactorSpy.invokedFetchLocalMoviesBySearchParameters)
+
         XCTAssertTrue(interactorSpy.invokedFetchLocalMoviesBySearch)
         XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchCount, 1)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchParameters?.request.movies.count, 0)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchParameters?.request.filter, search)
+        XCTAssertEqual(parameters.request.movies.count, 0)
+        XCTAssertEqual(parameters.request.filter, search)
         XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchParametersList.count, 1)
 
         XCTAssertFalse(interactorSpy.invokedFetchMovies)

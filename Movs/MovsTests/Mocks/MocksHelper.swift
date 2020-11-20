@@ -11,62 +11,14 @@ import UIKit
 @testable import Movs
 
 final class MocksHelper {
-    static func readLocalFile(forName name: String, ofType type: String = "json") -> Data? {
-        do {
-            if let bundlePath = Bundle(for: MocksHelper.self).path(forResource: name, ofType: type),
-                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
-                return jsonData
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
+    static func getMockedMovie() -> Movie {
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
 
-        return nil
-    }
-
-    static func parse<T: Decodable>(jsonData: Data) -> T? {
-        do {
-            let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
-
-            return decodedData
-        } catch {
-            print(error.localizedDescription)
-        }
-
-        return nil
-    }
-
-    static func getResponse<T: Decodable>() -> T? {
-        guard let localData = readLocalFile(forName: String(describing: T.self)),
-            let response: T = parse(jsonData: localData) else {
-                return nil
-        }
-
-        return response
-    }
-
-    // MARK: - Mocks generator
-
-    static func getMockedGenres() -> GenresResponse? {
-        guard let genresResponse: GenresResponse = getResponse() else {
-            return nil
-        }
-
-        return genresResponse
-    }
-
-    static func getMockedMoviesPopulariesResponse() -> MoviesPopulariesResponse? {
-        guard let moviesPopulariesResponse: MoviesPopulariesResponse = getResponse() else {
-            return nil
-        }
-
-        return moviesPopulariesResponse
+        return Movie(id: movieResponse.id, title: movieResponse.title, imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), genres: Strings.mockGenres.localizable, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
     }
 
     static func getMockedMovies() -> [Movie] {
-        guard let moviesPopulariesResponse = getMockedMoviesPopulariesResponse() else {
-            return []
-        }
+        let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
 
         return moviesPopulariesResponse.moviesResponse.map { movieResponse -> Movie in
             Movie(id: movieResponse.id, title: movieResponse.title, imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), genres: Strings.mockGenres.localizable, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
@@ -74,9 +26,7 @@ final class MocksHelper {
     }
 
     static func getRandomMovies() -> [Movie] {
-        guard let genresResponse = getMockedGenres() else {
-            return []
-        }
+        let genresResponse = GenresResponse(path: JSONMocks.genresResponse.rawValue)
 
         let faker = Faker(locale: Constants.MovieDefaultParameters.language)
 

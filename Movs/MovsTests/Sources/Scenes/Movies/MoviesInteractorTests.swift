@@ -1,5 +1,5 @@
 //
-//  MoviesInteratorTests.swift
+//  MoviesInteractorTests.swift
 //  MovsTests
 //
 //  Created by Adrian Almeida on 08/11/20.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Movs
 
-final class MoviesInteratorTests: XCTestCase {
+final class MoviesInteractorTests: XCTestCase {
     private lazy var sut = MoviesInteractor(realmWorker: realmWorkerSpy, moyaWorker: moyaWorkerSpy, presenter: presenterSpy)
 
     // MARK: - Private constants
@@ -38,18 +38,20 @@ final class MoviesInteratorTests: XCTestCase {
         XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
     }
 
-    func testFetchLocalMoviesShouldPresentFetchedLocalMovies() {
+    func testFetchLocalMoviesShouldPresentFetchedLocalMovies() throws {
         let movies = MocksHelper.getRandomMovies()
         realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.success(movies), ())
 
         sut.fetchLocalMovies()
 
+        let parameters = try XCTUnwrap(presenterSpy.invokedPresentFetchedLocalMoviesParameters)
+
         XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
         XCTAssertEqual(realmWorkerSpy.invokedFetchMoviesCount, 1)
         XCTAssertTrue(presenterSpy.invokedPresentFetchedLocalMovies)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesCount, 1)
-        XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesParameters?.response.movies, movies)
-        XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesParameters?.response.movies.count, movies.count)
+        XCTAssertEqual(parameters.response.movies, movies)
+        XCTAssertEqual(parameters.response.movies.count, movies.count)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesParametersList.count, 1)
 
         XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
@@ -85,15 +87,17 @@ final class MoviesInteratorTests: XCTestCase {
     }
 
     func testFetchGenresShouldPresentFetchedGenres() throws {
-        let genres = try XCTUnwrap(MocksHelper.getMockedGenres())
+        let genres = GenresResponse(path: JSONMocks.genresResponse.rawValue)
         moyaWorkerSpy.stubbedFetchGenresCompletionResult = (.success(genres), ())
 
         let request = Movies.FetchGenres.Request(language: Constants.MovieDefaultParameters.language)
         sut.fetchGenres(request: request)
 
+        let paramenters = try XCTUnwrap(moyaWorkerSpy.invokedFetchGenresParameters)
+
         XCTAssertTrue(moyaWorkerSpy.invokedFetchGenres)
         XCTAssertEqual(moyaWorkerSpy.invokedFetchGenresCount, 1)
-        XCTAssertEqual(moyaWorkerSpy.invokedFetchGenresParameters?.language, Constants.MovieDefaultParameters.language)
+        XCTAssertEqual(paramenters.language, Constants.MovieDefaultParameters.language)
         XCTAssertEqual(moyaWorkerSpy.invokedFetchGenresParametersList.count, 1)
         XCTAssertTrue(presenterSpy.invokedPresentFetchedGenres)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedGenresCount, 1)
@@ -134,18 +138,20 @@ final class MoviesInteratorTests: XCTestCase {
     }
 
     func testFetchMoviesShouldPresentFetchedMovies() throws {
-        let moviesPopulariesResponse = try XCTUnwrap(MocksHelper.getMockedMoviesPopulariesResponse())
-        let genres = try XCTUnwrap(MocksHelper.getMockedGenres())
+        let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
+        let genres = GenresResponse(path: JSONMocks.genresResponse.rawValue)
 
         moyaWorkerSpy.stubbedFetchMoviesCompletionResult = ((.success(moviesPopulariesResponse)), ())
 
         let request = Movies.FetchMovies.Request(language: Constants.MovieDefaultParameters.language, page: Constants.MovieDefaultParameters.page, genres: genres.genres)
         sut.fetchMovies(request: request)
 
+        let parameters = try XCTUnwrap(moyaWorkerSpy.invokedFetchMoviesParameters)
+
         XCTAssertTrue(moyaWorkerSpy.invokedFetchMovies)
         XCTAssertEqual(moyaWorkerSpy.invokedFetchMoviesCount, 1)
-        XCTAssertEqual(moyaWorkerSpy.invokedFetchMoviesParameters?.language, Constants.MovieDefaultParameters.language)
-        XCTAssertEqual(moyaWorkerSpy.invokedFetchMoviesParameters?.page, Constants.MovieDefaultParameters.page)
+        XCTAssertEqual(parameters.language, Constants.MovieDefaultParameters.language)
+        XCTAssertEqual(parameters.page, Constants.MovieDefaultParameters.page)
         XCTAssertEqual(moyaWorkerSpy.invokedFetchMoviesParametersList.count, 1)
         XCTAssertTrue(presenterSpy.invokedPresentFetchedMovies)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesCount, 1)
@@ -189,7 +195,7 @@ final class MoviesInteratorTests: XCTestCase {
         let request = Movies.FetchLocalMoviesBySearch.Request(movies: movies, filter: search)
         sut.fetchLocalMoviesBySearch(request: request)
 
-        let moviesFiltered = try XCTUnwrap(presenterSpy.invokedPresentFetchedMoviesBySearchParameters?.response.movies)
+        let moviesFiltered = try XCTUnwrap(presenterSpy.invokedPresentFetchedMoviesBySearchParameters).response.movies
 
         XCTAssertTrue(presenterSpy.invokedPresentFetchedMoviesBySearch)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesBySearchCount, 1)

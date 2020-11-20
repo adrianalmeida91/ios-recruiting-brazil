@@ -17,7 +17,7 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
 
     // MARK: - Initializers
 
-    init(worker: RealmWorkerProtocol, presenter: MovieDetailsPresenter) {
+    init(worker: RealmWorkerProtocol, presenter: MovieDetailsPresentationLogic) {
         self.worker = worker
         self.presenter = presenter
     }

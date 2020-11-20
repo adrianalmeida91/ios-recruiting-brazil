@@ -12,127 +12,137 @@ import XCTest
 final class MoviesPresenterTests: XCTestCase {
     private lazy var sut: MoviesPresenter = {
         let presenter = MoviesPresenter()
-        presenter.viewController = viewSpy
+        presenter.viewController = displaySpy
 
         return presenter
     }()
 
     // MARK: - Private constants
 
-    private let viewSpy = MoviesViewSpy()
+    private let displaySpy = MoviesDisplaySpy()
 
     // MARK: - Test functions
 
     func testInitialization() {
         _ = sut
 
-        XCTAssertFalse(viewSpy.invokedOnFetchedLocalMovies)
-        XCTAssertFalse(viewSpy.invokedOnFetchedGenres)
-        XCTAssertFalse(viewSpy.invokedDisplayMovies)
-        XCTAssertFalse(viewSpy.invokedDisplayGenericError)
-        XCTAssertFalse(viewSpy.invokedDisplayMoviesBySearch)
-        XCTAssertFalse(viewSpy.invokedDisplaySearchError)
+        XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)
+        XCTAssertFalse(displaySpy.invokedOnFetchedGenres)
+        XCTAssertFalse(displaySpy.invokedDisplayMovies)
+        XCTAssertFalse(displaySpy.invokedDisplayGenericError)
+        XCTAssertFalse(displaySpy.invokedDisplayMoviesBySearch)
+        XCTAssertFalse(displaySpy.invokedDisplaySearchError)
     }
 
-    func testFetchedLocalMoviesShouldCallOnFetchedLocalMovies() {
+    func testFetchedLocalMoviesShouldCallOnFetchedLocalMovies() throws {
         let movies = MocksHelper.getRandomMovies()
         let viewModel = Movies.FetchLocalMovies.Response(movies: movies)
         sut.presentFetchedLocalMovies(response: viewModel)
 
-        XCTAssertTrue(viewSpy.invokedOnFetchedLocalMovies)
-        XCTAssertEqual(viewSpy.invokedOnFetchedLocalMoviesCount, 1)
-        XCTAssertEqual(viewSpy.invokedOnFetchedLocalMoviesParameters?.viewModel.movies, movies)
-        XCTAssertEqual(viewSpy.invokedOnFetchedLocalMoviesParameters?.viewModel.movies.count, movies.count)
-        XCTAssertEqual(viewSpy.invokedOnFetchedLocalMoviesParametersList.count, 1)
+        let parameters = try XCTUnwrap(displaySpy.invokedOnFetchedLocalMoviesParameters)
 
-        XCTAssertFalse(viewSpy.invokedOnFetchedGenres)
-        XCTAssertFalse(viewSpy.invokedDisplayMovies)
-        XCTAssertFalse(viewSpy.invokedDisplayGenericError)
-        XCTAssertFalse(viewSpy.invokedDisplayMoviesBySearch)
-        XCTAssertFalse(viewSpy.invokedDisplaySearchError)
+        XCTAssertTrue(displaySpy.invokedOnFetchedLocalMovies)
+        XCTAssertEqual(displaySpy.invokedOnFetchedLocalMoviesCount, 1)
+        XCTAssertEqual(parameters.viewModel.movies, movies)
+        XCTAssertEqual(parameters.viewModel.movies.count, movies.count)
+        XCTAssertEqual(displaySpy.invokedOnFetchedLocalMoviesParametersList.count, 1)
+
+        XCTAssertFalse(displaySpy.invokedOnFetchedGenres)
+        XCTAssertFalse(displaySpy.invokedDisplayMovies)
+        XCTAssertFalse(displaySpy.invokedDisplayGenericError)
+        XCTAssertFalse(displaySpy.invokedDisplayMoviesBySearch)
+        XCTAssertFalse(displaySpy.invokedDisplaySearchError)
     }
 
     func testFetchedGenresShouldCallOnFetchedGenres() throws {
-        let genreResponse = try XCTUnwrap(MocksHelper.getMockedGenres())
+        let genreResponse = GenresResponse(path: JSONMocks.genresResponse.rawValue)
         let viewModel = Movies.FetchGenres.Response(genres: genreResponse.genres)
         sut.presentFetchedGenres(response: viewModel)
 
-        XCTAssertTrue(viewSpy.invokedOnFetchedGenres)
-        XCTAssertEqual(viewSpy.invokedOnFetchedGenresCount, 1)
-        XCTAssertEqual(viewSpy.invokedOnFetchedGenresParameters?.viewModel.genres.count, genreResponse.genres.count)
-        XCTAssertEqual(viewSpy.invokedOnFetchedGenresParametersList.count, 1)
+        let parameters = try XCTUnwrap(displaySpy.invokedOnFetchedGenresParameters)
 
-        XCTAssertFalse(viewSpy.invokedOnFetchedLocalMovies)
-        XCTAssertFalse(viewSpy.invokedDisplayMovies)
-        XCTAssertFalse(viewSpy.invokedDisplayGenericError)
-        XCTAssertFalse(viewSpy.invokedDisplayMoviesBySearch)
-        XCTAssertFalse(viewSpy.invokedDisplaySearchError)
+        XCTAssertTrue(displaySpy.invokedOnFetchedGenres)
+        XCTAssertEqual(displaySpy.invokedOnFetchedGenresCount, 1)
+        XCTAssertEqual(parameters.viewModel.genres.count, genreResponse.genres.count)
+        XCTAssertEqual(displaySpy.invokedOnFetchedGenresParametersList.count, 1)
+
+        XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)
+        XCTAssertFalse(displaySpy.invokedDisplayMovies)
+        XCTAssertFalse(displaySpy.invokedDisplayGenericError)
+        XCTAssertFalse(displaySpy.invokedDisplayMoviesBySearch)
+        XCTAssertFalse(displaySpy.invokedDisplaySearchError)
     }
 
-    func testPresentFetchedMoviesShoulDisplayMovies() {
+    func testPresentFetchedMoviesShoulDisplayMovies() throws {
         let movies = MocksHelper.getRandomMovies()
         let viewModel = Movies.FetchMovies.Response(page: Constants.MovieDefaultParameters.page, totalPages: 500, movies: movies)
         sut.presentFetchedMovies(response: viewModel)
 
-        XCTAssertTrue(viewSpy.invokedDisplayMovies)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesCount, 1)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesParameters?.viewModel.page, Constants.MovieDefaultParameters.page)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesParameters?.viewModel.totalPages, 500)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesParameters?.viewModel.movies, movies)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesParameters?.viewModel.movies.count, movies.count)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesParametersList.count, 1)
+        let parameters = try XCTUnwrap(displaySpy.invokedDisplayMoviesParameters)
 
-        XCTAssertFalse(viewSpy.invokedOnFetchedLocalMovies)
-        XCTAssertFalse(viewSpy.invokedOnFetchedGenres)
-        XCTAssertFalse(viewSpy.invokedDisplayGenericError)
-        XCTAssertFalse(viewSpy.invokedDisplayMoviesBySearch)
-        XCTAssertFalse(viewSpy.invokedDisplaySearchError)
+        XCTAssertTrue(displaySpy.invokedDisplayMovies)
+        XCTAssertEqual(displaySpy.invokedDisplayMoviesCount, 1)
+        XCTAssertEqual(parameters.viewModel.page, Constants.MovieDefaultParameters.page)
+        XCTAssertEqual(parameters.viewModel.totalPages, 500)
+        XCTAssertEqual(parameters.viewModel.movies, movies)
+        XCTAssertEqual(parameters.viewModel.movies.count, movies.count)
+        XCTAssertEqual(displaySpy.invokedDisplayMoviesParametersList.count, 1)
+
+        XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)
+        XCTAssertFalse(displaySpy.invokedOnFetchedGenres)
+        XCTAssertFalse(displaySpy.invokedDisplayGenericError)
+        XCTAssertFalse(displaySpy.invokedDisplayMoviesBySearch)
+        XCTAssertFalse(displaySpy.invokedDisplaySearchError)
     }
 
     func testFetchedFailureShouldDisplayGenericError() {
         sut.presentFetchedFailure()
 
-        XCTAssertTrue(viewSpy.invokedDisplayGenericError)
-        XCTAssertEqual(viewSpy.invokedDisplayGenericErrorCount, 1)
+        XCTAssertTrue(displaySpy.invokedDisplayGenericError)
+        XCTAssertEqual(displaySpy.invokedDisplayGenericErrorCount, 1)
 
-        XCTAssertFalse(viewSpy.invokedOnFetchedLocalMovies)
-        XCTAssertFalse(viewSpy.invokedOnFetchedGenres)
-        XCTAssertFalse(viewSpy.invokedDisplayMovies)
-        XCTAssertFalse(viewSpy.invokedDisplayMoviesBySearch)
-        XCTAssertFalse(viewSpy.invokedDisplaySearchError)
+        XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)
+        XCTAssertFalse(displaySpy.invokedOnFetchedGenres)
+        XCTAssertFalse(displaySpy.invokedDisplayMovies)
+        XCTAssertFalse(displaySpy.invokedDisplayMoviesBySearch)
+        XCTAssertFalse(displaySpy.invokedDisplaySearchError)
     }
 
-    func testFetchedMoviesBySearchShouldDisplayMoviesBySearch() {
+    func testFetchedMoviesBySearchShouldDisplayMoviesBySearch() throws {
         let movies = MocksHelper.getRandomMovies()
         let viewModel = Movies.FetchLocalMoviesBySearch.Response(movies: movies)
         sut.presentFetchedMoviesBySearch(response: viewModel)
 
-        XCTAssertTrue(viewSpy.invokedDisplayMoviesBySearch)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesBySearchCount, 1)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesBySearchParameters?.viewModel.movies, movies)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesBySearchParameters?.viewModel.movies.count, movies.count)
-        XCTAssertEqual(viewSpy.invokedDisplayMoviesBySearchParametersList.count, 1)
+        let parameters = try XCTUnwrap(displaySpy.invokedDisplayMoviesBySearchParameters)
 
-        XCTAssertFalse(viewSpy.invokedOnFetchedLocalMovies)
-        XCTAssertFalse(viewSpy.invokedOnFetchedGenres)
-        XCTAssertFalse(viewSpy.invokedDisplayMovies)
-        XCTAssertFalse(viewSpy.invokedDisplayGenericError)
-        XCTAssertFalse(viewSpy.invokedDisplaySearchError)
+        XCTAssertTrue(displaySpy.invokedDisplayMoviesBySearch)
+        XCTAssertEqual(displaySpy.invokedDisplayMoviesBySearchCount, 1)
+        XCTAssertEqual(parameters.viewModel.movies, movies)
+        XCTAssertEqual(parameters.viewModel.movies.count, movies.count)
+        XCTAssertEqual(displaySpy.invokedDisplayMoviesBySearchParametersList.count, 1)
+
+        XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)
+        XCTAssertFalse(displaySpy.invokedOnFetchedGenres)
+        XCTAssertFalse(displaySpy.invokedDisplayMovies)
+        XCTAssertFalse(displaySpy.invokedDisplayGenericError)
+        XCTAssertFalse(displaySpy.invokedDisplaySearchError)
     }
 
-    func testSearchMoviesFailureShouldDisplaySearchError() {
+    func testSearchMoviesFailureShouldDisplaySearchError() throws {
         let search = Strings.mockDog.localizable
         sut.presentSearchedMoviesFailure(textSearched: search)
 
-        XCTAssertTrue(viewSpy.invokedDisplaySearchError)
-        XCTAssertEqual(viewSpy.invokedDisplaySearchErrorCount, 1)
-        XCTAssertEqual(viewSpy.invokedDisplaySearchErrorParameters?.searchedText, search)
-        XCTAssertEqual(viewSpy.invokedDisplaySearchErrorParametersList.count, 1)
+        let parameters = try XCTUnwrap(displaySpy.invokedDisplaySearchErrorParameters)
 
-        XCTAssertFalse(viewSpy.invokedOnFetchedLocalMovies)
-        XCTAssertFalse(viewSpy.invokedOnFetchedGenres)
-        XCTAssertFalse(viewSpy.invokedDisplayMovies)
-        XCTAssertFalse(viewSpy.invokedDisplayGenericError)
-        XCTAssertFalse(viewSpy.invokedDisplayMoviesBySearch)
+        XCTAssertTrue(displaySpy.invokedDisplaySearchError)
+        XCTAssertEqual(displaySpy.invokedDisplaySearchErrorCount, 1)
+        XCTAssertEqual(parameters.searchedText, search)
+        XCTAssertEqual(displaySpy.invokedDisplaySearchErrorParametersList.count, 1)
+
+        XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)
+        XCTAssertFalse(displaySpy.invokedOnFetchedGenres)
+        XCTAssertFalse(displaySpy.invokedDisplayMovies)
+        XCTAssertFalse(displaySpy.invokedDisplayGenericError)
+        XCTAssertFalse(displaySpy.invokedDisplayMoviesBySearch)
     }
 }

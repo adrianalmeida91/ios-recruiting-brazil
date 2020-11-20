@@ -10,6 +10,16 @@ import FBSnapshotTestCase
 @testable import Movs
 
 final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
+    private lazy var items: [HorizontalInfoListViewModel] = {
+        let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
+
+        return moviesPopulariesResponse.moviesResponse.map { movieResponse -> HorizontalInfoListViewModel in
+            HorizontalInfoListViewModel(imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
+        }
+    }()
+
+    // MARK: - Override functions
+
     override func setUp() {
         super.setUp()
 
@@ -20,7 +30,7 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
 
     func testShouldShowHorizontalInfoListTableView() {
         let sut = HorizontalInfoListTableView()
-        sut.setupDataSource(items: getItems())
+        sut.setupDataSource(items: items)
 
         addHorizontalInfoListTableViewLayout(horizontalInfoTableView: sut)
 
@@ -31,11 +41,11 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
 
     func testShouldUpdateHorizontalInfoListTableView() {
         let sut = HorizontalInfoListTableView()
-        sut.setupDataSource(items: getItems())
+        sut.setupDataSource(items: items)
 
         let sutViewController = addHorizontalInfoListTableViewLayout(horizontalInfoTableView: sut)
 
-        let newItems: [HorizontalInfoListViewModel] = getItems().reversed()
+        let newItems: [HorizontalInfoListViewModel] = items.reversed()
         sut.setupDataSource(items: newItems)
 
         sutViewController.view.layoutIfNeeded()
@@ -47,7 +57,7 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
 
     func testShouldCreateHorizontalInfoListTableViewByFactory() {
         let sut = HorizontalInfoListFactory.make()
-        sut.setupDataSource(items: getItems())
+        sut.setupDataSource(items: items)
 
         addHorizontalInfoListTableViewLayout(horizontalInfoTableView: sut)
 
@@ -72,15 +82,5 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
         sutViewController.view.layoutIfNeeded()
 
         return sutViewController
-    }
-
-    private func getItems() -> [HorizontalInfoListViewModel] {
-        guard let moviesPopulariesResponse: MoviesPopulariesResponse = MocksHelper.getResponse() else {
-            return []
-        }
-
-        return moviesPopulariesResponse.moviesResponse.map { movieResponse -> HorizontalInfoListViewModel in
-            HorizontalInfoListViewModel(imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
-        }
     }
 }
