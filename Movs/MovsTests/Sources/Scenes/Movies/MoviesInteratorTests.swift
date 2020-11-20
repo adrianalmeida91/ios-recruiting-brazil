@@ -84,11 +84,8 @@ final class MoviesInteratorTests: XCTestCase {
         XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
     }
 
-    func testFetchGenresShouldPresentFetchedGenres() {
-        guard let genres = MocksHelper.getMockedGenres() else {
-            return XCTFail()
-        }
-
+    func testFetchGenresShouldPresentFetchedGenres() throws {
+        let genres = try XCTUnwrap(MocksHelper.getMockedGenres())
         moyaWorkerSpy.stubbedFetchGenresCompletionResult = (.success(genres), ())
 
         let request = Movies.FetchGenres.Request(language: Constants.MovieDefaultParameters.language)
@@ -136,10 +133,9 @@ final class MoviesInteratorTests: XCTestCase {
         XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
     }
 
-    func testFetchMoviesShouldPresentFetchedMovies() {
-        guard let moviesPopulariesResponse = MocksHelper.getMockedMoviesPopulariesResponse(), let genres = MocksHelper.getMockedGenres() else {
-            return XCTFail()
-        }
+    func testFetchMoviesShouldPresentFetchedMovies() throws {
+        let moviesPopulariesResponse = try XCTUnwrap(MocksHelper.getMockedMoviesPopulariesResponse())
+        let genres = try XCTUnwrap(MocksHelper.getMockedGenres())
 
         moyaWorkerSpy.stubbedFetchMoviesCompletionResult = ((.success(moviesPopulariesResponse)), ())
 
@@ -187,15 +183,13 @@ final class MoviesInteratorTests: XCTestCase {
         XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
     }
 
-    func testFetchLocalMoviesBySearchShouldPresentFetchedMoviesBySearch() {
+    func testFetchLocalMoviesBySearchShouldPresentFetchedMoviesBySearch() throws {
         let movies = MocksHelper.getMockedMovies()
         let search = Strings.mockKill.localizable
         let request = Movies.FetchLocalMoviesBySearch.Request(movies: movies, filter: search)
         sut.fetchLocalMoviesBySearch(request: request)
 
-        guard let moviesFiltered = presenterSpy.invokedPresentFetchedMoviesBySearchParameters?.response.movies else {
-            return XCTFail()
-        }
+        let moviesFiltered = try XCTUnwrap(presenterSpy.invokedPresentFetchedMoviesBySearchParameters?.response.movies)
 
         XCTAssertTrue(presenterSpy.invokedPresentFetchedMoviesBySearch)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesBySearchCount, 1)

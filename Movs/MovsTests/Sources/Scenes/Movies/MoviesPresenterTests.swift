@@ -52,11 +52,8 @@ final class MoviesPresenterTests: XCTestCase {
         XCTAssertFalse(viewSpy.invokedDisplaySearchError)
     }
 
-    func testFetchedGenresShouldCallOnFetchedGenres() {
-        guard let genreResponse = MocksHelper.getMockedGenres() else {
-            return XCTFail()
-        }
-
+    func testFetchedGenresShouldCallOnFetchedGenres() throws {
+        let genreResponse = try XCTUnwrap(MocksHelper.getMockedGenres())
         let viewModel = Movies.FetchGenres.Response(genres: genreResponse.genres)
         sut.presentFetchedGenres(response: viewModel)
 

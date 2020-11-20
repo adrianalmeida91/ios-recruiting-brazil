@@ -82,11 +82,8 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
     }
 
-    func testFetchMoviesAfterFetchedGenres() {
-        guard let genres = MocksHelper.getMockedGenres()?.genres else {
-            return XCTFail()
-        }
-
+    func testFetchMoviesAfterFetchedGenres() throws {
+        let genres = try XCTUnwrap(MocksHelper.getMockedGenres()?.genres)
         let viewModel = Movies.FetchGenres.ViewModel(genres: genres)
         sut.onFetchedGenres(viewModel: viewModel)
 
@@ -144,11 +141,8 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         verify(sut)
     }
 
-    func testDisplayGenericErrorAfterFetchMovies() {
-        guard let genres = MocksHelper.getMockedGenres()?.genres else {
-            return XCTFail()
-        }
-
+    func testDisplayGenericErrorAfterFetchMovies() throws {
+        let genres = try XCTUnwrap(MocksHelper.getMockedGenres()?.genres)
         sut.displayGenericError()
 
         let viewModel = Movies.FetchGenres.ViewModel(genres: genres)

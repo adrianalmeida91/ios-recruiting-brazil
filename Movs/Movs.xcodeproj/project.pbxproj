@@ -115,7 +115,6 @@
 		A8B1298725439DC70074654A /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B1298625439DC70074654A /* MoviesViewController.swift */; };
 		A8B1298C25439DC70074654A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8B1298B25439DC70074654A /* Assets.xcassets */; };
 		A8B1298F25439DC70074654A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B1298D25439DC70074654A /* LaunchScreen.storyboard */; };
-		A8B1299A25439DC70074654A /* MovsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B1299925439DC70074654A /* MovsTests.swift */; };
 		A8B129A525439DC80074654A /* MovsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B129A425439DC80074654A /* MovsUITests.swift */; };
 		A8B129B52543ADAB0074654A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B129B42543ADAA0074654A /* UIColor+Extension.swift */; };
 		A8B129BA2543BBE30074654A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B129B92543BBE30074654A /* Coordinator.swift */; };
@@ -263,7 +262,6 @@
 		A8B1298E25439DC70074654A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8B1299025439DC70074654A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8B1299525439DC70074654A /* MovsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8B1299925439DC70074654A /* MovsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsTests.swift; sourceTree = "<group>"; };
 		A8B1299B25439DC80074654A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8B129A025439DC80074654A /* MovsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B129A425439DC80074654A /* MovsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsUITests.swift; sourceTree = "<group>"; };
@@ -680,7 +678,6 @@
 			isa = PBXGroup;
 			children = (
 				A8B1299B25439DC80074654A /* Info.plist */,
-				A8B1299925439DC70074654A /* MovsTests.swift */,
 				A83758302555FEC400CB3F7E /* Mocks */,
 				A8375843255720EA00CB3F7E /* Resources */,
 				A83255A92550E00800816318 /* Sources */,
@@ -1176,7 +1173,6 @@
 				A837584C255755DA00CB3F7E /* InfoListItemViewTests.swift in Sources */,
 				A837585F2558714600CB3F7E /* MoviesInteratorTests.swift in Sources */,
 				A83255BF2552059A00816318 /* MoviesViewControllerDelegateSpy.swift in Sources */,
-				A8B1299A25439DC70074654A /* MovsTests.swift in Sources */,
 				A837583A2557166F00CB3F7E /* HorizontalInfoListItemTests.swift in Sources */,
 				A83758502557742B00CB3F7E /* InfoListTableViewTests.swift in Sources */,
 				A83255B02551CAC100816318 /* FBSnapshotTestCase+Extension.swift in Sources */,
