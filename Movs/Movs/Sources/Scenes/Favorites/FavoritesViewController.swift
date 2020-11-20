@@ -109,8 +109,6 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     }
 
     func displayMovieUnfavorite() {
-        print(Strings.movieUnfavoriteSuccessful.localizable)
-
         if localMovies.count <= 0 {
             displayEmptyMovie()
         }

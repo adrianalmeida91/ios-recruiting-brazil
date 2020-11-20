@@ -134,6 +134,8 @@
 		A8C25B87256865ED0053442F /* JSONMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B86256865ED0053442F /* JSONMocks.swift */; };
 		A8C25B89256865FA0053442F /* MocksHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B88256865FA0053442F /* MocksHelper.swift */; };
 		A8C25B8B25687CB00053442F /* MovieDetailsScreenFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B8A25687CB00053442F /* MovieDetailsScreenFactoryTests.swift */; };
+		A8C25B8E25687E9D0053442F /* FavoritesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B8D25687E9D0053442F /* FavoritesViewControllerTests.swift */; };
+		A8C25B9125687F680053442F /* FavoritesInteractorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B9025687F680053442F /* FavoritesInteractorSpy.swift */; };
 		CA6A97827050137A5D040635 /* Pods_MovsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE658E89E158ADD2A4CC8A42 /* Pods_MovsUITests.framework */; };
 		ECAF90D72398074073ADE274 /* Pods_MovsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A72FDA12AAD9ACBE577851 /* Pods_MovsTests.framework */; };
 /* End PBXBuildFile section */
@@ -293,6 +295,8 @@
 		A8C25B86256865ED0053442F /* JSONMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMocks.swift; sourceTree = "<group>"; };
 		A8C25B88256865FA0053442F /* MocksHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksHelper.swift; sourceTree = "<group>"; };
 		A8C25B8A25687CB00053442F /* MovieDetailsScreenFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsScreenFactoryTests.swift; sourceTree = "<group>"; };
+		A8C25B8D25687E9D0053442F /* FavoritesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerTests.swift; sourceTree = "<group>"; };
+		A8C25B9025687F680053442F /* FavoritesInteractorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractorSpy.swift; sourceTree = "<group>"; };
 		AE658E89E158ADD2A4CC8A42 /* Pods_MovsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A72FDA12AAD9ACBE577851 /* Pods_MovsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2152A7B17021B211D245343 /* Pods-MovsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovsUITests.debug.xcconfig"; path = "Target Support Files/Pods-MovsUITests/Pods-MovsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -384,6 +388,7 @@
 		A83255B7255202AA00816318 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A8C25B8C25687E790053442F /* Favorites */,
 				A83255B8255202C000816318 /* Movies */,
 				A8C25B7025674EB80053442F /* MovieDetails */,
 				A8375862255879F500CB3F7E /* Workers */,
@@ -848,6 +853,23 @@
 			path = Spies;
 			sourceTree = "<group>";
 		};
+		A8C25B8C25687E790053442F /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				A8C25B8F25687F590053442F /* Spies */,
+				A8C25B8D25687E9D0053442F /* FavoritesViewControllerTests.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		A8C25B8F25687F590053442F /* Spies */ = {
+			isa = PBXGroup;
+			children = (
+				A8C25B9025687F680053442F /* FavoritesInteractorSpy.swift */,
+			);
+			path = Spies;
+			sourceTree = "<group>";
+		};
 		ED53FC15E8FEFC7F0C1740A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1227,6 +1249,7 @@
 				A837582D2555DD5200CB3F7E /* GridGalleryItemViewTests.swift in Sources */,
 				A8C25B7225674F010053442F /* MovieDetailsViewControllerTests.swift in Sources */,
 				A837586725587B5E00CB3F7E /* MoyaWorkerSpy.swift in Sources */,
+				A8C25B9125687F680053442F /* FavoritesInteractorSpy.swift in Sources */,
 				A83758472557212F00CB3F7E /* Strings.swift in Sources */,
 				A83255BA255202F700816318 /* MoviesViewControllerTests.swift in Sources */,
 				A837586B2559720F00CB3F7E /* MoviesDisplaySpy.swift in Sources */,
@@ -1235,6 +1258,7 @@
 				A8C25B8125685C4C0053442F /* Decodable+Mapper.swift in Sources */,
 				A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */,
 				A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */,
+				A8C25B8E25687E9D0053442F /* FavoritesViewControllerTests.swift in Sources */,
 				A837582F2555FC0300CB3F7E /* GridGalleryCollectionViewTest.swift in Sources */,
 				A837584925574F2600CB3F7E /* HorizontalInfoListTableViewTests.swift in Sources */,
 				A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */,
