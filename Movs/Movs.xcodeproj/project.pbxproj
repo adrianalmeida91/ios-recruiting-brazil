@@ -72,6 +72,14 @@
 		A86325062568A5EA00D6228A /* FavoritesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325052568A5EA00D6228A /* FavoritesPresenterTests.swift */; };
 		A86325082568A65C00D6228A /* FavoritesDisplaySpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325072568A65C00D6228A /* FavoritesDisplaySpy.swift */; };
 		A863250A2568AEE600D6228A /* FavoritesScreenFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325092568AEE600D6228A /* FavoritesScreenFactoryTests.swift */; };
+		A863250E2568B02000D6228A /* FilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863250D2568B02000D6228A /* FilterViewControllerTests.swift */; };
+		A86325102568B07A00D6228A /* FilterInteractorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863250F2568B07A00D6228A /* FilterInteractorSpy.swift */; };
+		A86325122568B10800D6228A /* FilterViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325112568B10800D6228A /* FilterViewControllerDelegateSpy.swift */; };
+		A86325142568B37300D6228A /* FilterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325132568B37300D6228A /* FilterPresenterTests.swift */; };
+		A86325162568B41B00D6228A /* FilterDisplaySpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325152568B41B00D6228A /* FilterDisplaySpy.swift */; };
+		A86325182568B63700D6228A /* FilterInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325172568B63700D6228A /* FilterInteractorTests.swift */; };
+		A863251A2568B6A000D6228A /* FilterPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86325192568B6A000D6228A /* FilterPresenterSpy.swift */; };
+		A863251C2568BA2400D6228A /* FilterScreenFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863251B2568BA2400D6228A /* FilterScreenFactoryTests.swift */; };
 		A864B85625477BC500B5BC29 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864B85525477BC500B5BC29 /* DataSource.swift */; };
 		A864B85825477DB300B5BC29 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864B85725477DB300B5BC29 /* CollectionViewDataSource.swift */; };
 		A864B85A25477FA200B5BC29 /* NSObjectProtocol+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864B85925477FA200B5BC29 /* NSObjectProtocol+ClassName.swift */; };
@@ -232,6 +240,14 @@
 		A86325052568A5EA00D6228A /* FavoritesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenterTests.swift; sourceTree = "<group>"; };
 		A86325072568A65C00D6228A /* FavoritesDisplaySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDisplaySpy.swift; sourceTree = "<group>"; };
 		A86325092568AEE600D6228A /* FavoritesScreenFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScreenFactoryTests.swift; sourceTree = "<group>"; };
+		A863250D2568B02000D6228A /* FilterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewControllerTests.swift; sourceTree = "<group>"; };
+		A863250F2568B07A00D6228A /* FilterInteractorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterInteractorSpy.swift; sourceTree = "<group>"; };
+		A86325112568B10800D6228A /* FilterViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
+		A86325132568B37300D6228A /* FilterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenterTests.swift; sourceTree = "<group>"; };
+		A86325152568B41B00D6228A /* FilterDisplaySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDisplaySpy.swift; sourceTree = "<group>"; };
+		A86325172568B63700D6228A /* FilterInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterInteractorTests.swift; sourceTree = "<group>"; };
+		A86325192568B6A000D6228A /* FilterPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenterSpy.swift; sourceTree = "<group>"; };
+		A863251B2568BA2400D6228A /* FilterScreenFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreenFactoryTests.swift; sourceTree = "<group>"; };
 		A864B85525477BC500B5BC29 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		A864B85725477DB300B5BC29 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		A864B85925477FA200B5BC29 /* NSObjectProtocol+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObjectProtocol+ClassName.swift"; sourceTree = "<group>"; };
@@ -596,6 +612,10 @@
 			isa = PBXGroup;
 			children = (
 				A863250C2568AFDA00D6228A /* Spies */,
+				A86325172568B63700D6228A /* FilterInteractorTests.swift */,
+				A86325132568B37300D6228A /* FilterPresenterTests.swift */,
+				A863251B2568BA2400D6228A /* FilterScreenFactoryTests.swift */,
+				A863250D2568B02000D6228A /* FilterViewControllerTests.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -603,6 +623,10 @@
 		A863250C2568AFDA00D6228A /* Spies */ = {
 			isa = PBXGroup;
 			children = (
+				A86325152568B41B00D6228A /* FilterDisplaySpy.swift */,
+				A863250F2568B07A00D6228A /* FilterInteractorSpy.swift */,
+				A86325112568B10800D6228A /* FilterViewControllerDelegateSpy.swift */,
+				A86325192568B6A000D6228A /* FilterPresenterSpy.swift */,
 			);
 			path = Spies;
 			sourceTree = "<group>";
@@ -885,8 +909,8 @@
 				A8C25B8F25687F590053442F /* Spies */,
 				A8C25B9225688BAB0053442F /* FavoritesInteractorTests.swift */,
 				A86325052568A5EA00D6228A /* FavoritesPresenterTests.swift */,
-				A8C25B8D25687E9D0053442F /* FavoritesViewControllerTests.swift */,
 				A86325092568AEE600D6228A /* FavoritesScreenFactoryTests.swift */,
+				A8C25B8D25687E9D0053442F /* FavoritesViewControllerTests.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -1266,6 +1290,7 @@
 			files = (
 				A83255BD2552047500816318 /* MoviesInteractorSpy.swift in Sources */,
 				A8C25B87256865ED0053442F /* JSONMocks.swift in Sources */,
+				A86325122568B10800D6228A /* FilterViewControllerDelegateSpy.swift in Sources */,
 				A8C25B7925675CE50053442F /* MovieDetailsPresenterTests.swift in Sources */,
 				A8C25B7D2567603A0053442F /* MovieDetailsInteractorTests.swift in Sources */,
 				A837585725583A5100CB3F7E /* ListCheckTableViewTests.swift in Sources */,
@@ -1277,9 +1302,11 @@
 				A837583A2557166F00CB3F7E /* HorizontalInfoListItemTests.swift in Sources */,
 				A8C25B7B25675D4D0053442F /* MovieDetailsDisplaySpy.swift in Sources */,
 				A8C25B9325688BAB0053442F /* FavoritesInteractorTests.swift in Sources */,
+				A863250E2568B02000D6228A /* FilterViewControllerTests.swift in Sources */,
 				A83758502557742B00CB3F7E /* InfoListTableViewTests.swift in Sources */,
 				A83255B02551CAC100816318 /* FBSnapshotTestCase+Extension.swift in Sources */,
 				A86325082568A65C00D6228A /* FavoritesDisplaySpy.swift in Sources */,
+				A86325182568B63700D6228A /* FilterInteractorTests.swift in Sources */,
 				A8C25B77256755F20053442F /* MovieDetailsInteractorSpy.swift in Sources */,
 				A837582D2555DD5200CB3F7E /* GridGalleryItemViewTests.swift in Sources */,
 				A8C25B7225674F010053442F /* MovieDetailsViewControllerTests.swift in Sources */,
@@ -1288,10 +1315,14 @@
 				A83758472557212F00CB3F7E /* Strings.swift in Sources */,
 				A83255BA255202F700816318 /* MoviesViewControllerTests.swift in Sources */,
 				A837586B2559720F00CB3F7E /* MoviesDisplaySpy.swift in Sources */,
+				A86325162568B41B00D6228A /* FilterDisplaySpy.swift in Sources */,
+				A86325142568B37300D6228A /* FilterPresenterTests.swift in Sources */,
+				A863251A2568B6A000D6228A /* FilterPresenterSpy.swift in Sources */,
 				A8BFFF942555A2D1002137A4 /* ErrorViewTests.swift in Sources */,
 				A8C25B8B25687CB00053442F /* MovieDetailsScreenFactoryTests.swift in Sources */,
 				A8C25B8125685C4C0053442F /* Decodable+Mapper.swift in Sources */,
 				A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */,
+				A86325102568B07A00D6228A /* FilterInteractorSpy.swift in Sources */,
 				A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */,
 				A8C25B8E25687E9D0053442F /* FavoritesViewControllerTests.swift in Sources */,
 				A837582F2555FC0300CB3F7E /* GridGalleryCollectionViewTest.swift in Sources */,
@@ -1299,6 +1330,7 @@
 				A837585B25584BE900CB3F7E /* Data+Extension.swift in Sources */,
 				A8375861255878FB00CB3F7E /* MoviesPresenterSpy.swift in Sources */,
 				A8C25B89256865FA0053442F /* MocksHelper.swift in Sources */,
+				A863251C2568BA2400D6228A /* FilterScreenFactoryTests.swift in Sources */,
 				A8375869255970AC00CB3F7E /* MoviesPresenterTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,
 				A837585D25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum FilterIndexType: Int {
+private enum FilterIndexType: Int {
     case date = 0
     case genres = 1
 }
