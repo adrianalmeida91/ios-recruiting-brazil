@@ -22,5 +22,6 @@ final class MovieDetailsScreenFactoryTests: XCTestCase {
         _ = sut
 
         XCTAssertNotNil(sut)
+        XCTAssertTrue(sut is MovieDetailsViewController)
     }
 }

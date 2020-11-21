@@ -44,7 +44,6 @@ final class MoviesPresenterTests: XCTestCase {
         XCTAssertTrue(displaySpy.invokedOnFetchedLocalMovies)
         XCTAssertEqual(displaySpy.invokedOnFetchedLocalMoviesCount, 1)
         XCTAssertEqual(parameters.viewModel.movies, movies)
-        XCTAssertEqual(parameters.viewModel.movies.count, movies.count)
         XCTAssertEqual(displaySpy.invokedOnFetchedLocalMoviesParametersList.count, 1)
 
         XCTAssertFalse(displaySpy.invokedOnFetchedGenres)
@@ -85,7 +84,6 @@ final class MoviesPresenterTests: XCTestCase {
         XCTAssertEqual(parameters.viewModel.page, Constants.MovieDefaultParameters.page)
         XCTAssertEqual(parameters.viewModel.totalPages, 500)
         XCTAssertEqual(parameters.viewModel.movies, movies)
-        XCTAssertEqual(parameters.viewModel.movies.count, movies.count)
         XCTAssertEqual(displaySpy.invokedDisplayMoviesParametersList.count, 1)
 
         XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)
@@ -118,7 +116,6 @@ final class MoviesPresenterTests: XCTestCase {
         XCTAssertTrue(displaySpy.invokedDisplayMoviesBySearch)
         XCTAssertEqual(displaySpy.invokedDisplayMoviesBySearchCount, 1)
         XCTAssertEqual(parameters.viewModel.movies, movies)
-        XCTAssertEqual(parameters.viewModel.movies.count, movies.count)
         XCTAssertEqual(displaySpy.invokedDisplayMoviesBySearchParametersList.count, 1)
 
         XCTAssertFalse(displaySpy.invokedOnFetchedLocalMovies)

@@ -51,7 +51,6 @@ final class MoviesInteractorTests: XCTestCase {
         XCTAssertTrue(presenterSpy.invokedPresentFetchedLocalMovies)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesCount, 1)
         XCTAssertEqual(parameters.response.movies, movies)
-        XCTAssertEqual(parameters.response.movies.count, movies.count)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesParametersList.count, 1)
 
         XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
@@ -66,7 +65,7 @@ final class MoviesInteractorTests: XCTestCase {
     }
 
     func testFetchLocalMoviesShouldPresentGenericError() {
-        realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.failure(DatabaseError.unknown), ())
+        realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.failure(.unknown), ())
 
         sut.fetchLocalMovies()
 
@@ -93,15 +92,16 @@ final class MoviesInteractorTests: XCTestCase {
         let request = Movies.FetchGenres.Request(language: Constants.MovieDefaultParameters.language)
         sut.fetchGenres(request: request)
 
-        let paramenters = try XCTUnwrap(moyaWorkerSpy.invokedFetchGenresParameters)
+        let workerParameters = try XCTUnwrap(moyaWorkerSpy.invokedFetchGenresParameters)
+        let presenterParameters = try XCTUnwrap(presenterSpy.invokedPresentFetchedGenresParameters)
 
         XCTAssertTrue(moyaWorkerSpy.invokedFetchGenres)
         XCTAssertEqual(moyaWorkerSpy.invokedFetchGenresCount, 1)
-        XCTAssertEqual(paramenters.language, Constants.MovieDefaultParameters.language)
+        XCTAssertEqual(workerParameters.language, Constants.MovieDefaultParameters.language)
         XCTAssertEqual(moyaWorkerSpy.invokedFetchGenresParametersList.count, 1)
         XCTAssertTrue(presenterSpy.invokedPresentFetchedGenres)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedGenresCount, 1)
-        XCTAssertEqual(presenterSpy.invokedPresentFetchedGenresParameters?.response.genres.count, genres.genres.count)
+        XCTAssertEqual(presenterParameters.response.genres.count, genres.genres.count)
         XCTAssertEqual(presenterSpy.invokedPresentFetchedGenresParametersList.count, 1)
 
         XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
@@ -116,7 +116,7 @@ final class MoviesInteractorTests: XCTestCase {
     }
 
     func testFetchGenresShouldPresentGenericError() {
-        moyaWorkerSpy.stubbedFetchGenresCompletionResult = (.failure(NetworkError.unknown), ())
+        moyaWorkerSpy.stubbedFetchGenresCompletionResult = (.failure(.unknown), ())
 
         let request = Movies.FetchGenres.Request(language: Constants.MovieDefaultParameters.language)
         sut.fetchGenres(request: request)
@@ -168,7 +168,7 @@ final class MoviesInteractorTests: XCTestCase {
     }
 
     func testFetchMoviesShouldPresentGenericError() {
-        moyaWorkerSpy.stubbedFetchMoviesCompletionResult = ((.failure(NetworkError.unknown)), ())
+        moyaWorkerSpy.stubbedFetchMoviesCompletionResult = ((.failure(.unknown)), ())
 
         let request = Movies.FetchMovies.Request(language: Constants.MovieDefaultParameters.language, page: Constants.MovieDefaultParameters.page, genres: [])
         sut.fetchMovies(request: request)

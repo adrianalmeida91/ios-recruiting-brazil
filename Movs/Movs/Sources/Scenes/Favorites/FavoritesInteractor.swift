@@ -97,7 +97,7 @@ final class FavoritesInteractor: FavoritesBusinessLogic {
         worker.deleteMovie(movie: request.movie) { result in
             switch result {
             case .success():
-                self.presenter.presenterMovieUnfavorite()
+                self.presenter.presentMovieUnfavorite()
             case let .failure(error):
                 self.presentGenericFailure(error: error)
             }

@@ -23,5 +23,6 @@ final class MoviesScreenFactoryTests: XCTestCase {
 
         XCTAssertNotNil(sut)
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
+        XCTAssertTrue(sut is MoviesViewController)
     }
 }

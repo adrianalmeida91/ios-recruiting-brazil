@@ -57,7 +57,7 @@ final class MovieDetailsInteractorTests: XCTestCase {
     }
 
     func testSaveMovieWithFailure() throws {
-        workerSpy.stubbedSaveMovieCompletionResult = (.failure(DatabaseError.unknown), ())
+        workerSpy.stubbedSaveMovieCompletionResult = (.failure(.unknown), ())
 
         let viewModel = MovieDetails.SaveMovie.Request(movie: movie)
         sut.saveMovie(request: viewModel)
@@ -100,7 +100,7 @@ final class MovieDetailsInteractorTests: XCTestCase {
     }
 
     func testDeleteMoviesWithFailure() throws {
-        workerSpy.stubbedDeleteMovieCompletionResult = (.failure(DatabaseError.unknown), ())
+        workerSpy.stubbedDeleteMovieCompletionResult = (.failure(.unknown), ())
 
         let viewModel = MovieDetails.DeleteMovie.Request(movie: movie)
         sut.deleteMovie(request: viewModel)

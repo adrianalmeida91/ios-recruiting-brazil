@@ -9,7 +9,7 @@
 protocol FavoritesPresentationLogic: AnyObject {
     func presentFetchedLocalMovies(response: Favorites.FetchLocalMovies.Response)
     func presentFetchedLocalMoviesEmpty()
-    func presenterMovieUnfavorite()
+    func presentMovieUnfavorite()
     func presentGenericFailure()
     func presentFetchedMoviesBySearch(response: Favorites.FetchLocalMoviesBySearch.Response)
     func presentSearchedMoviesFailure(filter: FilterSearch)
@@ -29,7 +29,7 @@ final class FavoritesPresenter: FavoritesPresentationLogic {
         viewController?.displayFetchedLocalMoviesEmpty()
     }
 
-    func presenterMovieUnfavorite() {
+    func presentMovieUnfavorite() {
         viewController?.displayMovieUnfavorite()
     }
 
@@ -47,6 +47,6 @@ final class FavoritesPresenter: FavoritesPresentationLogic {
         let date = filter.date?.joined(separator: Constants.Utils.genresSeparator) ?? .empty
         let genres = filter.genres?.joined(separator: Constants.Utils.genresSeparator) ?? .empty
         let searchText = search + .space + date + .space + genres
-        viewController?.displaySearchError(searchedText: searchText)
+        viewController?.displaySearchError(searchedText: searchText.trimmingCharacters(in: .whitespaces))
     }
 }
