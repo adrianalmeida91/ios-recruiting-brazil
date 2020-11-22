@@ -117,6 +117,8 @@
 		A89723F0254F30E20022FB06 /* ListCheckItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89723EF254F30E20022FB06 /* ListCheckItemViewModel.swift */; };
 		A89723F2254F38750022FB06 /* ListCheckItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89723F1254F38750022FB06 /* ListCheckItemTableViewCell.swift */; };
 		A89723F4254F390B0022FB06 /* ListCheckTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89723F3254F390B0022FB06 /* ListCheckTableView.swift */; };
+		A89A0CF9256AE97F009DE9C0 /* TabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89A0CF8256AE97F009DE9C0 /* TabBarViewControllerTests.swift */; };
+		A89A0CFC256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89A0CFB256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift */; };
 		A8A0F8C9254951B80049B5CB /* Kingfisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F8C8254951B80049B5CB /* Kingfisher+Extension.swift */; };
 		A8AF17DE254F6069007D8C4E /* FilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF17DD254F6069007D8C4E /* FilterInteractor.swift */; };
 		A8AF17E0254F60C2007D8C4E /* FilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF17DF254F60C2007D8C4E /* FilterModels.swift */; };
@@ -285,6 +287,8 @@
 		A89723EF254F30E20022FB06 /* ListCheckItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckItemViewModel.swift; sourceTree = "<group>"; };
 		A89723F1254F38750022FB06 /* ListCheckItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckItemTableViewCell.swift; sourceTree = "<group>"; };
 		A89723F3254F390B0022FB06 /* ListCheckTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCheckTableView.swift; sourceTree = "<group>"; };
+		A89A0CF8256AE97F009DE9C0 /* TabBarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerTests.swift; sourceTree = "<group>"; };
+		A89A0CFB256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
 		A8A0F8C8254951B80049B5CB /* Kingfisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Extension.swift"; sourceTree = "<group>"; };
 		A8AF17DD254F6069007D8C4E /* FilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterInteractor.swift; sourceTree = "<group>"; };
 		A8AF17DF254F60C2007D8C4E /* FilterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModels.swift; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 				A863250B2568AFCD00D6228A /* Filter */,
 				A83255B8255202C000816318 /* Movies */,
 				A8C25B7025674EB80053442F /* MovieDetails */,
+				A89A0CF7256AE956009DE9C0 /* TabBar */,
 				A8375862255879F500CB3F7E /* Workers */,
 			);
 			path = Scenes;
@@ -715,6 +720,23 @@
 				A89723ED254F2D9C0022FB06 /* ListCheckTableViewFactory.swift */,
 			);
 			path = ListCheck;
+			sourceTree = "<group>";
+		};
+		A89A0CF7256AE956009DE9C0 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A89A0CFA256AE9D7009DE9C0 /* Spies */,
+				A89A0CF8256AE97F009DE9C0 /* TabBarViewControllerTests.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A89A0CFA256AE9D7009DE9C0 /* Spies */ = {
+			isa = PBXGroup;
+			children = (
+				A89A0CFB256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift */,
+			);
+			path = Spies;
 			sourceTree = "<group>";
 		};
 		A8B1297625439DC60074654A = {
@@ -1298,6 +1320,7 @@
 				A837584C255755DA00CB3F7E /* InfoListItemViewTests.swift in Sources */,
 				A837585F2558714600CB3F7E /* MoviesInteractorTests.swift in Sources */,
 				A86325062568A5EA00D6228A /* FavoritesPresenterTests.swift in Sources */,
+				A89A0CFC256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift in Sources */,
 				A83255BF2552059A00816318 /* MoviesViewControllerDelegateSpy.swift in Sources */,
 				A837583A2557166F00CB3F7E /* HorizontalInfoListItemTests.swift in Sources */,
 				A8C25B7B25675D4D0053442F /* MovieDetailsDisplaySpy.swift in Sources */,
@@ -1334,6 +1357,7 @@
 				A8375869255970AC00CB3F7E /* MoviesPresenterTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,
 				A837585D25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift in Sources */,
+				A89A0CF9256AE97F009DE9C0 /* TabBarViewControllerTests.swift in Sources */,
 				A863250A2568AEE600D6228A /* FavoritesScreenFactoryTests.swift in Sources */,
 				A8C25B7F256760B90053442F /* MovieDetailsPresenterSpy.swift in Sources */,
 			);
