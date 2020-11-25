@@ -38,7 +38,7 @@ final class FilterDisplaySpy: FilterDisplayLogic {
         invokedOnFetchedGenresParametersList.append((viewModel, ()))
     }
 
-    func displayGenericError() {
+    func displayError() {
         invokedDisplayGenericError = true
         invokedDisplayGenericErrorCount += 1
     }

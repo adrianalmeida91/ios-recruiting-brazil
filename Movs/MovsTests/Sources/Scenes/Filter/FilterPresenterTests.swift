@@ -62,7 +62,7 @@ final class FilterPresenterTests: XCTestCase {
     }
 
     func testOnFetchedGenresFailureShouldDisplayGenericError() {
-        sut.onFetchedGenresFailure()
+        sut.onFailure()
 
         XCTAssertTrue(displaySpy.invokedDisplayGenericError)
         XCTAssertEqual(displaySpy.invokedDisplayGenericErrorCount, 1)

@@ -48,15 +48,15 @@ final class FilterInteractor: FilterBusinessLogic {
                 let genres = response.genres.map { $0.name }
                 self.presenter.onFetchedGenres(response: Filter.FetchGenres.Response(genres: genres))
             case let .failure(error):
-                self.onFetchedGenericFailure(error: error)
+                self.onFailure(error: error)
             }
         }
     }
 
     // MARK: - Private functions
 
-    private func onFetchedGenericFailure(error: Error) {
+    private func onFailure(error: Error) {
         print(error.localizedDescription)
-        self.presenter.onFetchedGenresFailure()
+        self.presenter.onFailure()
     }
 }

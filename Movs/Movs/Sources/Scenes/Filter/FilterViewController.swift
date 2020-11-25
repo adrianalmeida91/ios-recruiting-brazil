@@ -14,9 +14,9 @@ private enum FilterIndexType: Int {
 }
 
 protocol FilterDisplayLogic: AnyObject {
-    func onFetchedDates(viewModel: Filter.FetchDates.ViewModel)
-    func onFetchedGenres(viewModel: Filter.FetchGenres.ViewModel)
-    func displayGenericError()
+    func displayDates(viewModel: Filter.FetchDates.ViewModel)
+    func displayGenres(viewModel: Filter.FetchGenres.ViewModel)
+    func displayError()
 }
 
 final class FilterViewController: UIViewController, FilterDisplayLogic {
@@ -99,23 +99,23 @@ final class FilterViewController: UIViewController, FilterDisplayLogic {
 
     // MARK: - FilterDisplayLogic
 
-    func onFetchedDates(viewModel: Filter.FetchDates.ViewModel) {
+    func displayDates(viewModel: Filter.FetchDates.ViewModel) {
         allDates = viewModel.dates
     }
 
-    func onFetchedGenres(viewModel: Filter.FetchGenres.ViewModel) {
+    func displayGenres(viewModel: Filter.FetchGenres.ViewModel) {
         allGenres = viewModel.genres
     }
 
-    func displayGenericError() {
+    func displayError() {
         // Show some error messasge
     }
 
     // MARK: - Private functions
 
     private func fetchDatas() {
-        interactor.fetchGenres(request: Filter.FetchGenres.Request(language: Constants.MovieDefaultParameters.language))
         interactor.fetchDates()
+        interactor.fetchGenres(request: Filter.FetchGenres.Request(language: Constants.MovieDefaultParameters.language))
     }
 
     private func setup() {

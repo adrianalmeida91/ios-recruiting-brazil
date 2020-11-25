@@ -38,7 +38,7 @@ final class FilterPresenterSpy: FilterPresentationLogic {
         invokedOnFetchedGenresParametersList.append((response, ()))
     }
 
-    func onFetchedGenresFailure() {
+    func onFailure() {
         invokedOnFetchedGenresFailure = true
         invokedOnFetchedGenresFailureCount += 1
     }
