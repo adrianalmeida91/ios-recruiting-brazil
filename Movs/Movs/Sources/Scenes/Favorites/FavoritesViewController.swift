@@ -9,11 +9,11 @@
 import UIKit
 
 protocol FavoritesDisplayLogic: AnyObject {
-    func displayLocalMovies(viewModel: Favorites.FetchLocalMovies.ViewModel)
-    func displayFetchedLocalMoviesEmpty()
+    func displayMovies(viewModel: Favorites.FetchMovies.ViewModel)
+    func displayEmptyView()
     func displayMovieUnfavorite()
-    func displayGenericError()
-    func displayMoviesBySearch(viewModel: Favorites.FetchLocalMoviesBySearch.ViewModel)
+    func displayFailureError()
+    func displaySearchedMovies(viewModel: Favorites.FetchMoviesBySearch.ViewModel)
     func displaySearchError(searchedText: String)
 }
 
@@ -40,9 +40,9 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
 
     // MARK: - Private variables
 
-    private var localMovies: [Movie] = []
+    private var movies: [Movie] = []
 
-    private var localMoviesFiltered: [Movie] = []
+    private var moviesFiltered: [Movie] = []
 
     private var filter: FilterSearch = FilterSearch()
 
@@ -87,39 +87,38 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
                                    genres: newFilter.genres ?? filter.genres)
 
         guard !filter.isEmpty else {
-            fetchLocalMovies()
-            return
+            return fetchMovies()
         }
 
-        removeFilterButton.isHidden = false
-        interactor.fetchLocalMoviesBySearch(request: Favorites.FetchLocalMoviesBySearch.Request(movies: localMovies, filter: filter))
+        removeFilterButton.isHidden = filter.date == nil && filter.genres == nil
+        interactor.fetchMoviesBySearch(request: Favorites.FetchMoviesBySearch.Request(filter: filter))
     }
 
     // MARK: - FavoritesDisplayLogic conforms
 
-    func displayLocalMovies(viewModel: Favorites.FetchLocalMovies.ViewModel) {
-        localMovies = viewModel.movies
-        localMoviesFiltered = []
+    func displayMovies(viewModel: Favorites.FetchMovies.ViewModel) {
+        movies = viewModel.movies
+        moviesFiltered = []
 
         setupViewModel()
     }
 
-    func displayFetchedLocalMoviesEmpty() {
+    func displayEmptyView() {
         displayEmptyMovie()
     }
 
     func displayMovieUnfavorite() {
-        if localMovies.count <= 0 {
+        if movies.count <= 0 {
             displayEmptyMovie()
         }
     }
 
-    func displayGenericError() {
+    func displayFailureError() {
         displayErrorView()
     }
 
-    func displayMoviesBySearch(viewModel: Favorites.FetchLocalMoviesBySearch.ViewModel) {
-        localMoviesFiltered = viewModel.movies
+    func displaySearchedMovies(viewModel: Favorites.FetchMoviesBySearch.ViewModel) {
+        moviesFiltered = viewModel.movies
 
         setupViewModel()
     }
@@ -158,14 +157,14 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     }
 
     private func horizontalItemTapped(_ index: Int) {
-        let movieToRemove = localMoviesFiltered.count > 0 ? localMoviesFiltered[index] : localMovies[index]
+        let movieToRemove = moviesFiltered.count > 0 ? moviesFiltered[index] : movies[index]
 
-        if let indexToRemove = localMovies.firstIndex(of: movieToRemove) {
-            localMovies.remove(at: indexToRemove)
+        if let indexToRemove = movies.firstIndex(of: movieToRemove) {
+            movies.remove(at: indexToRemove)
         }
 
-        if let indexToRemove = localMoviesFiltered.firstIndex(of: movieToRemove) {
-            localMoviesFiltered.remove(at: indexToRemove)
+        if let indexToRemove = moviesFiltered.firstIndex(of: movieToRemove) {
+            moviesFiltered.remove(at: indexToRemove)
         }
 
         setupViewModel()
@@ -174,7 +173,7 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     }
 
     private func setupViewModel() {
-        let moviesDisplay = localMoviesFiltered.count > 0 ? localMoviesFiltered : localMovies
+        let moviesDisplay = moviesFiltered.count > 0 ? moviesFiltered : movies
         let horizontalItemsViewModel = moviesDisplay.map { movie -> HorizontalInfoListViewModel in
             HorizontalInfoListViewModel(imageURL: movie.imageURL, title: movie.title, subtitle: movie.releaseDate, descriptionText: movie.overview)
         }
@@ -182,9 +181,9 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
         horizontalTableView.setupDataSource(items: horizontalItemsViewModel)
     }
 
-    private func fetchLocalMovies() {
+    private func fetchMovies() {
         showHorizontalList()
-        interactor.fetchLocalMovies()
+        interactor.fetchMovies()
     }
 
     private func showHorizontalList() {
@@ -194,7 +193,7 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     }
 
     private func clearFilter() {
-        localMoviesFiltered = []
+        moviesFiltered = []
         filter = FilterSearch()
         removeFilterButton.isHidden = true
     }

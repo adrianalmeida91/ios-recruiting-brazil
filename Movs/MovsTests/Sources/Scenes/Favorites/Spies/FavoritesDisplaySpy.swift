@@ -11,8 +11,8 @@
 final class FavoritesDisplaySpy: FavoritesDisplayLogic {
     private(set) var invokedDisplayLocalMovies = false
     private(set) var invokedDisplayLocalMoviesCount = 0
-    private(set) var invokedDisplayLocalMoviesParameters: (viewModel: Favorites.FetchLocalMovies.ViewModel, Void)?
-    private(set) var invokedDisplayLocalMoviesParametersList = [(viewModel: Favorites.FetchLocalMovies.ViewModel, Void)]()
+    private(set) var invokedDisplayLocalMoviesParameters: (viewModel: Favorites.FetchMovies.ViewModel, Void)?
+    private(set) var invokedDisplayLocalMoviesParametersList = [(viewModel: Favorites.FetchMovies.ViewModel, Void)]()
 
     private(set) var invokedDisplayFetchedLocalMoviesEmpty = false
     private(set) var invokedDisplayFetchedLocalMoviesEmptyCount = 0
@@ -25,8 +25,8 @@ final class FavoritesDisplaySpy: FavoritesDisplayLogic {
 
     private(set) var invokedDisplayMoviesBySearch = false
     private(set) var invokedDisplayMoviesBySearchCount = 0
-    private(set) var invokedDisplayMoviesBySearchParameters: (viewModel: Favorites.FetchLocalMoviesBySearch.ViewModel, Void)?
-    private(set) var invokedDisplayMoviesBySearchParametersList = [(viewModel: Favorites.FetchLocalMoviesBySearch.ViewModel, Void)]()
+    private(set) var invokedDisplayMoviesBySearchParameters: (viewModel: Favorites.FetchMoviesBySearch.ViewModel, Void)?
+    private(set) var invokedDisplayMoviesBySearchParametersList = [(viewModel: Favorites.FetchMoviesBySearch.ViewModel, Void)]()
 
     private(set) var invokedDisplaySearchError = false
     private(set) var invokedDisplaySearchErrorCount = 0
@@ -35,7 +35,7 @@ final class FavoritesDisplaySpy: FavoritesDisplayLogic {
 
     // MARK: - FavoritesDisplayLogic conforms
 
-    func displayLocalMovies(viewModel: Favorites.FetchLocalMovies.ViewModel) {
+    func displayLocalMovies(viewModel: Favorites.FetchMovies.ViewModel) {
         invokedDisplayLocalMovies = true
         invokedDisplayLocalMoviesCount += 1
         invokedDisplayLocalMoviesParameters = (viewModel, ())
@@ -57,7 +57,7 @@ final class FavoritesDisplaySpy: FavoritesDisplayLogic {
         invokedDisplayGenericErrorCount += 1
     }
 
-    func displayMoviesBySearch(viewModel: Favorites.FetchLocalMoviesBySearch.ViewModel) {
+    func displayMoviesBySearch(viewModel: Favorites.FetchMoviesBySearch.ViewModel) {
         invokedDisplayMoviesBySearch = true
         invokedDisplayMoviesBySearchCount += 1
         invokedDisplayMoviesBySearchParameters = (viewModel, ())

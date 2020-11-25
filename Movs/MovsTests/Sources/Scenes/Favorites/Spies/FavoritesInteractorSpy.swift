@@ -14,8 +14,8 @@ final class FavoritesInteractorSpy: FavoritesBusinessLogic {
 
     private(set) var invokedFetchLocalMoviesBySearch = false
     private(set) var invokedFetchLocalMoviesBySearchCount = 0
-    private(set) var invokedFetchLocalMoviesBySearchParameters: (request: Favorites.FetchLocalMoviesBySearch.Request, Void)?
-    private(set) var invokedFetchLocalMoviesBySearchParametersList = [(request: Favorites.FetchLocalMoviesBySearch.Request, Void)]()
+    private(set) var invokedFetchLocalMoviesBySearchParameters: (request: Favorites.FetchMoviesBySearch.Request, Void)?
+    private(set) var invokedFetchLocalMoviesBySearchParametersList = [(request: Favorites.FetchMoviesBySearch.Request, Void)]()
 
     private(set) var invokedDeleteMovie = false
     private(set) var invokedDeleteMovieCount = 0
@@ -29,7 +29,7 @@ final class FavoritesInteractorSpy: FavoritesBusinessLogic {
         invokedFetchLocalMoviesCount += 1
     }
 
-    func fetchLocalMoviesBySearch(request: Favorites.FetchLocalMoviesBySearch.Request) {
+    func fetchLocalMoviesBySearch(request: Favorites.FetchMoviesBySearch.Request) {
         invokedFetchLocalMoviesBySearch = true
         invokedFetchLocalMoviesBySearchCount += 1
         invokedFetchLocalMoviesBySearchParameters = (request, ())

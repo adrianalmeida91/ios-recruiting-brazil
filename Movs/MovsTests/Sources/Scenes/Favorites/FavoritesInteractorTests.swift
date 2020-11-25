@@ -38,7 +38,7 @@ final class FavoritesInteractorTests: XCTestCase {
 
     func testFetchLocalMoviesShouldPresentFetchedLocalMovies() throws {
         realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.success(movies), ())
-        sut.fetchLocalMovies()
+        sut.fetchMovies()
 
         let parameters = try XCTUnwrap(presenterSpy.invokedPresentFetchedLocalMoviesParameters)
 
@@ -60,7 +60,7 @@ final class FavoritesInteractorTests: XCTestCase {
 
     func testFetchLocalMoviesShouldPresentEmptyMovies() {
         realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.success([]), ())
-        sut.fetchLocalMovies()
+        sut.fetchMovies()
 
         XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
         XCTAssertEqual(realmWorkerSpy.invokedFetchMoviesCount, 1)
@@ -78,7 +78,7 @@ final class FavoritesInteractorTests: XCTestCase {
 
     func testFetchLocalMoviesShouldPresentGenericFailure() {
         realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.failure(.unknown), ())
-        sut.fetchLocalMovies()
+        sut.fetchMovies()
 
         XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
         XCTAssertEqual(realmWorkerSpy.invokedFetchMoviesCount, 1)
@@ -256,7 +256,7 @@ final class FavoritesInteractorTests: XCTestCase {
     // MARK: - Private functions
 
     private func fetchLocalMoviesBySearch(filter: FilterSearch) -> [Movie]? {
-        let request = Favorites.FetchLocalMoviesBySearch.Request(movies: movies, filter: filter)
+        let request = Favorites.FetchMoviesBySearch.Request(movies: movies, filter: filter)
         sut.fetchLocalMoviesBySearch(request: request)
 
         let movies = presenterSpy.invokedPresentFetchedMoviesBySearchParameters?.response.movies

@@ -47,19 +47,19 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
 
     func testDisplayLocalMoviesShouldReloadView() {
         let movies = MocksHelper.getMockedMovies()
-        let viewModel = Favorites.FetchLocalMovies.ViewModel(movies: movies)
+        let viewModel = Favorites.FetchMovies.ViewModel(movies: movies)
         sut.displayLocalMovies(viewModel: viewModel)
 
         snapshot()
     }
 
     func testDisplayFetchedLocalMoviesEmptyShouldDisplaySearchErrorView() {
-        sut.displayFetchedLocalMoviesEmpty()
+        sut.displayEmptyView()
         snapshot()
     }
 
     func testDisplayMovieUnfavoriteWithZeroMoviesShouldDisplayEmptyMovieView() {
-        let viewModel = Favorites.FetchLocalMovies.ViewModel(movies: [])
+        let viewModel = Favorites.FetchMovies.ViewModel(movies: [])
         sut.displayLocalMovies(viewModel: viewModel)
         sut.displayMovieUnfavorite()
 
@@ -67,14 +67,14 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testDisplayGenericErrorShouldDisplayErrorView() {
-        sut.displayGenericError()
+        sut.displayFailureError()
 
         snapshot()
     }
 
     func testDisplayMoviesBySearchShouldReloadViewWithFilteredMovies() {
         let movies: [Movie] = MocksHelper.getMockedMovies().reversed()
-        let viewModel = Favorites.FetchLocalMoviesBySearch.ViewModel(movies: movies)
+        let viewModel = Favorites.FetchMoviesBySearch.ViewModel(movies: movies)
         sut.displayMoviesBySearch(viewModel: viewModel)
 
         snapshot()

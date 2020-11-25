@@ -36,7 +36,7 @@ final class FavoritesPresenterTests: XCTestCase {
 
     func testPresentFetchedLocalMoviesShouldDisplayLocalMovies() throws {
         let movies = MocksHelper.getRandomMovies()
-        let response = Favorites.FetchLocalMovies.Response(movies: movies)
+        let response = Favorites.FetchMovies.Response(movies: movies)
         sut.presentFetchedLocalMovies(response: response)
 
         let parameters = try XCTUnwrap(displaySpy.invokedDisplayLocalMoviesParameters)
@@ -54,7 +54,7 @@ final class FavoritesPresenterTests: XCTestCase {
     }
 
     func testPresentFetchedLocalMoviesEmptyShouldDisplayLocalMoviesEmpty() {
-        sut.presentFetchedLocalMoviesEmpty()
+        sut.presentFetchedMoviesEmpty()
 
         XCTAssertTrue(displaySpy.invokedDisplayFetchedLocalMoviesEmpty)
         XCTAssertEqual(displaySpy.invokedDisplayFetchedLocalMoviesEmptyCount, 1)
@@ -80,7 +80,7 @@ final class FavoritesPresenterTests: XCTestCase {
     }
 
     func testPresentGenericFailureShouldDisplayGenericError() {
-        sut.presentGenericFailure()
+        sut.presentFailure()
 
         XCTAssertTrue(displaySpy.invokedDisplayGenericError)
         XCTAssertEqual(displaySpy.invokedDisplayGenericErrorCount, 1)
@@ -94,7 +94,7 @@ final class FavoritesPresenterTests: XCTestCase {
 
     func testPresentFetchedMoviesBySearchShouldDisplayMoviesBySearch() throws {
         let movies = MocksHelper.getRandomMovies()
-        let response = Favorites.FetchLocalMoviesBySearch.Response(movies: movies)
+        let response = Favorites.FetchMoviesBySearch.Response(movies: movies)
         sut.presentFetchedMoviesBySearch(response: response)
 
         let parameters = try XCTUnwrap(displaySpy.invokedDisplayMoviesBySearchParameters)
