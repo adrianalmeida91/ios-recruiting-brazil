@@ -24,8 +24,8 @@ final class MoviesInteractorSpy: MoviesBusinessLogic {
 
     private(set) var invokedFetchLocalMoviesBySearch = false
     private(set) var invokedFetchLocalMoviesBySearchCount = 0
-    private(set) var invokedFetchLocalMoviesBySearchParameters: (request: Movies.FetchLocalMoviesBySearch.Request, Void)?
-    private(set) var invokedFetchLocalMoviesBySearchParametersList = [(request: Movies.FetchLocalMoviesBySearch.Request, Void)]()
+    private(set) var invokedFetchLocalMoviesBySearchParameters: (request: Movies.FetchMoviesBySearch.Request, Void)?
+    private(set) var invokedFetchLocalMoviesBySearchParametersList = [(request: Movies.FetchMoviesBySearch.Request, Void)]()
 
     // MARK: - MoviesBusinessLogic conforms
 
@@ -48,7 +48,7 @@ final class MoviesInteractorSpy: MoviesBusinessLogic {
         invokedFetchMoviesParametersList.append((request, ()))
     }
 
-    func fetchLocalMoviesBySearch(request: Movies.FetchLocalMoviesBySearch.Request) {
+    func fetchLocalMoviesBySearch(request: Movies.FetchMoviesBySearch.Request) {
         invokedFetchLocalMoviesBySearch = true
         invokedFetchLocalMoviesBySearchCount += 1
         invokedFetchLocalMoviesBySearchParameters = (request, ())

@@ -94,7 +94,7 @@ final class MoviesPresenterTests: XCTestCase {
     }
 
     func testFetchedFailureShouldDisplayGenericError() {
-        sut.presentFetchedFailure()
+        sut.presentFailure()
 
         XCTAssertTrue(displaySpy.invokedDisplayGenericError)
         XCTAssertEqual(displaySpy.invokedDisplayGenericErrorCount, 1)
@@ -108,7 +108,7 @@ final class MoviesPresenterTests: XCTestCase {
 
     func testFetchedMoviesBySearchShouldDisplayMoviesBySearch() throws {
         let movies = MocksHelper.getRandomMovies()
-        let viewModel = Movies.FetchLocalMoviesBySearch.Response(movies: movies)
+        let viewModel = Movies.FetchMoviesBySearch.Response(movies: movies)
         sut.presentFetchedMoviesBySearch(response: viewModel)
 
         let parameters = try XCTUnwrap(displaySpy.invokedDisplayMoviesBySearchParameters)
@@ -127,7 +127,7 @@ final class MoviesPresenterTests: XCTestCase {
 
     func testSearchMoviesFailureShouldDisplaySearchError() throws {
         let search = Strings.mockDog.localizable
-        sut.presentSearchedMoviesFailure(textSearched: search)
+        sut.presentSearchedFailure(textSearched: search)
 
         let parameters = try XCTUnwrap(displaySpy.invokedDisplaySearchErrorParameters)
 

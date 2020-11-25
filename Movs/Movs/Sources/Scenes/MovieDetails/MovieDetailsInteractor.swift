@@ -30,7 +30,7 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
             case .success():
                 self.presenter.onSaveMovieSuccessful()
             case let .failure(error):
-                print(error.errorDescription)
+                print(error.localizedDescription)
                 self.presenter.onSaveMovieFailure()
             }
         }
@@ -42,7 +42,7 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
             case .success():
                 self.presenter.onDeleteMovieSuccessful()
             case let .failure(error):
-                print(error.errorDescription)
+                print(error.localizedDescription)
                 self.presenter.onDeleteMovieFailure()
             }
         }

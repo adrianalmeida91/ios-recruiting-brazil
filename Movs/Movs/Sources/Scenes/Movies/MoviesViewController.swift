@@ -9,11 +9,9 @@
 import UIKit
 
 protocol MoviesDisplayLogic: AnyObject {
-    func onFetchedLocalMovies(viewModel: Movies.FetchLocalMovies.ViewModel)
-    func onFetchedGenres(viewModel: Movies.FetchGenres.ViewModel)
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel)
     func displayGenericError()
-    func displayMoviesBySearch(viewModel: Movies.FetchLocalMoviesBySearch.ViewModel)
+    func displaySearchedMovies(viewModel: Movies.FetchMoviesBySearch.ViewModel)
     func displaySearchError(searchedText: String)
 }
 
@@ -29,15 +27,9 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
 
     // MARK: - Private variables
 
-    private var localMovies: [Movie] = []
-
     private var movies: [Movie] = []
 
     private var moviesFiltered: [Movie] = []
-
-    private var genres: [GenreResponse] = []
-
-    private var firstTimeFetchMovies = true
 
     private var currentPage: Int = 0
 
@@ -74,20 +66,12 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
         super.viewDidLoad()
 
         setup()
-
-        // First time has delay only to simulate loading
-        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Utils.sleep, execute: { [weak self] in
-            self?.view.showLoading()
-            self?.fetchLocalMovies()
-        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if !firstTimeFetchMovies {
-            fetchLocalMovies()
-        }
+        fetchMovies()
     }
 
     // MARK: - Functions
@@ -95,7 +79,7 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
     func filter(search: String) {
         guard !search.isEmpty else {
             clearSearch()
-            fetchLocalMovies()
+            fetchMovies()
             return
         }
 
@@ -103,27 +87,13 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
 
         filter = search
 
-        let request = Movies.FetchLocalMoviesBySearch.Request(movies: movies, filter: search)
-        interactor.fetchLocalMoviesBySearch(request: request)
+        let request = Movies.FetchMoviesBySearch.Request(filter: search)
+        interactor.fetchMoviesBySearch(request: request)
     }
 
     // MARK: - MoviesDisplayLogic conforms
 
-    func onFetchedLocalMovies(viewModel: Movies.FetchLocalMovies.ViewModel) {
-        localMovies = viewModel.movies
-
-        fetchGenres()
-    }
-
-    func onFetchedGenres(viewModel: Movies.FetchGenres.ViewModel) {
-        genres = viewModel.genres
-
-        fetchMovies()
-    }
-
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel) {
-        view.stopLoading()
-
         currentPage = viewModel.page
         lastPage = viewModel.totalPages
         movies.append(contentsOf: viewModel.movies)
@@ -135,7 +105,7 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
         displayErrorView()
     }
 
-    func displayMoviesBySearch(viewModel: Movies.FetchLocalMoviesBySearch.ViewModel) {
+    func displaySearchedMovies(viewModel: Movies.FetchMoviesBySearch.ViewModel) {
         moviesFiltered = viewModel.movies
 
         reloadMovies()
@@ -178,34 +148,16 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
 
     private func galleryItemTapped(_ index: Int) {
         let movieTapped = moviesFiltered.count > 0 ? moviesFiltered[index] : movies[index]
-
-        var localMovie: Movie?
-        if let indexTapped = moviesFiltered.firstIndex(of: movieTapped) {
-            localMovie = localMovies.first { $0.id == moviesFiltered[indexTapped].id }
-        } else if let indexTapped = movies.firstIndex(of: movieTapped) {
-            localMovie = localMovies.first { $0.id == movies[indexTapped].id }
-        }
-
-        let displayMovieDetails = localMovie ?? movieTapped
-        delegate?.galleryItemTapped(movie: displayMovieDetails, self)
+        delegate?.galleryItemTapped(movie: movieTapped, self)
     }
 
     private func fetchNewPageMovies() {
-        guard filter.isEmpty, let lastPage = lastPage, currentPage + 1 < lastPage else {
+        guard filter.isEmpty, let lastPage = lastPage, currentPage + 1 <= lastPage else {
             return
         }
 
         currentPage += 1
         fetchMovies(page: currentPage)
-    }
-
-    private func fetchLocalMovies() {
-        showGallery()
-        interactor.fetchLocalMovies()
-    }
-
-    private func fetchGenres(language: String = Constants.MovieDefaultParameters.language) {
-        interactor.fetchGenres(request: Movies.FetchGenres.Request(language: language))
     }
 
     private func fetchMovies(language: String = Constants.MovieDefaultParameters.language, page: Int = Constants.MovieDefaultParameters.page) {
@@ -218,22 +170,15 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
             movies = []
         }
 
-        interactor.fetchMovies(request: Movies.FetchMovies.Request(language: language, page: page, genres: genres))
+        let request = Movies.FetchMovies.Request(language: language, page: page)
+        interactor.fetchMovies(request: request)
     }
 
     private func reloadMovies() {
-        firstTimeFetchMovies = false
-
         let displayMovies = moviesFiltered.count > 0 ? moviesFiltered : movies
 
         let itemsViewModel = displayMovies.map { movie -> GridGalleryItemViewModel in
-            let movieFound = localMovies.first { localMovie -> Bool in
-                localMovie.id == movie.id
-            }
-
-            movie.isFavorite = movieFound != nil
-
-            return GridGalleryItemViewModel(imageURL: movie.imageURL, title: movie.title, isFavorite: movie.isFavorite)
+            GridGalleryItemViewModel(imageURL: movie.imageURL, title: movie.title, isFavorite: movie.isFavorite)
         }
 
         galleryCollectionView.setupDataSource(items: itemsViewModel)
@@ -250,12 +195,10 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
     }
 
     private func displayErrorView(configuration: ErrorConfiguration = ErrorConfiguration()) {
-        view.stopLoading()
-
         galleryCollectionView.isHidden = true
         errorView.isHidden = false
 
-        currentPage = 1
+        currentPage = Constants.MovieDefaultParameters.page
         errorView.configuration = configuration
     }
 

@@ -128,7 +128,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testShouldDisplayMoviesBySearch() {
-        let viewModel = Movies.FetchLocalMoviesBySearch.ViewModel(movies: MocksHelper.getMockedMovies())
+        let viewModel = Movies.FetchMoviesBySearch.ViewModel(movies: MocksHelper.getMockedMovies())
         sut.displayMoviesBySearch(viewModel: viewModel)
         sut.view.layoutIfNeeded()
 

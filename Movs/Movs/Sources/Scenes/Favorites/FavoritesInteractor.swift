@@ -106,8 +106,8 @@ final class FavoritesInteractor: FavoritesBusinessLogic {
 
     // MARK: - Private functions
 
-    private func presentGenericFailure(error: DatabaseError) {
-        print(error.errorDescription)
+    private func presentGenericFailure(error: Error) {
+        print(error.localizedDescription)
         self.presenter.presentGenericFailure()
     }
 }

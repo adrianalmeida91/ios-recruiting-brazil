@@ -29,8 +29,8 @@ final class MoviesPresenterSpy: MoviesPresentationLogic {
 
     private(set) var invokedPresentFetchedMoviesBySearch = false
     private(set) var invokedPresentFetchedMoviesBySearchCount = 0
-    private(set) var invokedPresentFetchedMoviesBySearchParameters: (response: Movies.FetchLocalMoviesBySearch.Response, Void)?
-    private(set) var invokedPresentFetchedMoviesBySearchParametersList = [(response: Movies.FetchLocalMoviesBySearch.Response, Void)]()
+    private(set) var invokedPresentFetchedMoviesBySearchParameters: (response: Movies.FetchMoviesBySearch.Response, Void)?
+    private(set) var invokedPresentFetchedMoviesBySearchParametersList = [(response: Movies.FetchMoviesBySearch.Response, Void)]()
 
     private(set) var invokedPresentSearchedMoviesFailure = false
     private(set) var invokedPresentSearchedMoviesFailureCount = 0
@@ -65,7 +65,7 @@ final class MoviesPresenterSpy: MoviesPresentationLogic {
         invokedPresentFetchedFailureCount += 1
     }
 
-    func presentFetchedMoviesBySearch(response: Movies.FetchLocalMoviesBySearch.Response) {
+    func presentFetchedMoviesBySearch(response: Movies.FetchMoviesBySearch.Response) {
         invokedPresentFetchedMoviesBySearch = true
         invokedPresentFetchedMoviesBySearchCount += 1
         invokedPresentFetchedMoviesBySearchParameters = (response, ())

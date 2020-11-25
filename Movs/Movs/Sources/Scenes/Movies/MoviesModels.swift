@@ -9,21 +9,10 @@
 import Foundation
 
 enum Movies {
-    enum FetchLocalMovies {
-        struct Response {
-            let movies: [Movie]
-        }
-
-        struct ViewModel {
-            let movies: [Movie]
-        }
-    }
-
     enum FetchMovies {
         struct Request {
             let language: String
             let page: Int
-            let genres: [GenreResponse]
         }
 
         struct Response {
@@ -39,23 +28,8 @@ enum Movies {
         }
     }
 
-    enum FetchGenres {
+    enum FetchMoviesBySearch {
         struct Request {
-            let language: String
-        }
-
-        struct Response {
-            let genres: [GenreResponse]
-        }
-
-        struct ViewModel {
-            let genres: [GenreResponse]
-        }
-    }
-
-    enum FetchLocalMoviesBySearch {
-        struct Request {
-            let movies: [Movie]
             let filter: String
         }
 

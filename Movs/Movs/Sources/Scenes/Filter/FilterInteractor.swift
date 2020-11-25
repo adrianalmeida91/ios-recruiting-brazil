@@ -55,8 +55,8 @@ final class FilterInteractor: FilterBusinessLogic {
 
     // MARK: - Private functions
 
-    private func onFetchedGenericFailure(error: NetworkError) {
-        print(error.errorDescription)
+    private func onFetchedGenericFailure(error: Error) {
+        print(error.localizedDescription)
         self.presenter.onFetchedGenresFailure()
     }
 }

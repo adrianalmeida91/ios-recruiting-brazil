@@ -7,9 +7,9 @@
 //
 
 protocol RealmWorkerProtocol: AnyObject {
-    func fetchMovies(completion: @escaping (Result<[Movie], DatabaseError>) -> Void)
-    func saveMovie(movie: Movie, completion: @escaping (Result<Void, DatabaseError>) -> Void)
-    func deleteMovie(movie: Movie, completion: @escaping (Result<Void, DatabaseError>) -> Void)
+    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> Void)
+    func saveMovie(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void)
+    func deleteMovie(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class RealmWorker: RealmWorkerProtocol {
@@ -23,15 +23,15 @@ final class RealmWorker: RealmWorkerProtocol {
 
     // MARK: - MovieDetailsWorkerProtocol conforms
 
-    func fetchMovies(completion: @escaping (Result<[Movie], DatabaseError>) -> Void) {
+    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
         provider.fetch(Movie.self, completion: completion)
     }
 
-    func saveMovie(movie: Movie, completion: @escaping (Result<Void, DatabaseError>) -> Void) {
+    func saveMovie(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void) {
         provider.save(model: movie, completion: completion)
     }
 
-    func deleteMovie(movie: Movie, completion: @escaping (Result<Void, DatabaseError>) -> Void) {
+    func deleteMovie(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void) {
         provider.delete(model: movie, completion: completion)
     }
 }

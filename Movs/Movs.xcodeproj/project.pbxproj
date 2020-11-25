@@ -60,7 +60,6 @@
 		A8458771254D1B6700829BBE /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8458770254D1B6700829BBE /* MovieResponse.swift */; };
 		A845877B254DE2B300829BBE /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845877A254DE2B300829BBE /* RealmManager.swift */; };
 		A845877D254DE85100829BBE /* MovieRealmDbService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845877C254DE85100829BBE /* MovieRealmDbService.swift */; };
-		A845877F254DEBC200829BBE /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845877E254DEBC200829BBE /* DatabaseError.swift */; };
 		A8458786254E4B2100829BBE /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8458785254E4B2100829BBE /* FavoritesPresenter.swift */; };
 		A8458788254E4B7A00829BBE /* FavoritesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8458787254E4B7A00829BBE /* FavoritesModels.swift */; };
 		A845878A254E4BC500829BBE /* FavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8458789254E4BC500829BBE /* FavoritesInteractor.swift */; };
@@ -93,7 +92,6 @@
 		A8660E56254545F700D74934 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660E55254545F700D74934 /* Strings.swift */; };
 		A8660E58254547FD00D74934 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660E57254547FD00D74934 /* String+Extension.swift */; };
 		A8660E5A254548A000D74934 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660E59254548A000D74934 /* Localizable.swift */; };
-		A8660E5D25454C1500D74934 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660E5C25454C1500D74934 /* NetworkError.swift */; };
 		A8660EAA25455C0900D74934 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660EA925455C0900D74934 /* TabBarViewController.swift */; };
 		A8660EAD25455C7C00D74934 /* TabBarScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660EAC25455C7C00D74934 /* TabBarScreenFactory.swift */; };
 		A8660EB025455FB700D74934 /* FavoritesScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8660EAF25455FB700D74934 /* FavoritesScreenFactory.swift */; };
@@ -230,7 +228,6 @@
 		A8458770254D1B6700829BBE /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 		A845877A254DE2B300829BBE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		A845877C254DE85100829BBE /* MovieRealmDbService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealmDbService.swift; sourceTree = "<group>"; };
-		A845877E254DEBC200829BBE /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		A8458785254E4B2100829BBE /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		A8458787254E4B7A00829BBE /* FavoritesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesModels.swift; sourceTree = "<group>"; };
 		A8458789254E4BC500829BBE /* FavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractor.swift; sourceTree = "<group>"; };
@@ -263,7 +260,6 @@
 		A8660E55254545F700D74934 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A8660E57254547FD00D74934 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A8660E59254548A000D74934 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
-		A8660E5C25454C1500D74934 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		A8660EA925455C0900D74934 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A8660EAC25455C7C00D74934 /* TabBarScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScreenFactory.swift; sourceTree = "<group>"; };
 		A8660EAF25455FB700D74934 /* FavoritesScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScreenFactory.swift; sourceTree = "<group>"; };
@@ -651,14 +647,12 @@
 		A8660E5B25454BF300D74934 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A845877E254DEBC200829BBE /* DatabaseError.swift */,
 				A821201A254F9B14007C6466 /* FilterSearch.swift */,
 				A845875D254BBDC300829BBE /* GenreResponse.swift */,
 				A845875F254BBE2400829BBE /* GenresResponse.swift */,
 				A8660ED025462BCA00D74934 /* Movie.swift */,
 				A8458770254D1B6700829BBE /* MovieResponse.swift */,
 				A8660ECE254627EB00D74934 /* MoviesPopulariesResponse.swift */,
-				A8660E5C25454C1500D74934 /* NetworkError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1223,7 +1217,6 @@
 				A8B1298325439DC70074654A /* AppDelegate.swift in Sources */,
 				A8458765254BD06500829BBE /* InfoListItemViewModel.swift in Sources */,
 				A8B129C12543C1910074654A /* AppRootController.swift in Sources */,
-				A845877F254DEBC200829BBE /* DatabaseError.swift in Sources */,
 				A8660EAA25455C0900D74934 /* TabBarViewController.swift in Sources */,
 				A8660ECB25460AA100D74934 /* Data+Extension.swift in Sources */,
 				A8B129BA2543BBE30074654A /* Coordinator.swift in Sources */,
@@ -1274,7 +1267,6 @@
 				A845877B254DE2B300829BBE /* RealmManager.swift in Sources */,
 				A8AF17E2254F60F8007D8C4E /* FilterPresenter.swift in Sources */,
 				A8660E5A254548A000D74934 /* Localizable.swift in Sources */,
-				A8660E5D25454C1500D74934 /* NetworkError.swift in Sources */,
 				A864B85625477BC500B5BC29 /* DataSource.swift in Sources */,
 				A8660EAD25455C7C00D74934 /* TabBarScreenFactory.swift in Sources */,
 				A864B8722548911B00B5BC29 /* GridGalleryItemViewModel.swift in Sources */,

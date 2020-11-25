@@ -192,7 +192,7 @@ final class MoviesInteractorTests: XCTestCase {
     func testFetchLocalMoviesBySearchShouldPresentFetchedMoviesBySearch() throws {
         let movies = MocksHelper.getMockedMovies()
         let search = Strings.mockKill.localizable
-        let request = Movies.FetchLocalMoviesBySearch.Request(movies: movies, filter: search)
+        let request = Movies.FetchMoviesBySearch.Request(movies: movies, filter: search)
         sut.fetchLocalMoviesBySearch(request: request)
 
         let moviesFiltered = try XCTUnwrap(presenterSpy.invokedPresentFetchedMoviesBySearchParameters).response.movies
@@ -217,7 +217,7 @@ final class MoviesInteractorTests: XCTestCase {
     func testFetchLocalMoviesBySearchShouldPresentSearchedMoviesFailure() {
         let movies = MocksHelper.getMockedMovies()
         let search = String(repeating: "a", count: Int.random(in: 10...50))
-        let request = Movies.FetchLocalMoviesBySearch.Request(movies: movies, filter: search)
+        let request = Movies.FetchMoviesBySearch.Request(movies: movies, filter: search)
         sut.fetchLocalMoviesBySearch(request: request)
 
         XCTAssertTrue(presenterSpy.invokedPresentSearchedMoviesFailure)
@@ -240,7 +240,7 @@ final class MoviesInteractorTests: XCTestCase {
     func testFetchLocalMoviesBySearchShouldReturnWithEmptySearch() {
         let movies = MocksHelper.getMockedMovies()
         let search: String = .empty
-        let request = Movies.FetchLocalMoviesBySearch.Request(movies: movies, filter: search)
+        let request = Movies.FetchMoviesBySearch.Request(movies: movies, filter: search)
         sut.fetchLocalMoviesBySearch(request: request)
 
         XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)

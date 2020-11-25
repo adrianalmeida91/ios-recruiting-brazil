@@ -28,4 +28,15 @@ enum MoviesScreenFactory {
 
         return moviesViewController
     }
+
+    static func makeForTabBar(delegate: MoviesViewControllerDelegate) -> UIViewController {
+        let viewController = make(delegate: delegate)
+
+        let moviesTabBarIcon = UITabBarItem()
+        moviesTabBarIcon.image = UIImage(assets: .listIcon)
+        moviesTabBarIcon.title = Strings.movies.localizable
+        viewController.tabBarItem = moviesTabBarIcon
+
+        return viewController
+    }
 }

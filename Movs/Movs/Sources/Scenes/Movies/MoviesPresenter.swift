@@ -7,12 +7,10 @@
 //
 
 protocol MoviesPresentationLogic: AnyObject {
-    func presentFetchedLocalMovies(response: Movies.FetchLocalMovies.Response)
-    func presentFetchedGenres(response: Movies.FetchGenres.Response)
     func presentFetchedMovies(response: Movies.FetchMovies.Response)
-    func presentFetchedFailure()
-    func presentFetchedMoviesBySearch(response: Movies.FetchLocalMoviesBySearch.Response)
-    func presentSearchedMoviesFailure(textSearched: String)
+    func presentFailure()
+    func presentSearchedMovies(response: Movies.FetchMoviesBySearch.Response)
+    func presentSearchedFailure(textSearched: String)
 }
 
 final class MoviesPresenter: MoviesPresentationLogic {
@@ -20,31 +18,21 @@ final class MoviesPresenter: MoviesPresentationLogic {
 
     // MARK: - MoviesPresentationLogic conforms
 
-    func presentFetchedLocalMovies(response: Movies.FetchLocalMovies.Response) {
-        let viewModel = Movies.FetchLocalMovies.ViewModel(movies: response.movies)
-        viewController?.onFetchedLocalMovies(viewModel: viewModel)
-    }
-
-    func presentFetchedGenres(response: Movies.FetchGenres.Response) {
-        let viewModel = Movies.FetchGenres.ViewModel(genres: response.genres)
-        viewController?.onFetchedGenres(viewModel: viewModel)
-    }
-
     func presentFetchedMovies(response: Movies.FetchMovies.Response) {
         let viewModel = Movies.FetchMovies.ViewModel(page: response.page, totalPages: response.totalPages, movies: response.movies)
         viewController?.displayMovies(viewModel: viewModel)
     }
 
-    func presentFetchedFailure() {
+    func presentFailure() {
         viewController?.displayGenericError()
     }
 
-    func presentFetchedMoviesBySearch(response: Movies.FetchLocalMoviesBySearch.Response) {
-        let viewModel = Movies.FetchLocalMoviesBySearch.ViewModel(movies: response.movies)
-        viewController?.displayMoviesBySearch(viewModel: viewModel)
+    func presentSearchedMovies(response: Movies.FetchMoviesBySearch.Response) {
+        let viewModel = Movies.FetchMoviesBySearch.ViewModel(movies: response.movies)
+        viewController?.displaySearchedMovies(viewModel: viewModel)
     }
 
-    func presentSearchedMoviesFailure(textSearched: String) {
+    func presentSearchedFailure(textSearched: String) {
         viewController?.displaySearchError(searchedText: textSearched)
     }
 }
