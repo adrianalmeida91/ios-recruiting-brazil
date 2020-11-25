@@ -79,8 +79,7 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
     func filter(search: String) {
         guard !search.isEmpty else {
             clearSearch()
-            fetchMovies()
-            return
+            return fetchMovies()
         }
 
         showGallery()

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol MovieDetailsDisplayLogic: AnyObject {
+    func displayMovie(viewModel: MovieDetails.FetchMovie.ViewModel)
     func displayFavoriteIcon()
     func displayUnfavoriteIcon()
 }
@@ -41,6 +42,8 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLog
         self.interactor = interactor
 
         super.init(nibName: nil, bundle: nil)
+
+        fetchMovie()
     }
 
     @available(*, unavailable)
@@ -63,15 +66,19 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLog
 
     // MARK: - MovieDetailsDisplayLogic Conforms
 
+    func displayMovie(viewModel: MovieDetails.FetchMovie.ViewModel) {
+        movieData = viewModel.movie
+    }
+
     func displayFavoriteIcon() {
         movieDisplay.isFavorite = true
-        setupMoviesInfo()
+        setupMovieInfo()
     }
 
     func displayUnfavoriteIcon() {
         movieData = movieDisplay.clone()
         movieDisplay.isFavorite = false
-        setupMoviesInfo()
+        setupMovieInfo()
     }
 
     // MARK: - Private functions
@@ -79,7 +86,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLog
     private func setup() {
         setupNavigation()
         setupLayout()
-        setupMoviesInfo()
+        setupMovieInfo()
     }
 
     private func setupLayout() {
@@ -99,7 +106,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLog
         view.backgroundColor = .white
     }
 
-    private func setupMoviesInfo() {
+    private func setupMovieInfo() {
         let icon: UIImage.Assets = movieDisplay.isFavorite ? .favoriteFullIcon : .favoriteEmptyIcon
 
         let action: (() -> Void) = { [weak self] in
@@ -124,5 +131,14 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLog
         } else {
             interactor.deleteMovie(request: MovieDetails.DeleteMovie.Request(movie: movieData))
         }
+    }
+
+    private func fetchMovie() {
+        guard movieData.isFavorite else {
+            return
+        }
+
+        let request = MovieDetails.FetchMovie.Request(id: movieData.id)
+        interactor.fetchMovie(request: request)
     }
 }

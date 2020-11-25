@@ -7,6 +7,7 @@
 //
 
 protocol MovieDetailsBusinessLogic: AnyObject {
+    func fetchMovie(request: MovieDetails.FetchMovie.Request)
     func saveMovie(request: MovieDetails.SaveMovie.Request)
     func deleteMovie(request: MovieDetails.DeleteMovie.Request)
 }
@@ -23,6 +24,22 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
     }
 
     // MARK: - MovieDetailsBusinessLogic conforms
+
+    func fetchMovie(request: MovieDetails.FetchMovie.Request) {
+        worker.fetchMovies() { result in
+            switch result {
+            case let .success(response):
+                let movie = response.first { $0.id == request.id }
+                if let movie = movie {
+                    let response = MovieDetails.FetchMovie.Response(movie: movie)
+                    self.presenter.presentFetchedMovie(response: response)
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+                self.presenter.onSaveMovieFailure()
+            }
+        }
+    }
 
     func saveMovie(request: MovieDetails.SaveMovie.Request) {
         worker.saveMovie(movie: request.movie) { result in
