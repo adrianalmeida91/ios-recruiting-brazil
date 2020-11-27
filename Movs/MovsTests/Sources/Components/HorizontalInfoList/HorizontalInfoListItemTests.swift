@@ -13,7 +13,7 @@ final class HorizontalInfoListItemTests: FBSnapshotTestCase {
     private lazy var items: HorizontalInfoListViewModel = {
         let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
 
-        return HorizontalInfoListViewModel(imageURL: Movs.Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
+        return HorizontalInfoListViewModel(imageURL: .empty, title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
     }()
 
     // MARK: - Override functions
@@ -30,8 +30,6 @@ final class HorizontalInfoListItemTests: FBSnapshotTestCase {
         let sut = HorizontalInfoListItemView(viewModel: items)
         addSubviewForTest(sut)
 
-        wait(for: Constants.Utils.sleep)
-
         verify(sut)
     }
 
@@ -41,8 +39,6 @@ final class HorizontalInfoListItemTests: FBSnapshotTestCase {
 
         let newViewModel = HorizontalInfoListViewModel(imageURL: Strings.mockMainDogImageURL.localizable, title: Strings.mockDog.localizable, subtitle: Strings.mockDate.localizable, descriptionText: Strings.mockOverview.localizable)
         sut.update(viewModel: newViewModel)
-
-        wait(for: Constants.Utils.sleep)
 
         verify(sut)
     }

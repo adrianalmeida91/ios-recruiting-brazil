@@ -14,7 +14,7 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
         let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
 
         return moviesPopulariesResponse.moviesResponse.map { movieResponse -> HorizontalInfoListViewModel in
-            HorizontalInfoListViewModel(imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
+            HorizontalInfoListViewModel(imageURL: .empty, title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
         }
     }()
 
@@ -34,8 +34,6 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
 
         addHorizontalInfoListTableViewLayout(horizontalInfoTableView: sut)
 
-        wait(for: Constants.Utils.sleep)
-
         verify(sut)
     }
 
@@ -50,8 +48,6 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
 
         sutViewController.view.layoutIfNeeded()
 
-        wait(for: Constants.Utils.sleep)
-
         verify(sut)
     }
 
@@ -60,8 +56,6 @@ final class HorizontalInfoListTableViewTests: FBSnapshotTestCase {
         sut.setupDataSource(items: items)
 
         addHorizontalInfoListTableViewLayout(horizontalInfoTableView: sut)
-
-        wait(for: Constants.Utils.sleep)
 
         verify(sut)
     }
