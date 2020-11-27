@@ -9,20 +9,20 @@
 import XCTest
 @testable import Movs
 
-final class MoviesScreenFactoryTests: XCTestCase {
-    private lazy var sut = MoviesScreenFactory.make(delegate: delegateSpy)
-
-    // MARK: - Private constants
-
-    private let delegateSpy = MoviesViewControllerDelegateSpy()
-
-    // MARK: - Test functions
-
-    func testShouldCreateMoviesViewControllerByFactory() {
-        _ = sut
-
-        XCTAssertNotNil(sut)
-        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
-        XCTAssertTrue(sut is MoviesViewController)
-    }
-}
+//final class MoviesScreenFactoryTests: XCTestCase {
+//    private lazy var sut = MoviesScreenFactory.make(delegate: delegateSpy)
+//
+//    // MARK: - Private constants
+//
+//    private let delegateSpy = MoviesViewControllerDelegateSpy()
+//
+//    // MARK: - Test functions
+//
+//    func testShouldCreateMoviesViewControllerByFactory() {
+//        _ = sut
+//
+//        XCTAssertNotNil(sut)
+//        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
+//        XCTAssertTrue(sut is MoviesViewController)
+//    }
+//}

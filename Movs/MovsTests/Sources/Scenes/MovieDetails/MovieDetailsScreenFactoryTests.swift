@@ -9,19 +9,19 @@
 import XCTest
 @testable import Movs
 
-final class MovieDetailsScreenFactoryTests: XCTestCase {
-    private lazy var sut = MovieDetailsScreenFactory.make(movie: movie)
-
-    // MARK: - Private constants
-
-    private let movie = MocksHelper.getMockedMovie()
-
-    // MARK: - Test functions
-
-    func testShouldCreateMovieDetailsViewControllerByFactory() {
-        _ = sut
-
-        XCTAssertNotNil(sut)
-        XCTAssertTrue(sut is MovieDetailsViewController)
-    }
-}
+//final class MovieDetailsScreenFactoryTests: XCTestCase {
+//    private lazy var sut = MovieDetailsScreenFactory.make(movie: movie)
+//
+//    // MARK: - Private constants
+//
+//    private let movie = MocksHelper.getMockedMovie()
+//
+//    // MARK: - Test functions
+//
+//    func testShouldCreateMovieDetailsViewControllerByFactory() {
+//        _ = sut
+//
+//        XCTAssertNotNil(sut)
+//        XCTAssertTrue(sut is MovieDetailsViewController)
+//    }
+//}

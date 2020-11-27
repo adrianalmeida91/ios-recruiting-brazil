@@ -9,15 +9,15 @@
 import XCTest
 @testable import Movs
 
-final class FavoritesScreenFactoryTests: XCTestCase {
-    private lazy var sut = FavoritesScreenFactory.make()
-
-    // MARK: - Test Functions
-
-    func testShouldCreateFavoritesViewControllerByFactory() {
-        _ = sut
-
-        XCTAssertNotNil(sut)
-        XCTAssertTrue(sut is FavoritesViewController)
-    }
-}
+//final class FavoritesScreenFactoryTests: XCTestCase {
+//    private lazy var sut = FavoritesScreenFactory.make()
+//
+//    // MARK: - Test Functions
+//
+//    func testShouldCreateFavoritesViewControllerByFactory() {
+//        _ = sut
+//
+//        XCTAssertNotNil(sut)
+//        XCTAssertTrue(sut is FavoritesViewController)
+//    }
+//}
