@@ -18,23 +18,23 @@ final class GridGalleryItemViewTests: FBSnapshotTestCase {
 
     // MARK: - Private constants
 
-    private let loremImage = Strings.mockMainDogImageURL.localizable
+    private let mockImage = Strings.mockMainDogImageURL.localizable
 
-    private let titleLoren = Strings.mockDog.localizable
+    private let mockTitle = Strings.mockDog.localizable
 
     private let itemSize = CGSize(width: 160, height: 200)
 
     // MARK: - Test functions
 
     func testShouldShowGalleryItem() {
-        let gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: loremImage, title: titleLoren, isFavorite: false)
+        let gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: mockImage, title: mockTitle, isFavorite: false)
         let sut = addGalleryItemOnViewController(viewModel: gridGalleryItemViewModel)
 
         verify(sut)
     }
 
     func testShouldUpdateViewModelOnGalleryItem() {
-        var gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: loremImage, title: titleLoren, isFavorite: false)
+        var gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: mockImage, title: mockTitle, isFavorite: false)
         let sut = addGalleryItemOnViewController(viewModel: gridGalleryItemViewModel)
 
         gridGalleryItemViewModel.imageURL = Strings.mockSecondaryDogImageURL.localizable
