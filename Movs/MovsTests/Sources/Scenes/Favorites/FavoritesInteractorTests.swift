@@ -256,7 +256,7 @@ final class FavoritesInteractorTests: XCTestCase {
     // MARK: - Private functions
 
     private func fetchLocalMoviesBySearch(filter: FilterSearch) -> [Movie]? {
-        let request = Favorites.FetchMoviesBySearch.Request(movies: movies, filter: filter)
+        let request = Favorites.FetchMoviesBySearch.Request(filter: filter)
         sut.fetchLocalMoviesBySearch(request: request)
 
         let movies = presenterSpy.invokedPresentFetchedMoviesBySearchParameters?.response.movies

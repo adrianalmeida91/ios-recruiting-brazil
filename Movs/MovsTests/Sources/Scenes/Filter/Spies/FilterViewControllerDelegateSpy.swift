@@ -21,5 +21,5 @@ final class FilterViewControllerDelegateSpy: FilterViewControllerDelegate {
         invokedFilterApplyButtonTappedCount += 1
         invokedFilterApplyButtonTappedParameters = (filter, viewController)
         invokedFilterApplyButtonTappedParametersList.append((filter, viewController))
-    }
+    }private(set) 
 }

@@ -9,16 +9,6 @@
 @testable import Movs
 
 final class MoviesDisplaySpy: MoviesDisplayLogic {
-    private(set) var invokedOnFetchedLocalMovies = false
-    private(set) var invokedOnFetchedLocalMoviesCount = 0
-    private(set) var invokedOnFetchedLocalMoviesParameters: (viewModel: Movies.FetchLocalMovies.ViewModel, Void)?
-    private(set) var invokedOnFetchedLocalMoviesParametersList = [(viewModel: Movies.FetchLocalMovies.ViewModel, Void)]()
-
-    private(set) var invokedOnFetchedGenres = false
-    private(set) var invokedOnFetchedGenresCount = 0
-    private(set) var invokedOnFetchedGenresParameters: (viewModel: Movies.FetchGenres.ViewModel, Void)?
-    private(set) var invokedOnFetchedGenresParametersList = [(viewModel: Movies.FetchGenres.ViewModel, Void)]()
-
     private(set) var invokedDisplayMovies = false
     private(set) var invokedDisplayMoviesCount = 0
     private(set) var invokedDisplayMoviesParameters: (viewModel: Movies.FetchMovies.ViewModel, Void)?
@@ -27,10 +17,10 @@ final class MoviesDisplaySpy: MoviesDisplayLogic {
     private(set) var invokedDisplayGenericError = false
     private(set) var invokedDisplayGenericErrorCount = 0
 
-    private(set) var invokedDisplayMoviesBySearch = false
-    private(set) var invokedDisplayMoviesBySearchCount = 0
-    private(set) var invokedDisplayMoviesBySearchParameters: (viewModel: Movies.FetchMoviesBySearch.ViewModel, Void)?
-    private(set) var invokedDisplayMoviesBySearchParametersList = [(viewModel: Movies.FetchMoviesBySearch.ViewModel, Void)]()
+    private(set) var invokedDisplaySearchedMovies = false
+    private(set) var invokedDisplaySearchedMoviesCount = 0
+    private(set) var invokedDisplaySearchedMoviesParameters: (viewModel: Movies.FetchMoviesBySearch.ViewModel, Void)?
+    private(set) var invokedDisplaySearchedMoviesParametersList = [(viewModel: Movies.FetchMoviesBySearch.ViewModel, Void)]()
 
     private(set) var invokedDisplaySearchError = false
     private(set) var invokedDisplaySearchErrorCount = 0
@@ -38,20 +28,6 @@ final class MoviesDisplaySpy: MoviesDisplayLogic {
     private(set) var invokedDisplaySearchErrorParametersList = [(searchedText: String, Void)]()
 
     // MARK: - MoviesDisplayLogic conforms
-
-    func onFetchedLocalMovies(viewModel: Movies.FetchLocalMovies.ViewModel) {
-        invokedOnFetchedLocalMovies = true
-        invokedOnFetchedLocalMoviesCount += 1
-        invokedOnFetchedLocalMoviesParameters = (viewModel, ())
-        invokedOnFetchedLocalMoviesParametersList.append((viewModel, ()))
-    }
-
-    func onFetchedGenres(viewModel: Movies.FetchGenres.ViewModel) {
-        invokedOnFetchedGenres = true
-        invokedOnFetchedGenresCount += 1
-        invokedOnFetchedGenresParameters = (viewModel, ())
-        invokedOnFetchedGenresParametersList.append((viewModel, ()))
-    }
 
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel) {
         invokedDisplayMovies = true
@@ -65,11 +41,11 @@ final class MoviesDisplaySpy: MoviesDisplayLogic {
         invokedDisplayGenericErrorCount += 1
     }
 
-    func displayMoviesBySearch(viewModel: Movies.FetchMoviesBySearch.ViewModel) {
-        invokedDisplayMoviesBySearch = true
-        invokedDisplayMoviesBySearchCount += 1
-        invokedDisplayMoviesBySearchParameters = (viewModel, ())
-        invokedDisplayMoviesBySearchParametersList.append((viewModel, ()))
+    func displaySearchedMovies(viewModel: Movies.FetchMoviesBySearch.ViewModel) {
+        invokedDisplaySearchedMovies = true
+        invokedDisplaySearchedMoviesCount += 1
+        invokedDisplaySearchedMoviesParameters = (viewModel, ())
+        invokedDisplaySearchedMoviesParametersList.append((viewModel, ()))
     }
 
     func displaySearchError(searchedText: String) {

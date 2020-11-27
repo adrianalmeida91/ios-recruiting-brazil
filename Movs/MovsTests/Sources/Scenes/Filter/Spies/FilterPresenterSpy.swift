@@ -19,8 +19,9 @@ final class FilterPresenterSpy: FilterPresentationLogic {
     private(set) var invokedOnFetchedGenresParameters: (response: Filter.FetchGenres.Response, Void)?
     private(set) var invokedOnFetchedGenresParametersList = [(response: Filter.FetchGenres.Response, Void)]()
 
-    private(set) var invokedOnFetchedGenresFailure = false
-    private(set) var invokedOnFetchedGenresFailureCount = 0
+    private(set) var invokedOnFailure = false
+    private(set) var invokedOnFailureCount = 0
+
 
     // MARK: - FilterPresentationLogic conforms
 
@@ -39,7 +40,7 @@ final class FilterPresenterSpy: FilterPresentationLogic {
     }
 
     func onFailure() {
-        invokedOnFetchedGenresFailure = true
-        invokedOnFetchedGenresFailureCount += 1
+        invokedOnFailure = true
+        invokedOnFailureCount += 1
     }
 }

@@ -9,24 +9,24 @@
 @testable import Movs
 
 final class FavoritesPresenterSpy: FavoritesPresentationLogic {
-    private(set) var invokedPresentFetchedLocalMovies = false
-    private(set) var invokedPresentFetchedLocalMoviesCount = 0
-    private(set) var invokedPresentFetchedLocalMoviesParameters: (response: Favorites.FetchMovies.Response, Void)?
-    private(set) var invokedPresentFetchedLocalMoviesParametersList = [(response: Favorites.FetchMovies.Response, Void)]()
+    private(set) var invokedPresentFetchedMovies = false
+    private(set) var invokedPresentFetchedMoviesCount = 0
+    private(set) var invokedPresentFetchedMoviesParameters: (response: Favorites.FetchMovies.Response, Void)?
+    private(set) var invokedPresentFetchedMoviesParametersList = [(response: Favorites.FetchMovies.Response, Void)]()
 
-    private(set) var invokedPresentFetchedLocalMoviesEmpty = false
-    private(set) var invokedPresentFetchedLocalMoviesEmptyCount = 0
+    private(set) var invokedPresentEmptyView = false
+    private(set) var invokedPresentEmptyViewCount = 0
 
-    private(set) var invokedPresenterMovieUnfavorite = false
-    private(set) var invokedPresenterMovieUnfavoriteCount = 0
+    private(set) var invokedPresentMovieUnfavorite = false
+    private(set) var invokedPresentMovieUnfavoriteCount = 0
 
-    private(set) var invokedPresentGenericFailure = false
-    private(set) var invokedPresentGenericFailureCount = 0
+    private(set) var invokedPresentFailure = false
+    private(set) var invokedPresentFailureCount = 0
 
-    private(set) var invokedPresentFetchedMoviesBySearch = false
-    private(set) var invokedPresentFetchedMoviesBySearchCount = 0
-    private(set) var invokedPresentFetchedMoviesBySearchParameters: (response: Favorites.FetchMoviesBySearch.Response, Void)?
-    private(set) var invokedPresentFetchedMoviesBySearchParametersList = [(response: Favorites.FetchMoviesBySearch.Response, Void)]()
+    private(set) var invokedPresentSearchedMovies = false
+    private(set) var invokedPresentSearchedMoviesCount = 0
+    private(set) var invokedPresentSearchedMoviesParameters: (response: Favorites.FetchMoviesBySearch.Response, Void)?
+    private(set) var invokedPresentSearchedMoviesParametersList = [(response: Favorites.FetchMoviesBySearch.Response, Void)]()
 
     private(set) var invokedPresentSearchedMoviesFailure = false
     private(set) var invokedPresentSearchedMoviesFailureCount = 0
@@ -35,33 +35,33 @@ final class FavoritesPresenterSpy: FavoritesPresentationLogic {
 
     // MARK: - FavoritesPresentationLogic conforms
 
-    func presentFetchedLocalMovies(response: Favorites.FetchMovies.Response) {
-        invokedPresentFetchedLocalMovies = true
-        invokedPresentFetchedLocalMoviesCount += 1
-        invokedPresentFetchedLocalMoviesParameters = (response, ())
-        invokedPresentFetchedLocalMoviesParametersList.append((response, ()))
+    func presentFetchedMovies(response: Favorites.FetchMovies.Response) {
+        invokedPresentFetchedMovies = true
+        invokedPresentFetchedMoviesCount += 1
+        invokedPresentFetchedMoviesParameters = (response, ())
+        invokedPresentFetchedMoviesParametersList.append((response, ()))
     }
 
-    func presentFetchedLocalMoviesEmpty() {
-        invokedPresentFetchedLocalMoviesEmpty = true
-        invokedPresentFetchedLocalMoviesEmptyCount += 1
+    func presentEmptyView() {
+        invokedPresentEmptyView = true
+        invokedPresentEmptyViewCount += 1
     }
 
     func presentMovieUnfavorite() {
-        invokedPresenterMovieUnfavorite = true
-        invokedPresenterMovieUnfavoriteCount += 1
+        invokedPresentMovieUnfavorite = true
+        invokedPresentMovieUnfavoriteCount += 1
     }
 
-    func presentGenericFailure() {
-        invokedPresentGenericFailure = true
-        invokedPresentGenericFailureCount += 1
+    func presentFailure() {
+        invokedPresentFailure = true
+        invokedPresentFailureCount += 1
     }
 
-    func presentFetchedMoviesBySearch(response: Favorites.FetchMoviesBySearch.Response) {
-        invokedPresentFetchedMoviesBySearch = true
-        invokedPresentFetchedMoviesBySearchCount += 1
-        invokedPresentFetchedMoviesBySearchParameters = (response, ())
-        invokedPresentFetchedMoviesBySearchParametersList.append((response, ()))
+    func presentSearchedMovies(response: Favorites.FetchMoviesBySearch.Response) {
+        invokedPresentSearchedMovies = true
+        invokedPresentSearchedMoviesCount += 1
+        invokedPresentSearchedMoviesParameters = (response, ())
+        invokedPresentSearchedMoviesParametersList.append((response, ()))
     }
 
     func presentSearchedMoviesFailure(filter: FilterSearch) {

@@ -17,6 +17,7 @@ final class FilterInteractorSpy: FilterBusinessLogic {
     private(set) var invokedFetchGenresParameters: (request: Filter.FetchGenres.Request, Void)?
     private(set) var invokedFetchGenresParametersList = [(request: Filter.FetchGenres.Request, Void)]()
 
+
     // MARK: - FilterBusinessLogic conforms
 
     func fetchDates() {

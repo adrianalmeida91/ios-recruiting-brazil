@@ -9,6 +9,11 @@
 @testable import Movs
 
 final class MovieDetailsPresenterSpy: MovieDetailsPresentationLogic {
+    private(set) var invokedPresentFetchedMovie = false
+    private(set) var invokedPresentFetchedMovieCount = 0
+    private(set) var invokedPresentFetchedMovieParameters: (response: MovieDetails.FetchMovie.Response, Void)?
+    private(set) var invokedPresentFetchedMovieParametersList = [(response: MovieDetails.FetchMovie.Response, Void)]()
+
     private(set) var invokedOnSaveMovieSuccessful = false
     private(set) var invokedOnSaveMovieSuccessfulCount = 0
 
@@ -19,9 +24,16 @@ final class MovieDetailsPresenterSpy: MovieDetailsPresentationLogic {
     private(set) var invokedOnDeleteMovieSuccessfulCount = 0
 
     private(set) var invokedOnDeleteMovieFailure = false
-    private(set) var invokedOnDeleteMovieFailureCount = 0
+    private(set) var invokedOnDeleteMovieFailureCount = 0 
 
     // MARK: - MovieDetailsPresentationLogic conforms
+
+    func presentFetchedMovie(response: MovieDetails.FetchMovie.Response) {
+        invokedPresentFetchedMovie = true
+        invokedPresentFetchedMovieCount += 1
+        invokedPresentFetchedMovieParameters = (response, ())
+        invokedPresentFetchedMovieParametersList.append((response, ()))
+    }
 
     func onSaveMovieSuccessful() {
         invokedOnSaveMovieSuccessful = true

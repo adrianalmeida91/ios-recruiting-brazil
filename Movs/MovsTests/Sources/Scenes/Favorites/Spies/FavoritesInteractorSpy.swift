@@ -9,13 +9,13 @@
 @testable import Movs
 
 final class FavoritesInteractorSpy: FavoritesBusinessLogic {
-    private(set) var invokedFetchLocalMovies = false
-    private(set) var invokedFetchLocalMoviesCount = 0
+    private(set) var invokedFetchMovies = false
+    private(set) var invokedFetchMoviesCount = 0
 
-    private(set) var invokedFetchLocalMoviesBySearch = false
-    private(set) var invokedFetchLocalMoviesBySearchCount = 0
-    private(set) var invokedFetchLocalMoviesBySearchParameters: (request: Favorites.FetchMoviesBySearch.Request, Void)?
-    private(set) var invokedFetchLocalMoviesBySearchParametersList = [(request: Favorites.FetchMoviesBySearch.Request, Void)]()
+    private(set) var invokedFetchMoviesBySearch = false
+    private(set) var invokedFetchMoviesBySearchCount = 0
+    private(set) var invokedFetchMoviesBySearchParameters: (request: Favorites.FetchMoviesBySearch.Request, Void)?
+    private(set) var invokedFetchMoviesBySearchParametersList = [(request: Favorites.FetchMoviesBySearch.Request, Void)]()
 
     private(set) var invokedDeleteMovie = false
     private(set) var invokedDeleteMovieCount = 0
@@ -24,16 +24,16 @@ final class FavoritesInteractorSpy: FavoritesBusinessLogic {
 
     // MARK: - FavoritesBusinessLogic conforms
 
-    func fetchLocalMovies() {
-        invokedFetchLocalMovies = true
-        invokedFetchLocalMoviesCount += 1
+    func fetchMovies() {
+        invokedFetchMovies = true
+        invokedFetchMoviesCount += 1
     }
 
-    func fetchLocalMoviesBySearch(request: Favorites.FetchMoviesBySearch.Request) {
-        invokedFetchLocalMoviesBySearch = true
-        invokedFetchLocalMoviesBySearchCount += 1
-        invokedFetchLocalMoviesBySearchParameters = (request, ())
-        invokedFetchLocalMoviesBySearchParametersList.append((request, ()))
+    func fetchMoviesBySearch(request: Favorites.FetchMoviesBySearch.Request) {
+        invokedFetchMoviesBySearch = true
+        invokedFetchMoviesBySearchCount += 1
+        invokedFetchMoviesBySearchParameters = (request, ())
+        invokedFetchMoviesBySearchParametersList.append((request, ()))
     }
 
     func deleteMovie(request: Favorites.DeleteMovie.Request) {

@@ -9,37 +9,37 @@
 @testable import Movs
 
 final class FilterDisplaySpy: FilterDisplayLogic {
-    private(set) var invokedOnFetchedDates = false
-    private(set) var invokedOnFetchedDatesCount = 0
-    private(set) var invokedOnFetchedDatesParameters: (viewModel: Filter.FetchDates.ViewModel, Void)?
-    private(set) var invokedOnFetchedDatesParametersList = [(viewModel: Filter.FetchDates.ViewModel, Void)]()
+    private(set) var invokedDisplayDates = false
+    private(set) var invokedDisplayDatesCount = 0
+    private(set) var invokedDisplayDatesParameters: (viewModel: Filter.FetchDates.ViewModel, Void)?
+    private(set) var invokedDisplayDatesParametersList = [(viewModel: Filter.FetchDates.ViewModel, Void)]()
 
-    private(set) var invokedOnFetchedGenres = false
-    private(set) var invokedOnFetchedGenresCount = 0
-    private(set) var invokedOnFetchedGenresParameters: (viewModel: Filter.FetchGenres.ViewModel, Void)?
-    private(set) var invokedOnFetchedGenresParametersList = [(viewModel: Filter.FetchGenres.ViewModel, Void)]()
+    private(set) var invokedDisplayGenres = false
+    private(set) var invokedDisplayGenresCount = 0
+    private(set) var invokedDisplayGenresParameters: (viewModel: Filter.FetchGenres.ViewModel, Void)?
+    private(set) var invokedDisplayGenresParametersList = [(viewModel: Filter.FetchGenres.ViewModel, Void)]()
 
-    private(set) var invokedDisplayGenericError = false
-    private(set) var invokedDisplayGenericErrorCount = 0
+    private(set) var invokedDisplayError = false
+    private(set) var invokedDisplayErrorCount = 0
 
-    // MARK: - FilterDisplayLogic conforms
+    // MARK: - FilterDisplayLogic
 
-    func onFetchedDates(viewModel: Filter.FetchDates.ViewModel) {
-        invokedOnFetchedDates = true
-        invokedOnFetchedDatesCount += 1
-        invokedOnFetchedDatesParameters = (viewModel, ())
-        invokedOnFetchedDatesParametersList.append((viewModel, ()))
+    func displayDates(viewModel: Filter.FetchDates.ViewModel) {
+        invokedDisplayDates = true
+        invokedDisplayDatesCount += 1
+        invokedDisplayDatesParameters = (viewModel, ())
+        invokedDisplayDatesParametersList.append((viewModel, ()))
     }
 
-    func onFetchedGenres(viewModel: Filter.FetchGenres.ViewModel) {
-        invokedOnFetchedGenres = true
-        invokedOnFetchedGenresCount += 1
-        invokedOnFetchedGenresParameters = (viewModel, ())
-        invokedOnFetchedGenresParametersList.append((viewModel, ()))
+    func displayGenres(viewModel: Filter.FetchGenres.ViewModel) {
+        invokedDisplayGenres = true
+        invokedDisplayGenresCount += 1
+        invokedDisplayGenresParameters = (viewModel, ())
+        invokedDisplayGenresParametersList.append((viewModel, ()))
     }
 
     func displayError() {
-        invokedDisplayGenericError = true
-        invokedDisplayGenericErrorCount += 1
+        invokedDisplayError = true
+        invokedDisplayErrorCount += 1
     }
 }

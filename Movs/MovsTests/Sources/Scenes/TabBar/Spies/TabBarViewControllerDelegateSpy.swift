@@ -19,7 +19,6 @@ final class TabBarViewControllerDelegateSpy: TabBarViewControllerDelegate {
     private(set) var invokedFilterSearchTappedParameters: (filter: FilterSearch, viewController: TabBarViewController)?
     private(set) var invokedFilterSearchTappedParametersList = [(filter: FilterSearch, viewController: TabBarViewController)]()
 
-
     // MARK: - TabBarViewControllerDelegate conforms
 
     func filterIconTapped(_ viewController: TabBarViewController) {
