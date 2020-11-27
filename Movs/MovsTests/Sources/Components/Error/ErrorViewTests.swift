@@ -25,7 +25,7 @@ final class ErrorViewTests: FBSnapshotTestCase {
         verify(sut)
     }
 
-    func testShoulShowErrorViewChangeIcon() throws {
+    func testShouldShowErrorViewWithOtherIcon() throws {
         let sut = addErrorViewOnViewController()
         let favoriteFullIconImage = try XCTUnwrap(UIImage(assets: .favoriteFullIcon))
         sut.image = favoriteFullIconImage
@@ -33,7 +33,7 @@ final class ErrorViewTests: FBSnapshotTestCase {
         verify(sut)
     }
 
-    func testShoulShowErrorViewChangeText() {
+    func testShouldShowErrorViewWithOtherText() {
         let sut = addErrorViewOnViewController()
         sut.text = "Server error"
 
