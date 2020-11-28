@@ -36,7 +36,6 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
                 }
             case let .failure(error):
                 print(error.localizedDescription)
-                self.presenter.onSaveMovieFailure()
             }
         }
     }
