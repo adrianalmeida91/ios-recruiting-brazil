@@ -9,258 +9,257 @@
 import XCTest
 @testable import Movs
 
-//final class FavoritesInteractorTests: XCTestCase {
-//    private lazy var sut = FavoritesInteractor(worker: realmWorkerSpy, presenter: presenterSpy)
-//
-//    // MARK: - Private constants
-//
-//    private let realmWorkerSpy = RealmWorkerSpy()
-//
-//    private let presenterSpy = FavoritesPresenterSpy()
-//
-//    private let movies = MocksHelper.getMockedMovies()
-//
-//    // MARK: - Test functions
-//
-//    func testInitialization() {
-//        _ = sut
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    func testFetchLocalMoviesShouldPresentFetchedLocalMovies() throws {
-//        realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.success(movies), ())
-//        sut.fetchMovies()
-//
-//        let parameters = try XCTUnwrap(presenterSpy.invokedPresentFetchedLocalMoviesParameters)
-//
-//        XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertEqual(realmWorkerSpy.invokedFetchMoviesCount, 1)
-//        XCTAssertTrue(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesCount, 1)
-//        XCTAssertEqual(parameters.response.movies, movies)
-//        XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesParametersList.count, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    func testFetchLocalMoviesShouldPresentEmptyMovies() {
-//        realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.success([]), ())
-//        sut.fetchMovies()
-//
-//        XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertEqual(realmWorkerSpy.invokedFetchMoviesCount, 1)
-//        XCTAssertTrue(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertEqual(presenterSpy.invokedPresentFetchedLocalMoviesEmptyCount, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    func testFetchLocalMoviesShouldPresentGenericFailure() {
-//        realmWorkerSpy.stubbedFetchMoviesCompletionResult = (.failure(.unknown), ())
-//        sut.fetchMovies()
-//
-//        XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertEqual(realmWorkerSpy.invokedFetchMoviesCount, 1)
-//        XCTAssertTrue(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertEqual(presenterSpy.invokedPresentGenericFailureCount, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    func testFetchLocalMoviesBySearchShouldPresentFetchedMoviesBySearch() throws {
-//        let filter = FilterSearch(search: Strings.mockKill.localizable, date: [Strings.mockDate.localizable], genres: ["Action"])
-//        let moviesFiltered = try XCTUnwrap(fetchLocalMoviesBySearch(filter: filter))
-//
-//        XCTAssertTrue(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesBySearchCount, 1)
-//        XCTAssertNotEqual(moviesFiltered, movies)
-//        XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesBySearchParametersList.count, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    func testFetchLocalMoviesBySearchWithNoMatchDateFilterPresentFailure() throws {
-//        let filter = FilterSearch(date: ["1500"])
-//        let moviesFiltered = fetchLocalMoviesBySearch(filter: filter)
-//
-//        let parameters = try XCTUnwrap(presenterSpy.invokedPresentSearchedMoviesFailureParameters)
-//
-//        XCTAssertNil(moviesFiltered)
-//        XCTAssertTrue(presenterSpy.invokedPresentSearchedMoviesFailure)
-//        XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureCount, 1)
-//        XCTAssertFalse(parameters.filter.isEmpty)
-//        XCTAssertEqual(parameters.filter.date, filter.date)
-//        XCTAssertNil(parameters.filter.genres)
-//        XCTAssertNil(parameters.filter.search)
-//        XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureParametersList.count, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//    }
-//
-//    func testFetchLocalMoviesBySearchWithNoMatchGenresPresentFailure() throws {
-//        let filter = FilterSearch(genres: ["Ação"])
-//        let moviesFiltered = fetchLocalMoviesBySearch(filter: filter)
-//
-//        let parameters = try XCTUnwrap(presenterSpy.invokedPresentSearchedMoviesFailureParameters)
-//
-//        XCTAssertNil(moviesFiltered)
-//        XCTAssertTrue(presenterSpy.invokedPresentSearchedMoviesFailure)
-//        XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureCount, 1)
-//        XCTAssertFalse(parameters.filter.isEmpty)
-//        XCTAssertNil(parameters.filter.date)
-//        XCTAssertEqual(parameters.filter.genres, filter.genres)
-//        XCTAssertNil(parameters.filter.search)
-//        XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureParametersList.count, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//    }
-//
-//    func testFetchLocalMoviesBySearchWithNoMatchSearchPresentFailure() throws {
-//        let filter = FilterSearch(search: "aaaaaaaaaa")
-//        let moviesFiltered = fetchLocalMoviesBySearch(filter: filter)
-//
-//        let parameters = try XCTUnwrap(presenterSpy.invokedPresentSearchedMoviesFailureParameters)
-//
-//        XCTAssertNil(moviesFiltered)
-//        XCTAssertTrue(presenterSpy.invokedPresentSearchedMoviesFailure)
-//        XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureCount, 1)
-//        XCTAssertFalse(parameters.filter.isEmpty)
-//        XCTAssertNil(parameters.filter.date)
-//        XCTAssertNil(parameters.filter.genres)
-//        XCTAssertEqual(parameters.filter.search, filter.search)
-//        XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureParametersList.count, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//    }
-//
-//    func testFetchLocalMoviesByEmptySearchShouldPresentFailure() throws {
-//        let filter = FilterSearch()
-//        let moviesFiltered = fetchLocalMoviesBySearch(filter: filter)
-//
-//        XCTAssertTrue(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesBySearchCount, 1)
-//        XCTAssertEqual(moviesFiltered, movies)
-//        XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesBySearchParametersList.count, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    func testDeleteMovieShouldPresentMovieUnfavorite() throws {
-//        realmWorkerSpy.stubbedDeleteMovieCompletionResult = (.success(()), ())
-//        let request = Favorites.DeleteMovie.Request(movie: movies[0])
-//        sut.deleteMovie(request: request)
-//
-//        let parameters = try XCTUnwrap(realmWorkerSpy.invokedDeleteMovieParameters)
-//
-//        XCTAssertTrue(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertEqual(realmWorkerSpy.invokedDeleteMovieCount, 1)
-//        XCTAssertEqual(parameters.movie, movies[0])
-//        XCTAssertEqual(realmWorkerSpy.invokedDeleteMovieParametersList.count, 1)
-//        XCTAssertTrue(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertEqual(presenterSpy.invokedPresenterMovieUnfavoriteCount, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    func testDeleteMoviesShouldPresentGenericFailure() throws {
-//        realmWorkerSpy.stubbedDeleteMovieCompletionResult = (.failure(.unknown), ())
-//        let request = Favorites.DeleteMovie.Request(movie: movies[0])
-//        sut.deleteMovie(request: request)
-//
-//        let parameters = try XCTUnwrap(realmWorkerSpy.invokedDeleteMovieParameters)
-//
-//        XCTAssertTrue(realmWorkerSpy.invokedDeleteMovie)
-//        XCTAssertEqual(realmWorkerSpy.invokedDeleteMovieCount, 1)
-//        XCTAssertEqual(parameters.movie, movies[0])
-//        XCTAssertEqual(realmWorkerSpy.invokedDeleteMovieParametersList.count, 1)
-//        XCTAssertTrue(presenterSpy.invokedPresentGenericFailure)
-//        XCTAssertEqual(presenterSpy.invokedPresentGenericFailureCount, 1)
-//
-//        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
-//        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMovies)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedLocalMoviesEmpty)
-//        XCTAssertFalse(presenterSpy.invokedPresenterMovieUnfavorite)
-//        XCTAssertFalse(presenterSpy.invokedPresentFetchedMoviesBySearch)
-//        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
-//    }
-//
-//    // MARK: - Private functions
-//
-//    private func fetchLocalMoviesBySearch(filter: FilterSearch) -> [Movie]? {
-//        let request = Favorites.FetchMoviesBySearch.Request(filter: filter)
-//        sut.fetchLocalMoviesBySearch(request: request)
-//
-//        let movies = presenterSpy.invokedPresentFetchedMoviesBySearchParameters?.response.movies
-//
-//        return movies
-//    }
-//}
+final class FavoritesInteractorTests: XCTestCase {
+    private lazy var sut = FavoritesInteractor(worker: realmWorkerSpy, presenter: presenterSpy)
+
+    // MARK: - Private constants
+
+    private let realmWorkerSpy = RealmWorkerSpy()
+
+    private let presenterSpy = FavoritesPresenterSpy()
+
+    private let search = "KILL"
+
+    private let date = ["2020"]
+
+    private let genre = ["Action"]
+
+    // MARK: - Test functions
+
+    func testInitialization() {
+        _ = sut
+
+        XCTAssertFalse(realmWorkerSpy.invokedFetchMovies)
+        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
+        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
+        XCTAssertFalse(presenterSpy.invokedPresentFetchedMovies)
+        XCTAssertFalse(presenterSpy.invokedPresentEmptyView)
+        XCTAssertFalse(presenterSpy.invokedPresentMovieUnfavorite)
+        XCTAssertFalse(presenterSpy.invokedPresentFailure)
+        XCTAssertFalse(presenterSpy.invokedPresentSearchedMovies)
+        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
+    }
+
+    func testFetchMoviesShouldPresentFetchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        try fetchMoviesRequestWithMockValues(movies: movies)
+    }
+
+    func testFetchMoviesShouldPresentEmptyView() throws {
+        try fetchMoviesRequestWithMockValues()
+    }
+
+    func testFetchMoviesShouldPresentFailure() throws {
+        try fetchMoviesRequestWithMockValues(isSuccess: false)
+    }
+
+    func testFetchMoviesBySearchShouldPresentSearchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(search: search, date: date, genres: genre)
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithTextShouldPresentSearchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(search: search)
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithDateShouldPresentSearchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(date: date)
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithGenreShouldPresentSearchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(genres: genre)
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithTextAndDateShouldPresentSearchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(search: search, date: date)
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithTextAndGenreShouldPresentSearchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(search: search, genres: genre)
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithDateAndGenreShouldPresentSearchedMovies() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(date: date, genres: genre)
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithEmptyMovieShouldPresentFailure() throws {
+        try fetchMoviesBySearchRequestWithMockValues()
+    }
+
+    func testFetchMoviesBySearchWithTextShouldPresentFailure() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(search: "aaaaaaaaaa")
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithDateShouldPresentFailure() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(date: ["21312313121"])
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithGenreShouldPresentFailure() throws {
+        let movies = MocksHelper.getMockedMovies()
+        let filter = FilterSearch(genres: ["Accctiooooon"])
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testFetchMoviesBySearchWithMovieWithoutGenresShouldPresentFailure() throws {
+        let movies = MocksHelper.getMockedMovies().map { movie -> Movie in
+            let movieWithoutGenres = movie
+            movie.genres = nil
+            return movieWithoutGenres
+        }
+        let filter = FilterSearch(genres: ["Accctiooooon"])
+        try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
+    }
+
+    func testDeleteMovieShouldPresentMovieUnfavorite() throws {
+        try deleteMovieRequestWithMockValues()
+    }
+
+    func testDeleteMovieShouldPresentFailure() throws {
+        try deleteMovieRequestWithMockValues(isSuccess: false)
+    }
+
+    // MARK: - Private functions
+
+    private func fetchMoviesRequestWithMockValues(movies: [Movie] = [], isSuccess: Bool = true) throws {
+        realmWorkerSpy.stubbedFetchMoviesCompletionResult = isSuccess ? (.success(movies), ()) : (.failure(MockError.test), ())
+        sut.fetchMovies()
+
+        XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
+        XCTAssertEqual(realmWorkerSpy.invokedFetchMoviesCount, 1)
+
+        if !isSuccess {
+            XCTAssertTrue(presenterSpy.invokedPresentFailure)
+            XCTAssertEqual(presenterSpy.invokedPresentFailureCount, 1)
+        } else if movies.isEmpty {
+            verifyEmptyView()
+        } else {
+            let parameters = try XCTUnwrap(presenterSpy.invokedPresentFetchedMoviesParameters)
+
+            XCTAssertTrue(presenterSpy.invokedPresentFetchedMovies)
+            XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesCount, 1)
+            XCTAssertEqual(parameters.response.movies, movies)
+            XCTAssertEqual(presenterSpy.invokedPresentFetchedMoviesParametersList.count, 1)
+            XCTAssertFalse(presenterSpy.invokedPresentEmptyView)
+            XCTAssertFalse(presenterSpy.invokedPresentFailure)
+        }
+
+        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
+        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
+        XCTAssertFalse(presenterSpy.invokedPresentMovieUnfavorite)
+        XCTAssertFalse(presenterSpy.invokedPresentSearchedMovies)
+        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
+    }
+
+    private func fetchMoviesBySearchRequestWithMockValues(movies: [Movie] = [], filter: FilterSearch = FilterSearch()) throws {
+        try fetchMoviesRequestWithMockValues(movies: movies)
+
+        let request = Favorites.FetchMoviesBySearch.Request(filter: filter)
+        sut.fetchMoviesBySearch(request: request)
+
+        if movies.isEmpty {
+            verifyEmptyView()
+        } else {
+            let parameters = presenterSpy.invokedPresentSearchedMoviesParameters
+
+            if let parameters = parameters {
+                XCTAssertTrue(presenterSpy.invokedPresentSearchedMovies)
+                XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesCount, 1)
+                XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesParametersList.count, 1)
+
+                try parameters.response.movies.forEach { movie in
+                    if let search = filter.search {
+                        XCTAssertTrue(movie.title.localizedCaseInsensitiveContains(search))
+                    }
+
+                    if let date = filter.date {
+                        XCTAssertTrue(date.contains(movie.releaseDate))
+                    }
+
+                    if let genres = filter.genres {
+                        let movieGenres = try XCTUnwrap(movie.genres)
+
+                        genres.forEach { genres in
+                            XCTAssertTrue(movieGenres.localizedCaseInsensitiveContains(genres))
+                        }
+                    }
+
+                    XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
+                }
+            } else {
+                let failureParameters = try XCTUnwrap(presenterSpy.invokedPresentSearchedMoviesFailureParameters)
+
+                XCTAssertTrue(presenterSpy.invokedPresentSearchedMoviesFailure)
+                XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureCount, 1)
+                XCTAssertEqual(failureParameters.filter.search, filter.search)
+                XCTAssertEqual(failureParameters.filter.genres, filter.genres)
+                XCTAssertEqual(failureParameters.filter.date, filter.date)
+                XCTAssertEqual(presenterSpy.invokedPresentSearchedMoviesFailureParametersList.count, 1)
+
+                XCTAssertFalse(presenterSpy.invokedPresentSearchedMovies)
+            }
+
+            XCTAssertFalse(presenterSpy.invokedPresentEmptyView)
+        }
+
+        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
+        XCTAssertFalse(realmWorkerSpy.invokedDeleteMovie)
+        XCTAssertFalse(presenterSpy.invokedPresentMovieUnfavorite)
+        XCTAssertFalse(presenterSpy.invokedPresentFailure)
+    }
+
+    private func verifyEmptyView() {
+        XCTAssertTrue(presenterSpy.invokedPresentEmptyView)
+        XCTAssertEqual(presenterSpy.invokedPresentEmptyViewCount, 1)
+        XCTAssertFalse(presenterSpy.invokedPresentFetchedMovies)
+        XCTAssertFalse(presenterSpy.invokedPresentFailure)
+    }
+
+    private func deleteMovieRequestWithMockValues(isSuccess: Bool = true) throws {
+        let movies = MocksHelper.getMockedMovies()
+        try fetchMoviesRequestWithMockValues(movies: movies)
+
+        realmWorkerSpy.stubbedDeleteMovieCompletionResult = isSuccess ? (.success(()), ()) : (.failure(MockError.test), ())
+
+        let request = Favorites.DeleteMovie.Request(movie: movies[0])
+        sut.deleteMovie(request: request)
+
+        let parameters = try XCTUnwrap(realmWorkerSpy.invokedDeleteMovieParameters)
+
+        XCTAssertTrue(realmWorkerSpy.invokedDeleteMovie)
+        XCTAssertEqual(realmWorkerSpy.invokedDeleteMovieCount, 1)
+        XCTAssertEqual(parameters.movie, movies[0])
+        XCTAssertEqual(realmWorkerSpy.invokedDeleteMovieParametersList.count, 1)
+
+        if isSuccess {
+            XCTAssertTrue(presenterSpy.invokedPresentMovieUnfavorite)
+            XCTAssertEqual(presenterSpy.invokedPresentMovieUnfavoriteCount, 1)
+            XCTAssertFalse(presenterSpy.invokedPresentFailure)
+        } else {
+            XCTAssertTrue(presenterSpy.invokedPresentFailure)
+            XCTAssertEqual(presenterSpy.invokedPresentFailureCount, 1)
+            XCTAssertFalse(presenterSpy.invokedPresentMovieUnfavorite)
+        }
+
+        XCTAssertFalse(realmWorkerSpy.invokedSaveMovie)
+        XCTAssertFalse(presenterSpy.invokedPresentEmptyView)
+        XCTAssertFalse(presenterSpy.invokedPresentSearchedMovies)
+        XCTAssertFalse(presenterSpy.invokedPresentSearchedMoviesFailure)
+    }
+}

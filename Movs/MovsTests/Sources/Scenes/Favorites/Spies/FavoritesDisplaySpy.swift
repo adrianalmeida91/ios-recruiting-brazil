@@ -20,18 +20,18 @@ final class FavoritesDisplaySpy: FavoritesDisplayLogic {
     private(set) var invokedDisplayMovieUnfavorite = false
     private(set) var invokedDisplayMovieUnfavoriteCount = 0
 
-    private(set) var invokedDisplayFailureError = false
-    private(set) var invokedDisplayFailureErrorCount = 0
+    private(set) var invokedDisplayError = false
+    private(set) var invokedDisplayErrorCount = 0
 
     private(set) var invokedDisplaySearchedMovies = false
     private(set) var invokedDisplaySearchedMoviesCount = 0
     private(set) var invokedDisplaySearchedMoviesParameters: (viewModel: Favorites.FetchMoviesBySearch.ViewModel, Void)?
     private(set) var invokedDisplaySearchedMoviesParametersList = [(viewModel: Favorites.FetchMoviesBySearch.ViewModel, Void)]()
 
-    private(set) var invokedDisplaySearchError = false
-    private(set) var invokedDisplaySearchErrorCount = 0
-    private(set) var invokedDisplaySearchErrorParameters: (searchedText: String, Void)?
-    private(set) var invokedDisplaySearchErrorParametersList = [(searchedText: String, Void)]()
+    private(set) var invokedDisplaySearchedError = false
+    private(set) var invokedDisplaySearchedErrorCount = 0
+    private(set) var invokedDisplaySearchedErrorParameters: (searchedText: String, Void)?
+    private(set) var invokedDisplaySearchedErrorParametersList = [(searchedText: String, Void)]()
 
     // MARK: - FavoritesDisplayLogic conforms
 
@@ -52,9 +52,9 @@ final class FavoritesDisplaySpy: FavoritesDisplayLogic {
         invokedDisplayMovieUnfavoriteCount += 1
     }
 
-    func displayFailureError() {
-        invokedDisplayFailureError = true
-        invokedDisplayFailureErrorCount += 1
+    func displayError() {
+        invokedDisplayError = true
+        invokedDisplayErrorCount += 1
     }
 
     func displaySearchedMovies(viewModel: Favorites.FetchMoviesBySearch.ViewModel) {
@@ -64,10 +64,10 @@ final class FavoritesDisplaySpy: FavoritesDisplayLogic {
         invokedDisplaySearchedMoviesParametersList.append((viewModel, ()))
     }
 
-    func displaySearchError(searchedText: String) {
-        invokedDisplaySearchError = true
-        invokedDisplaySearchErrorCount += 1
-        invokedDisplaySearchErrorParameters = (searchedText, ())
-        invokedDisplaySearchErrorParametersList.append((searchedText, ()))
+    func displaySearchedError(searchedText: String) {
+        invokedDisplaySearchedError = true
+        invokedDisplaySearchedErrorCount += 1
+        invokedDisplaySearchedErrorParameters = (searchedText, ())
+        invokedDisplaySearchedErrorParametersList.append((searchedText, ()))
     }
 }

@@ -9,15 +9,22 @@
 import XCTest
 @testable import Movs
 
-//final class FavoritesScreenFactoryTests: XCTestCase {
-//    private lazy var sut = FavoritesScreenFactory.make()
-//
-//    // MARK: - Test Functions
-//
-//    func testShouldCreateFavoritesViewControllerByFactory() {
-//        _ = sut
-//
-//        XCTAssertNotNil(sut)
-//        XCTAssertTrue(sut is FavoritesViewController)
-//    }
-//}
+final class FavoritesScreenFactoryTests: XCTestCase {
+    func testFavoritesScreenFactoryShouldMakeFavoritesViewController() {
+        let sut = FavoritesScreenFactory.make()
+
+        XCTAssertNotNil(sut)
+        XCTAssertTrue(sut is FavoritesViewController)
+        XCTAssertNil(sut.tabBarItem.image)
+        XCTAssertNil(sut.tabBarItem.title)
+    }
+
+    func testFavoritesScreenFactoryShouldMakeFavoritesViewControllerForTabBar() {
+        let sut = FavoritesScreenFactory.makeForTabBar()
+
+        XCTAssertNotNil(sut)
+        XCTAssertTrue(sut is FavoritesViewController)
+        XCTAssertNotNil(sut.tabBarItem.image)
+        XCTAssertEqual(sut.tabBarItem.title, "Favorites")
+    }
+}

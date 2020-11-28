@@ -34,7 +34,7 @@ final class FavoritesPresenter: FavoritesPresentationLogic {
     }
 
     func presentFailure() {
-        viewController?.displayFailureError()
+        viewController?.displayError()
     }
 
     func presentSearchedMovies(response: Favorites.FetchMoviesBySearch.Response) {
@@ -47,6 +47,6 @@ final class FavoritesPresenter: FavoritesPresentationLogic {
         let date = filter.date?.joined(separator: Constants.Utils.genresSeparator) ?? .empty
         let genres = filter.genres?.joined(separator: Constants.Utils.genresSeparator) ?? .empty
         let searchText = search + .space + date + .space + genres
-        viewController?.displaySearchError(searchedText: searchText.trimmingCharacters(in: .whitespaces))
+        viewController?.displaySearchedError(searchedText: searchText.trimmingCharacters(in: .whitespaces))
     }
 }

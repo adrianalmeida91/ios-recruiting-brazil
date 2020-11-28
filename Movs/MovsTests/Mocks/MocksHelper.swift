@@ -21,7 +21,7 @@ final class MocksHelper {
         let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
 
         return moviesPopulariesResponse.moviesResponse.map { movieResponse -> Movie in
-            Movie(id: movieResponse.id, title: movieResponse.title, imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), genres: Strings.mockGenres.localizable, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
+            Movie(id: movieResponse.id, title: movieResponse.title, imageURL: .empty, genres: Strings.mockGenres.localizable, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
         }
     }
 

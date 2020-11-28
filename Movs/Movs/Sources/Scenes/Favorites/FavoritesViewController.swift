@@ -12,9 +12,9 @@ protocol FavoritesDisplayLogic: AnyObject {
     func displayMovies(viewModel: Favorites.FetchMovies.ViewModel)
     func displayEmptyView()
     func displayMovieUnfavorite()
-    func displayFailureError()
+    func displayError()
     func displaySearchedMovies(viewModel: Favorites.FetchMoviesBySearch.ViewModel)
-    func displaySearchError(searchedText: String)
+    func displaySearchedError(searchedText: String)
 }
 
 final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
@@ -113,7 +113,7 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
         }
     }
 
-    func displayFailureError() {
+    func displayError() {
         displayErrorView()
     }
 
@@ -123,7 +123,7 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
         setupViewModel()
     }
 
-    func displaySearchError(searchedText: String) {
+    func displaySearchedError(searchedText: String) {
         let searchIcon = UIImage(assets: .searchIcon)
         let errorFormatted = String(format: Strings.errorSearch.localizable, searchedText)
         let configurationError = ErrorConfiguration(image: searchIcon, text: errorFormatted)
