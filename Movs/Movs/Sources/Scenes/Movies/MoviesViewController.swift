@@ -10,7 +10,7 @@ import UIKit
 
 protocol MoviesDisplayLogic: AnyObject {
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel)
-    func displayGenericError()
+    func displayError()
     func displaySearchedMovies(viewModel: Movies.FetchMoviesBySearch.ViewModel)
     func displaySearchError(searchedText: String)
 }
@@ -100,7 +100,7 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
         reloadMovies()
     }
 
-    func displayGenericError() {
+    func displayError() {
         displayErrorView()
     }
 

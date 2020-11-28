@@ -24,7 +24,7 @@ final class MoviesPresenter: MoviesPresentationLogic {
     }
 
     func presentFailure() {
-        viewController?.displayGenericError()
+        viewController?.displayError()
     }
 
     func presentSearchedMovies(response: Movies.FetchMoviesBySearch.Response) {

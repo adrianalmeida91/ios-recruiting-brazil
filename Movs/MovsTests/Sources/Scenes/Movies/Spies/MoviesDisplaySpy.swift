@@ -14,8 +14,8 @@ final class MoviesDisplaySpy: MoviesDisplayLogic {
     private(set) var invokedDisplayMoviesParameters: (viewModel: Movies.FetchMovies.ViewModel, Void)?
     private(set) var invokedDisplayMoviesParametersList = [(viewModel: Movies.FetchMovies.ViewModel, Void)]()
 
-    private(set) var invokedDisplayGenericError = false
-    private(set) var invokedDisplayGenericErrorCount = 0
+    private(set) var invokedDisplayError = false
+    private(set) var invokedDisplayErrorCount = 0
 
     private(set) var invokedDisplaySearchedMovies = false
     private(set) var invokedDisplaySearchedMoviesCount = 0
@@ -36,9 +36,9 @@ final class MoviesDisplaySpy: MoviesDisplayLogic {
         invokedDisplayMoviesParametersList.append((viewModel, ()))
     }
 
-    func displayGenericError() {
-        invokedDisplayGenericError = true
-        invokedDisplayGenericErrorCount += 1
+    func displayError() {
+        invokedDisplayError = true
+        invokedDisplayErrorCount += 1
     }
 
     func displaySearchedMovies(viewModel: Movies.FetchMoviesBySearch.ViewModel) {
