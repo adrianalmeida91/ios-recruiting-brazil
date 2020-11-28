@@ -37,7 +37,7 @@ final class HorizontalInfoListItemTests: FBSnapshotTestCase {
         let sut = HorizontalInfoListItemView(viewModel: items)
         addSubviewForTest(sut)
 
-        let newViewModel = HorizontalInfoListViewModel(imageURL: Strings.mockMainDogImageURL.localizable, title: Strings.mockDog.localizable, subtitle: Strings.mockDate.localizable, descriptionText: Strings.mockOverview.localizable)
+        let newViewModel = HorizontalInfoListViewModel(imageURL: .empty, title: Strings.mockDog.localizable, subtitle: Strings.mockDate.localizable, descriptionText: Strings.mockOverview.localizable)
         sut.update(viewModel: newViewModel)
 
         verify(sut)
