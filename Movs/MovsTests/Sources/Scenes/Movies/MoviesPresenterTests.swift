@@ -35,7 +35,7 @@ final class MoviesPresenterTests: XCTestCase {
     func testPresentFetchedMoviesShouldDisplayMovies() throws {
         let page = 1
         let totalPage = 500
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let response = Movies.FetchMovies.Response(page: page, totalPages: totalPage, movies: movies)
         sut.presentFetchedMovies(response: response)
 
@@ -64,7 +64,7 @@ final class MoviesPresenterTests: XCTestCase {
     }
 
     func testPresentSearchedMoviesShouldDisplaySearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let response = Movies.FetchMoviesBySearch.Response(movies: movies)
         sut.presentSearchedMovies(response: response)
 
@@ -81,7 +81,7 @@ final class MoviesPresenterTests: XCTestCase {
     }
 
     func testPresentSearchedFailureShouldDisplaySearchError() throws {
-        let search = "aaaaaaaaaa"
+        let search = MocksHelper.Strings.searchError.rawValue
         sut.presentSearchedFailure(textSearched: search)
 
         let parameters = try XCTUnwrap(displaySpy.invokedDisplaySearchErrorParameters)

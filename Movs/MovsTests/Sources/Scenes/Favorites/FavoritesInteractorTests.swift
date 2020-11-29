@@ -18,11 +18,11 @@ final class FavoritesInteractorTests: XCTestCase {
 
     private let presenterSpy = FavoritesPresenterSpy()
 
-    private let search = "KILL"
+    private let search = MocksHelper.Strings.search.rawValue
 
-    private let date = ["2020"]
+    private let date = [MocksHelper.Dates.y2020.rawValue]
 
-    private let genre = ["Action"]
+    private let genre = [MocksHelper.Genres.action.rawValue]
 
     // MARK: - Test functions
 
@@ -41,7 +41,7 @@ final class FavoritesInteractorTests: XCTestCase {
     }
 
     func testFetchMoviesShouldPresentFetchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         try fetchMoviesRequestWithMockValues(movies: movies)
     }
 
@@ -54,43 +54,43 @@ final class FavoritesInteractorTests: XCTestCase {
     }
 
     func testFetchMoviesBySearchShouldPresentSearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let filter = FilterSearch(search: search, date: date, genres: genre)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithTextShouldPresentSearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let filter = FilterSearch(search: search)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithDateShouldPresentSearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let filter = FilterSearch(date: date)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithGenreShouldPresentSearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let filter = FilterSearch(genres: genre)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithTextAndDateShouldPresentSearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let filter = FilterSearch(search: search, date: date)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithTextAndGenreShouldPresentSearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let filter = FilterSearch(search: search, genres: genre)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithDateAndGenreShouldPresentSearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let filter = FilterSearch(date: date, genres: genre)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
@@ -100,30 +100,30 @@ final class FavoritesInteractorTests: XCTestCase {
     }
 
     func testFetchMoviesBySearchWithTextShouldPresentFailure() throws {
-        let movies = MocksHelper.getMockedMovies()
-        let filter = FilterSearch(search: "aaaaaaaaaa")
+        let movies = MocksHelper.getMovies()
+        let filter = FilterSearch(search: MocksHelper.Strings.searchError.rawValue)
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithDateShouldPresentFailure() throws {
-        let movies = MocksHelper.getMockedMovies()
-        let filter = FilterSearch(date: ["21312313121"])
+        let movies = MocksHelper.getMovies()
+        let filter = FilterSearch(date: [MocksHelper.Strings.dateError.rawValue])
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithGenreShouldPresentFailure() throws {
-        let movies = MocksHelper.getMockedMovies()
-        let filter = FilterSearch(genres: ["Accctiooooon"])
+        let movies = MocksHelper.getMovies()
+        let filter = FilterSearch(genres: [MocksHelper.Strings.genreError.rawValue])
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
     func testFetchMoviesBySearchWithMovieWithoutGenresShouldPresentFailure() throws {
-        let movies = MocksHelper.getMockedMovies().map { movie -> Movie in
+        let movies = MocksHelper.getMovies().map { movie -> Movie in
             let movieWithoutGenres = movie
             movie.genres = nil
             return movieWithoutGenres
         }
-        let filter = FilterSearch(genres: ["Accctiooooon"])
+        let filter = FilterSearch(genres: [MocksHelper.Strings.genreError.rawValue])
         try fetchMoviesBySearchRequestWithMockValues(movies: movies, filter: filter)
     }
 
@@ -138,7 +138,7 @@ final class FavoritesInteractorTests: XCTestCase {
     // MARK: - Private functions
 
     private func fetchMoviesRequestWithMockValues(movies: [Movie] = [], isSuccess: Bool = true) throws {
-        realmWorkerSpy.stubbedFetchMoviesCompletionResult = isSuccess ? (.success(movies), ()) : (.failure(MockError.test), ())
+        realmWorkerSpy.stubbedFetchMoviesCompletionResult = isSuccess ? (.success(movies), ()) : (.failure(MocksHelper.Error.test), ())
         sut.fetchMovies()
 
         XCTAssertTrue(realmWorkerSpy.invokedFetchMovies)
@@ -232,10 +232,10 @@ final class FavoritesInteractorTests: XCTestCase {
     }
 
     private func deleteMovieRequestWithMockValues(isSuccess: Bool = true) throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         try fetchMoviesRequestWithMockValues(movies: movies)
 
-        realmWorkerSpy.stubbedDeleteMovieCompletionResult = isSuccess ? (.success(()), ()) : (.failure(MockError.test), ())
+        realmWorkerSpy.stubbedDeleteMovieCompletionResult = isSuccess ? (.success(()), ()) : (.failure(MocksHelper.Error.test), ())
 
         let request = Favorites.DeleteMovie.Request(movie: movies[0])
         sut.deleteMovie(request: request)

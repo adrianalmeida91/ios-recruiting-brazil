@@ -32,7 +32,7 @@ final class MovieDetailsPresenterTests: XCTestCase {
     }
 
     func testPresentFetchedMovieShouldDisplayMovie() throws {
-        let movie = MocksHelper.getMockedMovie()
+        let movie = MocksHelper.getMovie()
         let response = MovieDetails.FetchMovie.Response(movie: movie)
         sut.presentFetchedMovie(response: response)
 

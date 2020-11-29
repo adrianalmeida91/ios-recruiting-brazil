@@ -38,7 +38,7 @@ final class FilterInteractor: FilterBusinessLogic {
         }
 
         let response = Filter.FetchDates.Response(dates: dates)
-        presenter.onFetchedDates(response: response)
+        presenter.presentDates(response: response)
     }
 
     func fetchGenres(request: Filter.FetchGenres.Request) {
@@ -46,17 +46,11 @@ final class FilterInteractor: FilterBusinessLogic {
             switch result {
             case let .success(response):
                 let genres = response.genres.map { $0.name }
-                self.presenter.onFetchedGenres(response: Filter.FetchGenres.Response(genres: genres))
+                self.presenter.presentGenres(response: Filter.FetchGenres.Response(genres: genres))
             case let .failure(error):
-                self.onFailure(error: error)
+                print(error.localizedDescription)
+                self.presenter.presentFailure()
             }
         }
-    }
-
-    // MARK: - Private functions
-
-    private func onFailure(error: Error) {
-        print(error.localizedDescription)
-        self.presenter.onFailure()
     }
 }

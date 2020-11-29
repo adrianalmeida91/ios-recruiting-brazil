@@ -51,7 +51,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldDisplayMovies() throws {
-        let viewModel = Movies.FetchMovies.ViewModel(page: 1, totalPages: 10, movies: MocksHelper.getMockedMovies())
+        let viewModel = Movies.FetchMovies.ViewModel(page: 1, totalPages: 10, movies: MocksHelper.getMovies())
         sut.displayMovies(viewModel: viewModel)
 
         try verifyFetchedMovies()
@@ -72,7 +72,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldDisplaySearchedMovies() throws {
-        let viewModel = Movies.FetchMoviesBySearch.ViewModel(movies: MocksHelper.getMockedMovies().reversed())
+        let viewModel = Movies.FetchMoviesBySearch.ViewModel(movies: MocksHelper.getMovies().reversed())
         sut.displaySearchedMovies(viewModel: viewModel)
 
         try verifyFetchedMovies()
@@ -83,7 +83,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldDisplaySearchError() throws {
-        let search = Strings.mockDog.localizable
+        let search = MocksHelper.Strings.search.rawValue
         sut.displaySearchError(searchedText: search)
 
         try verifyFetchedMovies()
@@ -94,7 +94,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldFilterWithSearch() throws {
-        let search = Strings.mockDog.localizable
+        let search = MocksHelper.Strings.search.rawValue
         sut.filter(search: search)
 
         try verifyFetchedMovies()

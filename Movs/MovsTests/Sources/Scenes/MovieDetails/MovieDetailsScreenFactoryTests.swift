@@ -14,7 +14,7 @@ final class MovieDetailsScreenFactoryTests: XCTestCase {
 
     // MARK: - Private constants
 
-    private let movie = MocksHelper.getMockedMovie()
+    private let movie = MocksHelper.getMovie()
 
     // MARK: - Test functions
 

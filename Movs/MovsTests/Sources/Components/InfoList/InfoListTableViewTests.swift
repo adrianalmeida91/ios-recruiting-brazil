@@ -53,10 +53,10 @@ final class InfoListTableViewTests: FBSnapshotTestCase {
 
     private func getItems() -> [InfoListItemViewModel] {
         return [
-            InfoListItemViewModel(title: Strings.mockDog.localizable, icon: .favoriteEmptyIcon),
-            InfoListItemViewModel(title: Strings.mockDate.localizable),
-            InfoListItemViewModel(title: Strings.mockGenres.localizable),
-            InfoListItemViewModel(descriptionText: Strings.mockOverview.localizable)
+            InfoListItemViewModel(title: MocksHelper.Strings.title.rawValue, icon: .favoriteEmptyIcon),
+            InfoListItemViewModel(title: MocksHelper.Dates.y2020.rawValue),
+            InfoListItemViewModel(title: MocksHelper.Genres.action.rawValue),
+            InfoListItemViewModel(descriptionText: MocksHelper.Strings.overview.rawValue)
         ]
     }
 }

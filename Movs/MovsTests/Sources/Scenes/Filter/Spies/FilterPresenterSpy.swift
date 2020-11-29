@@ -9,38 +9,37 @@
 @testable import Movs
 
 final class FilterPresenterSpy: FilterPresentationLogic {
-    private(set) var invokedOnFetchedDates = false
-    private(set) var invokedOnFetchedDatesCount = 0
-    private(set) var invokedOnFetchedDatesParameters: (response: Filter.FetchDates.Response, Void)?
-    private(set) var invokedOnFetchedDatesParametersList = [(response: Filter.FetchDates.Response, Void)]()
+    private(set) var invokedPresentDates = false
+    private(set) var invokedPresentDatesCount = 0
+    private(set) var invokedPresentDatesParameters: (response: Filter.FetchDates.Response, Void)?
+    private(set) var invokedPresentDatesParametersList = [(response: Filter.FetchDates.Response, Void)]()
 
-    private(set) var invokedOnFetchedGenres = false
-    private(set) var invokedOnFetchedGenresCount = 0
-    private(set) var invokedOnFetchedGenresParameters: (response: Filter.FetchGenres.Response, Void)?
-    private(set) var invokedOnFetchedGenresParametersList = [(response: Filter.FetchGenres.Response, Void)]()
+    private(set) var invokedPresentGenres = false
+    private(set) var invokedPresentGenresCount = 0
+    private(set) var invokedPresentGenresParameters: (response: Filter.FetchGenres.Response, Void)?
+    private(set) var invokedPresentGenresParametersList = [(response: Filter.FetchGenres.Response, Void)]()
 
-    private(set) var invokedOnFailure = false
-    private(set) var invokedOnFailureCount = 0
-
+    private(set) var invokedPresentFailure = false
+    private(set) var invokedPresentFailureCount = 0
 
     // MARK: - FilterPresentationLogic conforms
 
-    func onFetchedDates(response: Filter.FetchDates.Response) {
-        invokedOnFetchedDates = true
-        invokedOnFetchedDatesCount += 1
-        invokedOnFetchedDatesParameters = (response, ())
-        invokedOnFetchedDatesParametersList.append((response, ()))
+    func presentDates(response: Filter.FetchDates.Response) {
+        invokedPresentDates = true
+        invokedPresentDatesCount += 1
+        invokedPresentDatesParameters = (response, ())
+        invokedPresentDatesParametersList.append((response, ()))
     }
 
-    func onFetchedGenres(response: Filter.FetchGenres.Response) {
-        invokedOnFetchedGenres = true
-        invokedOnFetchedGenresCount += 1
-        invokedOnFetchedGenresParameters = (response, ())
-        invokedOnFetchedGenresParametersList.append((response, ()))
+    func presentGenres(response: Filter.FetchGenres.Response) {
+        invokedPresentGenres = true
+        invokedPresentGenresCount += 1
+        invokedPresentGenresParameters = (response, ())
+        invokedPresentGenresParametersList.append((response, ()))
     }
 
-    func onFailure() {
-        invokedOnFailure = true
-        invokedOnFailureCount += 1
+    func presentFailure() {
+        invokedPresentFailure = true
+        invokedPresentFailureCount += 1
     }
 }

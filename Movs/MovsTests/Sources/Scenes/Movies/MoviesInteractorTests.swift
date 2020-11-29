@@ -53,7 +53,7 @@ final class MoviesInteractorTests: XCTestCase {
     }
 
     func testFetchMoviesBySearchShoulPresentSearchedMovies() throws {
-        let search = "KILL"
+        let search = MocksHelper.Strings.search.rawValue
         try mockMoviesAndSearch(search: search)
 
         let parameters = try XCTUnwrap(presenterSpy.invokedPresentSearchedMoviesParameters)
@@ -68,7 +68,7 @@ final class MoviesInteractorTests: XCTestCase {
     }
 
     func testFetchMoviesBySearchShouldPresentFailure() throws {
-        try mockMoviesAndSearch(search: "HAHAHAHAHAHA")
+        try mockMoviesAndSearch(search: MocksHelper.Strings.searchError.rawValue)
 
         XCTAssertFalse(presenterSpy.invokedPresentSearchedMovies)
     }
@@ -82,14 +82,14 @@ final class MoviesInteractorTests: XCTestCase {
     // MARK: - Private functions
 
     private func fetchMoviesRequestWithMockValues(isMoviesSuccess: Bool = true, isGenresSuccess: Bool = true, isMoviesPopulariesSuccess: Bool = true) throws {
-        let movies = MocksHelper.getMockedMovies()
-        realmWorkerSpy.stubbedFetchMoviesCompletionResult = isMoviesSuccess ? (.success(movies), ()) : (.failure(MockError.test), ())
+        let movies = MocksHelper.getMovies()
+        realmWorkerSpy.stubbedFetchMoviesCompletionResult = isMoviesSuccess ? (.success(movies), ()) : (.failure(MocksHelper.Error.test), ())
 
         let genresResponse = GenresResponse(path: JSONMocks.genresResponse.rawValue)
-        moyaWorkerSpy.stubbedFetchGenresCompletionResult = isGenresSuccess ? (.success(genresResponse), ()) : (.failure(MockError.test), ())
+        moyaWorkerSpy.stubbedFetchGenresCompletionResult = isGenresSuccess ? (.success(genresResponse), ()) : (.failure(MocksHelper.Error.test), ())
 
         let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
-        moyaWorkerSpy.stubbedFetchMoviesCompletionResult = isMoviesPopulariesSuccess ? (.success(moviesPopulariesResponse), ()) : (.failure(MockError.test), ())
+        moyaWorkerSpy.stubbedFetchMoviesCompletionResult = isMoviesPopulariesSuccess ? (.success(moviesPopulariesResponse), ()) : (.failure(MocksHelper.Error.test), ())
 
         let request = Movies.FetchMovies.Request(language: Constants.MovieDefaultParameters.language, page: Constants.MovieDefaultParameters.page)
         sut.fetchMovies(request: request)

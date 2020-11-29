@@ -18,7 +18,7 @@ final class MovieDetailsInteractorTests: XCTestCase {
 
     private let presenterSpy = MovieDetailsPresenterSpy()
 
-    private let movie = MocksHelper.getMockedMovie()
+    private let movie = MocksHelper.getMovie()
 
     // MARK: - Test functions
 
@@ -62,7 +62,7 @@ final class MovieDetailsInteractorTests: XCTestCase {
     // MARK: - Private functions
 
     private func fetchMovieAndValidate(isSuccess: Bool = true) throws {
-        workerSpy.stubbedFetchMoviesCompletionResult = isSuccess ? (.success([movie]), ()) : (.failure(MockError.test), ())
+        workerSpy.stubbedFetchMoviesCompletionResult = isSuccess ? (.success([movie]), ()) : (.failure(MocksHelper.Error.test), ())
 
         let request = MovieDetails.FetchMovie.Request(id: movie.id)
         sut.fetchMovie(request: request)
@@ -90,7 +90,7 @@ final class MovieDetailsInteractorTests: XCTestCase {
     }
 
     private func saveMovieAndValidate(isSuccess: Bool = true) throws {
-        workerSpy.stubbedSaveMovieCompletionResult = isSuccess ? (.success(()), ()) : (.failure(MockError.test), ())
+        workerSpy.stubbedSaveMovieCompletionResult = isSuccess ? (.success(()), ()) : (.failure(MocksHelper.Error.test), ())
 
         let request = MovieDetails.SaveMovie.Request(movie: movie)
         sut.saveMovie(request: request)
@@ -120,7 +120,7 @@ final class MovieDetailsInteractorTests: XCTestCase {
     }
 
     private func deleteMovieAndValidate(isSuccess: Bool = true) throws {
-        workerSpy.stubbedDeleteMovieCompletionResult = isSuccess ? (.success(()), ()) : (.failure(MockError.test), ())
+        workerSpy.stubbedDeleteMovieCompletionResult = isSuccess ? (.success(()), ()) : (.failure(MocksHelper.Error.test), ())
 
         let request = MovieDetails.DeleteMovie.Request(movie: movie)
         sut.deleteMovie(request: request)

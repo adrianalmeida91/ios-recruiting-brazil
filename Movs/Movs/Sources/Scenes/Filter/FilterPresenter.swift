@@ -7,9 +7,9 @@
 //
 
 protocol FilterPresentationLogic: AnyObject {
-    func onFetchedDates(response: Filter.FetchDates.Response)
-    func onFetchedGenres(response: Filter.FetchGenres.Response)
-    func onFailure()
+    func presentDates(response: Filter.FetchDates.Response)
+    func presentGenres(response: Filter.FetchGenres.Response)
+    func presentFailure()
 }
 
 final class FilterPresenter: FilterPresentationLogic {
@@ -17,17 +17,17 @@ final class FilterPresenter: FilterPresentationLogic {
 
     // MARK: - FilterPresentationLogic conforms
 
-    func onFetchedDates(response: Filter.FetchDates.Response) {
+    func presentDates(response: Filter.FetchDates.Response) {
         let viewModel = Filter.FetchDates.ViewModel(dates: response.dates)
         viewController?.displayDates(viewModel: viewModel)
     }
 
-    func onFetchedGenres(response: Filter.FetchGenres.Response) {
+    func presentGenres(response: Filter.FetchGenres.Response) {
         let viewModel = Filter.FetchGenres.ViewModel(genres: response.genres)
         viewController?.displayGenres(viewModel: viewModel)
     }
 
-    func onFailure() {
+    func presentFailure() {
         viewController?.displayError()
     }
 }

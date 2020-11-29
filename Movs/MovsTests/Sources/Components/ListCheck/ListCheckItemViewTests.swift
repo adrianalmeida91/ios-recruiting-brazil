@@ -24,17 +24,17 @@ final class ListCheckItemViewTests: FBSnapshotTestCase {
     }
 
     func testShouldShowListCheckItem() {
-        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable, value: Strings.mockDate.localizable, icon: .checkIcon)
+        let viewModel = ListCheckItemViewModel(title: MocksHelper.Strings.title.rawValue, value: MocksHelper.Dates.y2020.rawValue, icon: .checkIcon)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldShowListCheckItemWithTitle() {
-        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable)
+        let viewModel = ListCheckItemViewModel(title: MocksHelper.Strings.title.rawValue)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldShowListCheckItemWithValue() {
-        let viewModel = ListCheckItemViewModel(value: Strings.mockDate.localizable)
+        let viewModel = ListCheckItemViewModel(value: MocksHelper.Dates.y2020.rawValue)
         snapshot(viewModel: viewModel)
     }
 
@@ -44,27 +44,27 @@ final class ListCheckItemViewTests: FBSnapshotTestCase {
     }
 
     func testShouldShowListCheckItemWithTitleAndValue() {
-        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable, value: Strings.mockGenres.localizable)
+        let viewModel = ListCheckItemViewModel(title: MocksHelper.Strings.title.rawValue, value: MocksHelper.Genres.action.rawValue)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldShowListCheckItemWithTitleAndIcon() {
-        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable, icon: .arrowForward)
+        let viewModel = ListCheckItemViewModel(title: MocksHelper.Strings.title.rawValue, icon: .arrowForward)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldShowListCheckItemWithValueAndIcon() {
-        let viewModel = ListCheckItemViewModel(value: Strings.mockDate.localizable, icon: .arrowForward)
+        let viewModel = ListCheckItemViewModel(value: MocksHelper.Dates.y2020.rawValue, icon: .arrowForward)
         snapshot(viewModel: viewModel)
     }
 
     func testShouldUpdateListCheckItem() {
-        let viewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable, value: Strings.mockDate.localizable, icon: .checkIcon)
+        let viewModel = ListCheckItemViewModel(title: MocksHelper.Strings.title.rawValue, value: MocksHelper.Dates.y2020.rawValue, icon: .checkIcon)
         let sut = ListCheckItemView(viewModel: viewModel)
 
         addSubviewForTest(equalConstraintsFor: sut)
 
-        let newViewModel = ListCheckItemViewModel(title: Strings.mockDog.localizable)
+        let newViewModel = ListCheckItemViewModel(title: MocksHelper.Strings.title.rawValue)
         sut.update(viewModel: newViewModel)
 
         verify(sut)

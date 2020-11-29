@@ -46,7 +46,7 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldDisplayMovies() {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let viewModel = Favorites.FetchMovies.ViewModel(movies: movies)
         sut.displayMovies(viewModel: viewModel)
 
@@ -74,7 +74,7 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldDisplaySearchedMovies() {
-        let movies: [Movie] = MocksHelper.getMockedMovies().reversed()
+        let movies: [Movie] = MocksHelper.getMovies().reversed()
         let viewModel = Favorites.FetchMoviesBySearch.ViewModel(movies: movies)
         sut.displaySearchedMovies(viewModel: viewModel)
 
@@ -82,19 +82,19 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldDisplaySearchedErrorWithText() {
-        sut.displaySearchedError(searchedText: "aaaaaaaaaa")
+        sut.displaySearchedError(searchedText: MocksHelper.Strings.searchError.rawValue)
 
         snapshot()
     }
 
     func testViewControllerShouldCallFetchMoviesBySearchWhenFilter() throws {
-        let filter = FilterSearch(search: "KILL", date: ["2020", "2019"], genres: ["Action", "Thriller"])
+        let filter = FilterSearch(search: MocksHelper.Strings.search.rawValue, date: MocksHelper.getDates(), genres: MocksHelper.getGenres())
 
         try verifyFiltedMovies(filter: filter)
     }
 
     func testViewControllerShouldCallFetchMoviesBySearchWhenFilterByText() throws {
-        let filter = FilterSearch(search: "aaaaaaaaaa")
+        let filter = FilterSearch(search: MocksHelper.Strings.searchError.rawValue)
 
         try verifyFiltedMovies(filter: filter)
     }

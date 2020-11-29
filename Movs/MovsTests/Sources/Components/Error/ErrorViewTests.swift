@@ -35,14 +35,14 @@ final class ErrorViewTests: FBSnapshotTestCase {
 
     func testShouldShowErrorViewWithOtherText() {
         let sut = addErrorViewOnViewController()
-        sut.text = "Server error"
+        sut.text = MocksHelper.Strings.serverError.rawValue
 
         verify(sut)
     }
 
     func testShouldShowErrorViewWithConfiguration() {
         let searchImage = UIImage(assets: .searchIcon)
-        let errorMessage = "Communication error"
+        let errorMessage = MocksHelper.Strings.communicationError.rawValue
         let configuration = ErrorConfiguration(image: searchImage, text: errorMessage)
         let sut = addErrorViewOnViewController(configuration: configuration)
 
@@ -52,7 +52,7 @@ final class ErrorViewTests: FBSnapshotTestCase {
     func testShouldShowErrorViewChangeConfiguration() {
         let sut = addErrorViewOnViewController()
         let searchImage = UIImage(assets: .favoriteEmptyIcon)
-        let errorMessage = "New communication error"
+        let errorMessage = MocksHelper.Strings.newCommunicationError.rawValue
         let configuration = ErrorConfiguration(image: searchImage, text: errorMessage)
         sut.configuration = configuration
 

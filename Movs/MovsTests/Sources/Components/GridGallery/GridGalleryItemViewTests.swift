@@ -18,27 +18,23 @@ final class GridGalleryItemViewTests: FBSnapshotTestCase {
 
     // MARK: - Private constants
 
-    private let mockImage = Strings.mockMainDogImageURL.localizable
-
-    private let mockTitle = Strings.mockDog.localizable
-
     private let itemSize = CGSize(width: 160, height: 200)
 
     // MARK: - Test functions
 
     func testShouldShowGalleryItem() {
-        let gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: mockImage, title: mockTitle, isFavorite: false)
+        let gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: .empty, title: MocksHelper.Strings.title.rawValue, isFavorite: false)
         let sut = addGalleryItemOnViewController(viewModel: gridGalleryItemViewModel)
 
         verify(sut)
     }
 
     func testShouldUpdateViewModelOnGalleryItem() {
-        var gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: mockImage, title: mockTitle, isFavorite: false)
+        var gridGalleryItemViewModel = GridGalleryItemViewModel(imageURL: .empty, title: MocksHelper.Strings.title.rawValue, isFavorite: false)
         let sut = addGalleryItemOnViewController(viewModel: gridGalleryItemViewModel)
 
-        gridGalleryItemViewModel.imageURL = Strings.mockSecondaryDogImageURL.localizable
-        gridGalleryItemViewModel.title = Strings.mockOtherDog.localizable
+        gridGalleryItemViewModel.imageURL = .empty
+        gridGalleryItemViewModel.title = MocksHelper.Strings.otherTitle.rawValue
         gridGalleryItemViewModel.isFavorite = true
         sut.update(viewModel: gridGalleryItemViewModel)
 
@@ -59,8 +55,6 @@ final class GridGalleryItemViewTests: FBSnapshotTestCase {
                 sut.heightAnchor.constraint(equalToConstant: itemSize.height)
             ]
         }
-
-        wait(for: Constants.Utils.sleep)
 
         return sut
     }

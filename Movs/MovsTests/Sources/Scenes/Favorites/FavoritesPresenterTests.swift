@@ -21,11 +21,11 @@ final class FavoritesPresenterTests: XCTestCase {
 
     private let displaySpy = FavoritesDisplaySpy()
 
-    private let search = "aaaaa"
+    private let search = MocksHelper.Strings.searchError.rawValue
 
-    private let date = ["20321"]
+    private let date = [MocksHelper.Strings.dateError.rawValue]
 
-    private let genre = ["Accctioooonnn"]
+    private let genre = [MocksHelper.Strings.genreError.rawValue]
 
     // MARK: - Test functions
 
@@ -41,7 +41,7 @@ final class FavoritesPresenterTests: XCTestCase {
     }
 
     func testPresentFetchedMoviesShouldDisplayMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let response = Favorites.FetchMovies.Response(movies: movies)
         sut.presentFetchedMovies(response: response)
 
@@ -99,7 +99,7 @@ final class FavoritesPresenterTests: XCTestCase {
     }
 
     func testPresentSearchedMoviesShouldDisplaySearchedMovies() throws {
-        let movies = MocksHelper.getMockedMovies()
+        let movies = MocksHelper.getMovies()
         let response = Favorites.FetchMoviesBySearch.Response(movies: movies)
         sut.presentSearchedMovies(response: response)
 

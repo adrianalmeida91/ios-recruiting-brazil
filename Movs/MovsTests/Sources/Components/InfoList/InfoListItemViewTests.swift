@@ -43,7 +43,7 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
     }
 
     func testShouldShowInfoListItemTitle() {
-        let viewModel = InfoListItemViewModel(title: Strings.mockDate.localizable)
+        let viewModel = InfoListItemViewModel(title: MocksHelper.Dates.y2020.rawValue)
         snapshot(viewModel: viewModel)
     }
 
@@ -65,7 +65,7 @@ final class InfoListItemViewTests: FBSnapshotTestCase {
 
         addSubviewForTest(sut)
 
-        let newViewModel = InfoListItemViewModel(title: Strings.mockDog.localizable, icon: .favoriteFullIcon, descriptionText: Strings.mockOverview.localizable)
+        let newViewModel = InfoListItemViewModel(title: MocksHelper.Strings.title.rawValue, icon: .favoriteFullIcon, descriptionText: MocksHelper.Strings.overview.rawValue)
         sut.update(viewModel: newViewModel)
 
         verify(sut)

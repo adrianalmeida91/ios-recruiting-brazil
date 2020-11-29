@@ -14,7 +14,7 @@ final class MovieDetailsViewControllerTests: FBSnapshotTestCase {
 
     // MARK: - Private constants
 
-    private let movieDetails = MocksHelper.getMockedMovie()
+    private let movieDetails = MocksHelper.getMovie()
 
     private let interactorSpy = MovieDetailsInteractorSpy()
 
