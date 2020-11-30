@@ -9,12 +9,8 @@
 import UIKit
 
 enum TabBarScreenFactory {
-    static func make(tabBarDelegate: TabBarViewControllerDelegate, moviesDelegate: MoviesViewControllerDelegate) -> UIViewController {
-        let moviesViewController = MoviesScreenFactory.makeForTabBar(delegate: moviesDelegate)
-
-        let favoritesViwController = FavoritesScreenFactory.makeForTabBar()
-
-        let tabBarViewController = TabBarViewController(tabBarViewControllers: [moviesViewController, favoritesViwController], delegate: tabBarDelegate)
+    static func make(viewControllers: [UIViewController], tabBarDelegate: TabBarViewControllerDelegate) -> UIViewController {
+        let tabBarViewController = TabBarViewController(tabBarViewControllers: viewControllers, delegate: tabBarDelegate)
 
         return tabBarViewController
     }

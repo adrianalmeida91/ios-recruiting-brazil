@@ -20,7 +20,9 @@ final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, Movies
     // MARK: - Coordinator conforms
 
     func start() {
-        let tabBarViewController = TabBarScreenFactory.make(tabBarDelegate: self, moviesDelegate: self)
+        let moviesViewController = MoviesScreenFactory.makeForTabBar(delegate: self)
+        let favoritesViwController = FavoritesScreenFactory.makeForTabBar()
+        let tabBarViewController = TabBarScreenFactory.make(viewControllers: [moviesViewController, favoritesViwController], tabBarDelegate: self)
         let navigationController = UINavigationController(rootViewController: tabBarViewController)
 
         rootController?.rootViewController = navigationController
