@@ -69,13 +69,8 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
     // MARK: - UITabBarControllerDelegate conforms
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        switch tabBarController.selectedViewController {
-        case is MoviesViewController:
-            setupRightNavigationButton(shouldHide: true)
-        case is FavoritesViewController:
-            setupRightNavigationButton(shouldHide: false)
-        default:
-            print(Strings.viewControllerNotFound.localizable)
+        if let viewController = viewController as? FilterProtocol {
+            setupRightNavigationButton(shouldHide: viewController.useOnlySearchFilter)
         }
     }
 

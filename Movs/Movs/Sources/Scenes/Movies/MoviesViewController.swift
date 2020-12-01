@@ -15,7 +15,7 @@ protocol MoviesDisplayLogic: AnyObject {
     func displaySearchError(searchedText: String)
 }
 
-final class MoviesViewController: UIViewController, MoviesDisplayLogic {
+final class MoviesViewController: UIViewController, FilterProtocol, MoviesDisplayLogic {
     private lazy var galleryCollectionView = GridGalleryCollectionView(itemSize: getItemSize(), items: [])
 
     private lazy var stackView: UIStackView = {
@@ -74,10 +74,12 @@ final class MoviesViewController: UIViewController, MoviesDisplayLogic {
         fetchMovies()
     }
 
-    // MARK: - Functions
+    // MARK: - FilterProtocol conforms
 
-    func filter(search: String) {
-        guard !search.isEmpty else {
+    var useOnlySearchFilter = true
+
+    func filter(newFilter: FilterSearch) {
+        guard let search = newFilter.search, !search.isEmpty else {
             clearSearch()
             return fetchMovies()
         }

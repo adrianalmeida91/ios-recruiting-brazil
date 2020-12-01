@@ -105,6 +105,7 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
         XCTAssertTrue(interactorSpy.invokedFetchMovies)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesCount, 2)
 
+        XCTAssertFalse(sut.useOnlySearchFilter)
         XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
         XCTAssertFalse(interactorSpy.invokedDeleteMovie)
     }
@@ -121,6 +122,7 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
         XCTAssertTrue(interactorSpy.invokedFetchMovies)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesCount, 1)
 
+        XCTAssertFalse(sut.useOnlySearchFilter)
         XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
         XCTAssertFalse(interactorSpy.invokedDeleteMovie)
     }
@@ -140,6 +142,7 @@ final class FavoritesViewControllerTests: FBSnapshotTestCase {
         XCTAssertEqual(parameters.request.filter.genres, filter.genres)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesBySearchParametersList.count, 1)
 
+        XCTAssertFalse(sut.useOnlySearchFilter)
         XCTAssertFalse(interactorSpy.invokedDeleteMovie)
     }
 }

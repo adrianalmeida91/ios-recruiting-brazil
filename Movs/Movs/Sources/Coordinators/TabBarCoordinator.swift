@@ -36,9 +36,7 @@ final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, Movies
     }
 
     func filterSearchTapped(filter: FilterSearch, _ viewController: TabBarViewController) {
-        if let viewController = viewController.selectedViewController as? MoviesViewController {
-            viewController.filter(search: filter.search ?? .empty)
-        } else if let viewController = viewController.selectedViewController as? FavoritesViewController {
+        if let viewController = viewController.selectedViewController as? FilterProtocol {
             viewController.filter(newFilter: filter)
         } else {
             print(Strings.viewControllerNotFound.localizable)

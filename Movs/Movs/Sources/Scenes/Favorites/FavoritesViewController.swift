@@ -17,7 +17,7 @@ protocol FavoritesDisplayLogic: AnyObject {
     func displaySearchedError(searchedText: String)
 }
 
-final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
+final class FavoritesViewController: UIViewController, FilterProtocol, FavoritesDisplayLogic {
     private lazy var removeFilterButton: UIButton = {
         let button = UIButton()
         button.setTitle(Strings.removeFilter.localizable, for: .normal)
@@ -79,7 +79,9 @@ final class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
         filter(newFilter: FilterSearch())
     }
 
-    // MARK: - Functions
+    // MARK: - FilterProtocol conforms
+
+    var useOnlySearchFilter = false
 
     func filter(newFilter: FilterSearch) {
         filter = FilterSearch(search: newFilter.search ?? filter.search,

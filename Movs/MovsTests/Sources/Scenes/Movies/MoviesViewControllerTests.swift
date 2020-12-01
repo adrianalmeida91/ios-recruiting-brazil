@@ -95,7 +95,8 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
 
     func testViewControllerShouldFilterWithSearch() throws {
         let search = MocksHelper.Strings.search.rawValue
-        sut.filter(search: search)
+        let filter = FilterSearch(search: search)
+        sut.filter(newFilter: filter)
 
         try verifyFetchedMovies()
 
@@ -108,7 +109,8 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
     }
 
     func testViewControllerShouldReloadMoviesWhenClearSearch() throws {
-        sut.filter(search: .empty)
+        let filter = FilterSearch(search: .empty)
+        sut.filter(newFilter: filter)
 
         let parametersList = try XCTUnwrap(interactorSpy.invokedFetchMoviesParametersList)
 
@@ -121,6 +123,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
             XCTAssertEqual(parameters.request.page, Constants.MovieDefaultParameters.page)
         }
 
+        XCTAssertTrue(sut.useOnlySearchFilter)
         XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
     }
@@ -136,6 +139,7 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         XCTAssertEqual(parameters.request.page, Constants.MovieDefaultParameters.page)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesParametersList.count, 1)
 
+        XCTAssertTrue(sut.useOnlySearchFilter)
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
     }
 }

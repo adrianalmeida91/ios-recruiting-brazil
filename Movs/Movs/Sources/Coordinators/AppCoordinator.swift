@@ -24,8 +24,8 @@ final class AppCoordinator: Coordinator {
     // MARK: - Coodinator conforms
 
     func start() {
-        let moviesCoordinator = TabBarCoordinator(rootController: rootController)
-        childCoordinator.append(moviesCoordinator)
-        moviesCoordinator.start()
+        let tabBarCoordinator = TabBarCoordinator(rootController: rootController)
+        childCoordinator.append(tabBarCoordinator)
+        tabBarCoordinator.start()
     }
 }
