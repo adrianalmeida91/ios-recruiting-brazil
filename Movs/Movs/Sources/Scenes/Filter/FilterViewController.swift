@@ -239,7 +239,7 @@ final class FilterViewController: UIViewController, FilterDisplayLogic {
         if !dataPickerListCheckTableView.isHidden {
             showTypeListCheckTableView()
         } else {
-            navigationController?.popViewController(animated: true)
+            delegate?.backButtonTapped(self)
         }
     }
 

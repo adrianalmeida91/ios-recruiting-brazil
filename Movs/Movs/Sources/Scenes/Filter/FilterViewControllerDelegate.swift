@@ -8,4 +8,5 @@
 
 protocol FilterViewControllerDelegate: AnyObject {
     func filterApplyButtonTapped(filter: FilterSearch, _ viewController: FilterViewController)
+    func backButtonTapped(_ viewController: FilterViewController)
 }
