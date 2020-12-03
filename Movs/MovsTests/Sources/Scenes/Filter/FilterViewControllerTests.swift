@@ -80,6 +80,7 @@ final class FilterViewControllerTests: XCTestCase {
         XCTAssertEqual(parameters.request.language, Constants.MovieDefaultParameters.language)
         XCTAssertEqual(interactorSpy.invokedFetchGenresParametersList.count, 1)
 
+        XCTAssertFalse(delegateSpy.invokedBackButtonTapped)
         XCTAssertFalse(delegateSpy.invokedFilterApplyButtonTapped)
     }
 }

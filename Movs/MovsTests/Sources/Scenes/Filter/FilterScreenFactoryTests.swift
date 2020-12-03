@@ -23,6 +23,7 @@ final class FilterScreenFactoryTests: XCTestCase {
 
         XCTAssertNotNil(sut)
         XCTAssertFalse(delegateSpy.invokedFilterApplyButtonTapped)
+        XCTAssertFalse(delegateSpy.invokedBackButtonTapped)
         XCTAssertTrue(sut is FilterViewController)
     }
 }

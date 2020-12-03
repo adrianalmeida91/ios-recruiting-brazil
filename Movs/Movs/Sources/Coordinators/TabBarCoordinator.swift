@@ -11,6 +11,10 @@ import UIKit
 final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, MoviesViewControllerDelegate, FilterViewControllerDelegate {
     private weak var rootController: AppRootController?
 
+    // MARK: - Private variables
+
+    private var childCoordinator: [Coordinator] = []
+
     // MARK: - Initializer
 
     public init(rootController: AppRootController?) {
