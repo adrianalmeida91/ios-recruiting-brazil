@@ -69,9 +69,11 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
     // MARK: - UITabBarControllerDelegate conforms
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let viewController = viewController as? FilterProtocol {
-            setupRightNavigationButton(shouldHide: viewController.useOnlySearchFilter)
+        guard let viewController = viewController as? FilterProtocol else {
+            return
         }
+
+        setupRightNavigationButton(shouldHide: viewController.useOnlySearchFilter)
     }
 
     // MARK: - UISearchResultsUpdating conforms

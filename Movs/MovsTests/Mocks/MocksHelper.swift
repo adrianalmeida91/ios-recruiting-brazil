@@ -51,7 +51,7 @@ final class MocksHelper {
     static func getMovie() -> Movie {
         let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
 
-        return Movie(id: movieResponse.id, title: movieResponse.title, imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), genres: MocksHelper.Genres.action.rawValue, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
+        return Movie(id: movieResponse.id, title: movieResponse.title, imageURL: .empty, genres: MocksHelper.Genres.action.rawValue, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
     }
 
     static func getMovies() -> [Movie] {

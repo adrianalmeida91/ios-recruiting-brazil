@@ -17,9 +17,8 @@ final class MoviesScreenFactoryTests: XCTestCase {
     func testMoviesScreenFactoryShouldMakeMoviesViewController() {
         let sut = MoviesScreenFactory.make(delegate: delegateSpy)
 
-        XCTAssertNotNil(sut)
-        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
-        XCTAssertTrue(sut is MoviesViewController)
+        verifySutType(sut: sut)
+
         XCTAssertNil(sut.tabBarItem.image)
         XCTAssertNil(sut.tabBarItem.title)
     }
@@ -27,10 +26,19 @@ final class MoviesScreenFactoryTests: XCTestCase {
     func testMoviesScreenFactoryShouldMakeMoviesViewControllertesForTabBar() {
         let sut = MoviesScreenFactory.makeForTabBar(delegate: delegateSpy)
 
+        verifySutType(sut: sut)
+
+        XCTAssertNotNil(sut.tabBarItem.image)
+        XCTAssertEqual(sut.tabBarItem.title, "Movies")
+    }
+
+    // MARK: - Private functions
+
+    private func verifySutType(sut: UIViewController) {
         XCTAssertNotNil(sut)
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
         XCTAssertTrue(sut is MoviesViewController)
-        XCTAssertNotNil(sut.tabBarItem.image)
-        XCTAssertEqual(sut.tabBarItem.title, "Movies")
+        XCTAssertTrue(sut is FilterProtocol)
+        XCTAssertTrue(sut is MoviesDisplayLogic)
     }
 }

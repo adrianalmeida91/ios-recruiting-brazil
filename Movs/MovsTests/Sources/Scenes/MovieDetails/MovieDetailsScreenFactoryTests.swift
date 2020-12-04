@@ -23,5 +23,6 @@ final class MovieDetailsScreenFactoryTests: XCTestCase {
 
         XCTAssertNotNil(sut)
         XCTAssertTrue(sut is MovieDetailsViewController)
+        XCTAssertTrue(sut is MovieDetailsDisplayLogic)
     }
 }

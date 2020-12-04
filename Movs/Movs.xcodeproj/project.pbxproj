@@ -134,6 +134,13 @@
 		A8B129C82544FEF40074654A /* MovieDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B129C72544FEF40074654A /* MovieDbAPI.swift */; };
 		A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFFF9125559B64002137A4 /* XCTestCase+Extension.swift */; };
 		A8BFFF942555A2D1002137A4 /* ErrorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFFF932555A2D1002137A4 /* ErrorViewTests.swift */; };
+		A8C224E82579FAB400B91252 /* TabBarScreenFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C224E72579FAB400B91252 /* TabBarScreenFactoryTests.swift */; };
+		A8C224EB2579FD5E00B91252 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C224EA2579FD5E00B91252 /* AppCoordinatorTests.swift */; };
+		A8C224ED2579FF1600B91252 /* TabBarCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C224EC2579FF1600B91252 /* TabBarCoordinatorTests.swift */; };
+		A8C224F1257A03C200B91252 /* MovieDbAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C224F0257A03C200B91252 /* MovieDbAPITests.swift */; };
+		A8C224F4257A068000B91252 /* MovieRealmDbServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C224F3257A068000B91252 /* MovieRealmDbServiceTests.swift */; };
+		A8C224F6257A0A4700B91252 /* RealmWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C224F5257A0A4700B91252 /* RealmWorkerTests.swift */; };
+		A8C224F8257A0CCF00B91252 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C224F7257A0CCF00B91252 /* AppDelegateTests.swift */; };
 		A8C25B7225674F010053442F /* MovieDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B7125674F010053442F /* MovieDetailsViewControllerTests.swift */; };
 		A8C25B77256755F20053442F /* MovieDetailsInteractorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B76256755F20053442F /* MovieDetailsInteractorSpy.swift */; };
 		A8C25B7925675CE50053442F /* MovieDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C25B7825675CE50053442F /* MovieDetailsPresenterTests.swift */; };
@@ -307,6 +314,13 @@
 		A8B129C72544FEF40074654A /* MovieDbAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDbAPI.swift; sourceTree = "<group>"; };
 		A8BFFF9125559B64002137A4 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		A8BFFF932555A2D1002137A4 /* ErrorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewTests.swift; sourceTree = "<group>"; };
+		A8C224E72579FAB400B91252 /* TabBarScreenFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScreenFactoryTests.swift; sourceTree = "<group>"; };
+		A8C224EA2579FD5E00B91252 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
+		A8C224EC2579FF1600B91252 /* TabBarCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinatorTests.swift; sourceTree = "<group>"; };
+		A8C224F0257A03C200B91252 /* MovieDbAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDbAPITests.swift; sourceTree = "<group>"; };
+		A8C224F3257A068000B91252 /* MovieRealmDbServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealmDbServiceTests.swift; sourceTree = "<group>"; };
+		A8C224F5257A0A4700B91252 /* RealmWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmWorkerTests.swift; sourceTree = "<group>"; };
+		A8C224F7257A0CCF00B91252 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		A8C25B7125674F010053442F /* MovieDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		A8C25B76256755F20053442F /* MovieDetailsInteractorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsInteractorSpy.swift; sourceTree = "<group>"; };
 		A8C25B7825675CE50053442F /* MovieDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsPresenterTests.swift; sourceTree = "<group>"; };
@@ -372,7 +386,9 @@
 			isa = PBXGroup;
 			children = (
 				A83255AA2550E01700816318 /* Components */,
+				A8C224E92579FD4400B91252 /* Coordinator */,
 				A83255AE2551CA7200816318 /* Extensions */,
+				A8C224EE257A039500B91252 /* Infrastructure */,
 				A83255B7255202AA00816318 /* Scenes */,
 			);
 			path = Sources;
@@ -505,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				A837586325587A0400CB3F7E /* Spies */,
+				A8C224F5257A0A4700B91252 /* RealmWorkerTests.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -702,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				A89A0CFA256AE9D7009DE9C0 /* Spies */,
+				A8C224E72579FAB400B91252 /* TabBarScreenFactoryTests.swift */,
 				A89A0CF8256AE97F009DE9C0 /* TabBarViewControllerTests.swift */,
 			);
 			path = TabBar;
@@ -754,6 +772,7 @@
 				A8B1299B25439DC80074654A /* Info.plist */,
 				A83758302555FEC400CB3F7E /* Mocks */,
 				A83255A92550E00800816318 /* Sources */,
+				A8C224F7257A0CCF00B91252 /* AppDelegateTests.swift */,
 			);
 			path = MovsTests;
 			sourceTree = "<group>";
@@ -876,6 +895,40 @@
 				A8B129C72544FEF40074654A /* MovieDbAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		A8C224E92579FD4400B91252 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A8C224EA2579FD5E00B91252 /* AppCoordinatorTests.swift */,
+				A8C224EC2579FF1600B91252 /* TabBarCoordinatorTests.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		A8C224EE257A039500B91252 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				A8C224EF257A03B200B91252 /* API */,
+				A8C224F2257A066100B91252 /* DB */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		A8C224EF257A03B200B91252 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A8C224F0257A03C200B91252 /* MovieDbAPITests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		A8C224F2257A066100B91252 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				A8C224F3257A068000B91252 /* MovieRealmDbServiceTests.swift */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		A8C25B7025674EB80053442F /* MovieDetails */ = {
@@ -1283,6 +1336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8C224E82579FAB400B91252 /* TabBarScreenFactoryTests.swift in Sources */,
 				A83255BD2552047500816318 /* MoviesInteractorSpy.swift in Sources */,
 				A8C25B87256865ED0053442F /* JSONMocks.swift in Sources */,
 				A86325122568B10800D6228A /* FilterViewControllerDelegateSpy.swift in Sources */,
@@ -1290,6 +1344,8 @@
 				A8C25B7D2567603A0053442F /* MovieDetailsInteractorTests.swift in Sources */,
 				A837585725583A5100CB3F7E /* ListCheckTableViewTests.swift in Sources */,
 				A8C25B9525688C0F0053442F /* FavoritesPresenterSpy.swift in Sources */,
+				A8C224F1257A03C200B91252 /* MovieDbAPITests.swift in Sources */,
+				A8C224F6257A0A4700B91252 /* RealmWorkerTests.swift in Sources */,
 				A837584C255755DA00CB3F7E /* InfoListItemViewTests.swift in Sources */,
 				A837585F2558714600CB3F7E /* MoviesInteractorTests.swift in Sources */,
 				A86325062568A5EA00D6228A /* FavoritesPresenterTests.swift in Sources */,
@@ -1302,10 +1358,12 @@
 				A83758502557742B00CB3F7E /* InfoListTableViewTests.swift in Sources */,
 				A83255B02551CAC100816318 /* FBSnapshotTestCase+Extension.swift in Sources */,
 				A86325082568A65C00D6228A /* FavoritesDisplaySpy.swift in Sources */,
+				A8C224EB2579FD5E00B91252 /* AppCoordinatorTests.swift in Sources */,
 				A86325182568B63700D6228A /* FilterInteractorTests.swift in Sources */,
 				A8C25B77256755F20053442F /* MovieDetailsInteractorSpy.swift in Sources */,
 				A837582D2555DD5200CB3F7E /* GridGalleryItemViewTests.swift in Sources */,
 				A8C25B7225674F010053442F /* MovieDetailsViewControllerTests.swift in Sources */,
+				A8C224F4257A068000B91252 /* MovieRealmDbServiceTests.swift in Sources */,
 				A837586725587B5E00CB3F7E /* MoyaWorkerSpy.swift in Sources */,
 				A8C25B9125687F680053442F /* FavoritesInteractorSpy.swift in Sources */,
 				A83255BA255202F700816318 /* MoviesViewControllerTests.swift in Sources */,
@@ -1318,6 +1376,7 @@
 				A8C25B8125685C4C0053442F /* Decodable+Mapper.swift in Sources */,
 				A837586525587A4700CB3F7E /* RealmWorkerSpy.swift in Sources */,
 				A86325102568B07A00D6228A /* FilterInteractorSpy.swift in Sources */,
+				A8C224F8257A0CCF00B91252 /* AppDelegateTests.swift in Sources */,
 				A83758532557799700CB3F7E /* ListCheckItemViewTests.swift in Sources */,
 				A8C25B8E25687E9D0053442F /* FavoritesViewControllerTests.swift in Sources */,
 				A837582F2555FC0300CB3F7E /* GridGalleryCollectionViewTest.swift in Sources */,
@@ -1327,6 +1386,7 @@
 				A8C25B89256865FA0053442F /* MocksHelper.swift in Sources */,
 				A863251C2568BA2400D6228A /* FilterScreenFactoryTests.swift in Sources */,
 				A8375869255970AC00CB3F7E /* MoviesPresenterTests.swift in Sources */,
+				A8C224ED2579FF1600B91252 /* TabBarCoordinatorTests.swift in Sources */,
 				A8BFFF9225559B64002137A4 /* XCTestCase+Extension.swift in Sources */,
 				A837585D25586D4B00CB3F7E /* MoviesScreenFactoryTests.swift in Sources */,
 				A89A0CF9256AE97F009DE9C0 /* TabBarViewControllerTests.swift in Sources */,

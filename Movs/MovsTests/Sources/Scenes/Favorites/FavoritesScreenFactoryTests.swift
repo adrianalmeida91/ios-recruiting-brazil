@@ -13,8 +13,8 @@ final class FavoritesScreenFactoryTests: XCTestCase {
     func testFavoritesScreenFactoryShouldMakeFavoritesViewController() {
         let sut = FavoritesScreenFactory.make()
 
-        XCTAssertNotNil(sut)
-        XCTAssertTrue(sut is FavoritesViewController)
+        verifySutType(sut: sut)
+
         XCTAssertNil(sut.tabBarItem.image)
         XCTAssertNil(sut.tabBarItem.title)
     }
@@ -22,9 +22,18 @@ final class FavoritesScreenFactoryTests: XCTestCase {
     func testFavoritesScreenFactoryShouldMakeFavoritesViewControllerForTabBar() {
         let sut = FavoritesScreenFactory.makeForTabBar()
 
-        XCTAssertNotNil(sut)
-        XCTAssertTrue(sut is FavoritesViewController)
+        verifySutType(sut: sut)
+
         XCTAssertNotNil(sut.tabBarItem.image)
         XCTAssertEqual(sut.tabBarItem.title, "Favorites")
+    }
+
+    // MARK: - Private functions
+
+    private func verifySutType(sut: UIViewController) {
+        XCTAssertNotNil(sut)
+        XCTAssertTrue(sut is FavoritesViewController)
+        XCTAssertTrue(sut is FilterProtocol)
+        XCTAssertTrue(sut is FavoritesDisplayLogic)
     }
 }
