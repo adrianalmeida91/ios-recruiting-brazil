@@ -10,24 +10,28 @@ import XCTest
 
 extension XCTestCase {
     func setRootViewController(_ viewController: UIViewController) {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+//        let keyWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
+//        var keyWindow = UIApplication.shared.keyWindow
+        let keyWindow = UIWindow(frame: UIScreen.main.bounds)
 
-        keyWindow?.rootViewController = viewController
-        keyWindow?.makeKeyAndVisible()
+//        let navigationController = UINavigationController(rootViewController: viewController)
 
-        viewController.beginAppearanceTransition(true, animated: true)
+        keyWindow.rootViewController = viewController
+        keyWindow.makeKeyAndVisible()
+
+        viewController.beginAppearanceTransition(true, animated: false)
         viewController.endAppearanceTransition()
     }
 
     func popRootViewController() {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let keyWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
 
         keyWindow?.rootViewController?.navigationController?.popToRootViewController(animated: false)
         keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
     }
 
     func clearRootViewController() {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let keyWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
 
         keyWindow?.rootViewController = UINavigationController(
             rootViewController: UIViewController()
