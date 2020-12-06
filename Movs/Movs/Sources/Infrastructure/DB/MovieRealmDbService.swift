@@ -9,19 +9,19 @@
 import RealmSwift
 
 final class MovieRealmDbService {
-    func fetch<T: Object>(_ type: T.Type, completion: @escaping (Result<[T], DatabaseError>) -> Void) {
+    func fetch<T: Object>(_ type: T.Type, completion: @escaping (Result<[T], Error>) -> Void) {
         DispatchQueue.main.async {
             do {
                 let realm = try RealmManager.realmInstance()
                 let models = Array(realm.objects(T.self))
                 completion(.success(models))
             } catch {
-                completion(.failure(DatabaseError.taskError(error: error)))
+                completion(.failure(error))
             }
         }
     }
 
-    func save<T: Object>(model: T, completion: @escaping (Result<Void, DatabaseError>) -> Void) {
+    func save<T: Object>(model: T, completion: @escaping (Result<Void, Error>) -> Void) {
         DispatchQueue.main.async {
             do {
                 let realm = try RealmManager.realmInstance()
@@ -30,12 +30,12 @@ final class MovieRealmDbService {
                     completion(.success(()))
                 }
             } catch {
-                completion(.failure(DatabaseError.taskError(error: error)))
+                completion(.failure(error))
             }
         }
     }
 
-    func delete<T: Object>(model: T, completion: @escaping (Result<Void, DatabaseError>) -> Void) {
+    func delete<T: Object>(model: T, completion: @escaping (Result<Void, Error>) -> Void) {
         DispatchQueue.main.async {
             do {
                 let realm = try RealmManager.realmInstance()
@@ -44,7 +44,7 @@ final class MovieRealmDbService {
                     completion(.success(()))
                 }
             } catch {
-                completion(.failure(DatabaseError.taskError(error: error)))
+                completion(.failure(error))
             }
         }
     }

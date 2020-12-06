@@ -9,8 +9,8 @@
 import Moya
 
 protocol MoyaWorkerProtocol: AnyObject {
-    func fetchGenres(language: String, completion: @escaping (Result<GenresResponse, NetworkError>) -> Void)
-    func fetchMovies(language: String, page: Int, completion: @escaping (Result<MoviesPopulariesResponse, NetworkError>) -> Void)
+    func fetchGenres(language: String, completion: @escaping (Result<GenresResponse, Error>) -> Void)
+    func fetchMovies(language: String, page: Int, completion: @escaping (Result<MoviesPopulariesResponse, Error>) -> Void)
 }
 
 final class MoyaWorker: MoyaWorkerProtocol {
@@ -24,11 +24,11 @@ final class MoyaWorker: MoyaWorkerProtocol {
 
     // MARK: - Conforms MoviesWorkerProtocol
 
-    func fetchGenres(language: String, completion: @escaping (Result<GenresResponse, NetworkError>) -> Void) {
+    func fetchGenres(language: String, completion: @escaping (Result<GenresResponse, Error>) -> Void) {
         provider.request(.fetchGenres(language: language), completion: completion)
     }
 
-    func fetchMovies(language: String, page: Int, completion: @escaping (Result<MoviesPopulariesResponse, NetworkError>) -> Void) {
+    func fetchMovies(language: String, page: Int, completion: @escaping (Result<MoviesPopulariesResponse, Error>) -> Void) {
         provider.request(.fetchMovies(language: language, page: page), completion: completion)
     }
 }

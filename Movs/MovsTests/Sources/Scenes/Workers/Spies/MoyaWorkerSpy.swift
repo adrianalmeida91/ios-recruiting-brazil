@@ -13,17 +13,17 @@ final class MoyaWorkerSpy: MoyaWorkerProtocol {
     private(set) var invokedFetchGenresCount = 0
     private(set) var invokedFetchGenresParameters: (language: String, Void)?
     private(set) var invokedFetchGenresParametersList = [(language: String, Void)]()
-    var stubbedFetchGenresCompletionResult: (Result<GenresResponse, NetworkError>, Void)?
+    var stubbedFetchGenresCompletionResult: (Result<GenresResponse, Error>, Void)?
 
     private(set) var invokedFetchMovies = false
     private(set) var invokedFetchMoviesCount = 0
     private(set) var invokedFetchMoviesParameters: (language: String, page: Int)?
     private(set) var invokedFetchMoviesParametersList = [(language: String, page: Int)]()
-    var stubbedFetchMoviesCompletionResult: (Result<MoviesPopulariesResponse, NetworkError>, Void)?
+    var stubbedFetchMoviesCompletionResult: (Result<MoviesPopulariesResponse, Error>, Void)?
 
     // MARK: - MoyaWorkerProtocol conforms
 
-    func fetchGenres(language: String, completion: @escaping (Result<GenresResponse, NetworkError>) -> Void) {
+    func fetchGenres(language: String, completion: @escaping (Result<GenresResponse, Error>) -> Void) {
         invokedFetchGenres = true
         invokedFetchGenresCount += 1
         invokedFetchGenresParameters = (language, ())
@@ -33,7 +33,7 @@ final class MoyaWorkerSpy: MoyaWorkerProtocol {
         }
     }
 
-    func fetchMovies(language: String, page: Int, completion: @escaping (Result<MoviesPopulariesResponse, NetworkError>) -> Void) {
+    func fetchMovies(language: String, page: Int, completion: @escaping (Result<MoviesPopulariesResponse, Error>) -> Void) {
         invokedFetchMovies = true
         invokedFetchMoviesCount += 1
         invokedFetchMoviesParameters = (language, page)

@@ -7,6 +7,7 @@
 //
 
 protocol MovieDetailsPresentationLogic: AnyObject {
+    func presentFetchedMovie(response: MovieDetails.FetchMovie.Response)
     func onSaveMovieSuccessful()
     func onSaveMovieFailure()
     func onDeleteMovieSuccessful()
@@ -17,6 +18,11 @@ final class MovieDetailsPresenter: MovieDetailsPresentationLogic {
     weak var viewController: MovieDetailsDisplayLogic?
 
     // MARK: - MovieDetailsPresentationLogic conforms
+
+    func presentFetchedMovie(response: MovieDetails.FetchMovie.Response) {
+        let viewModel = MovieDetails.FetchMovie.ViewModel(movie: response.movie)
+        viewController?.displayMovie(viewModel: viewModel)
+    }
 
     func onSaveMovieSuccessful() {
         viewController?.displayFavoriteIcon()

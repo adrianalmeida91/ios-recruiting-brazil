@@ -10,11 +10,11 @@ import Foundation
 
 enum Filter {
     enum FetchDates {
-        struct ViewModel {
+        struct Response {
             let dates: [String]
         }
 
-        struct Response {
+        struct ViewModel {
             let dates: [String]
         }
     }

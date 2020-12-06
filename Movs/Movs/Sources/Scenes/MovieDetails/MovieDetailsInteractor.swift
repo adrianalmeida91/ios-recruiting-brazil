@@ -7,6 +7,7 @@
 //
 
 protocol MovieDetailsBusinessLogic: AnyObject {
+    func fetchMovie(request: MovieDetails.FetchMovie.Request)
     func saveMovie(request: MovieDetails.SaveMovie.Request)
     func deleteMovie(request: MovieDetails.DeleteMovie.Request)
 }
@@ -17,12 +18,27 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
 
     // MARK: - Initializers
 
-    init(worker: RealmWorkerProtocol, presenter: MovieDetailsPresenter) {
+    init(worker: RealmWorkerProtocol, presenter: MovieDetailsPresentationLogic) {
         self.worker = worker
         self.presenter = presenter
     }
 
     // MARK: - MovieDetailsBusinessLogic conforms
+
+    func fetchMovie(request: MovieDetails.FetchMovie.Request) {
+        worker.fetchMovies() { result in
+            switch result {
+            case let .success(response):
+                let movie = response.first { $0.id == request.id }
+                if let movie = movie {
+                    let response = MovieDetails.FetchMovie.Response(movie: movie)
+                    self.presenter.presentFetchedMovie(response: response)
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     func saveMovie(request: MovieDetails.SaveMovie.Request) {
         worker.saveMovie(movie: request.movie) { result in
@@ -30,7 +46,7 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
             case .success():
                 self.presenter.onSaveMovieSuccessful()
             case let .failure(error):
-                print(error.errorDescription)
+                print(error.localizedDescription)
                 self.presenter.onSaveMovieFailure()
             }
         }
@@ -42,7 +58,7 @@ final class MovieDetailsInteractor: MovieDetailsBusinessLogic {
             case .success():
                 self.presenter.onDeleteMovieSuccessful()
             case let .failure(error):
-                print(error.errorDescription)
+                print(error.localizedDescription)
                 self.presenter.onDeleteMovieFailure()
             }
         }

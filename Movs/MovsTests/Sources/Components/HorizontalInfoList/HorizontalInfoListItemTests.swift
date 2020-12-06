@@ -10,6 +10,14 @@ import FBSnapshotTestCase
 @testable import Movs
 
 final class HorizontalInfoListItemTests: FBSnapshotTestCase {
+    private lazy var items: HorizontalInfoListViewModel = {
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
+
+        return HorizontalInfoListViewModel(imageURL: .empty, title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
+    }()
+
+    // MARK: - Override functions
+
     override func setUp() {
         super.setUp()
 
@@ -19,33 +27,19 @@ final class HorizontalInfoListItemTests: FBSnapshotTestCase {
     // MARK: - Test functions
 
     func testShouldShowHorizontalListItem() {
-        let sut = HorizontalInfoListItemView(viewModel: getItem())
+        let sut = HorizontalInfoListItemView(viewModel: items)
         addSubviewForTest(sut)
-
-        wait(for: Constants.Utils.sleep)
 
         verify(sut)
     }
 
     func testShouldUpdateHorizontalListItem() {
-        let sut = HorizontalInfoListItemView(viewModel: getItem())
+        let sut = HorizontalInfoListItemView(viewModel: items)
         addSubviewForTest(sut)
 
-        let newViewModel = HorizontalInfoListViewModel(imageURL: Strings.mockMainDogImageURL.localizable, title: Strings.mockDog.localizable, subtitle: Strings.mockDate.localizable, descriptionText: Strings.mockOverview.localizable)
+        let newViewModel = HorizontalInfoListViewModel(imageURL: .empty, title: MocksHelper.Strings.title.rawValue, subtitle: MocksHelper.Dates.y2020.rawValue, descriptionText: MocksHelper.Strings.overview.rawValue)
         sut.update(viewModel: newViewModel)
 
-        wait(for: Constants.Utils.sleep)
-
         verify(sut)
-    }
-
-    // MARK: - Private functions()
-
-    private func getItem() -> HorizontalInfoListViewModel {
-        guard let movieResponse: MovieResponse = MocksHelper.getResponse() else {
-            return HorizontalInfoListViewModel(imageURL: .empty, title: Strings.mockDog.localizable, subtitle: Strings.mockDate.localizable, descriptionText: Strings.mockOverview.localizable)
-        }
-
-        return HorizontalInfoListViewModel(imageURL: Movs.Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), title: movieResponse.title, subtitle: movieResponse.releaseDate, descriptionText: movieResponse.overview)
     }
 }

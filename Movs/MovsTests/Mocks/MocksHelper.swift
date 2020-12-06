@@ -11,72 +11,59 @@ import UIKit
 @testable import Movs
 
 final class MocksHelper {
-    static func readLocalFile(forName name: String, ofType type: String = "json") -> Data? {
-        do {
-            if let bundlePath = Bundle(for: MocksHelper.self).path(forResource: name, ofType: type),
-                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
-                return jsonData
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-
-        return nil
+    enum Error: Swift.Error {
+        case test
     }
 
-    static func parse<T: Decodable>(jsonData: Data) -> T? {
-        do {
-            let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
-
-            return decodedData
-        } catch {
-            print(error.localizedDescription)
-        }
-
-        return nil
+    enum Genres: String, CaseIterable {
+        case action = "Action"
+        case comedy = "Comedy"
+        case animation = "Animation"
     }
 
-    static func getResponse<T: Decodable>() -> T? {
-        guard let localData = readLocalFile(forName: String(describing: T.self)),
-            let response: T = parse(jsonData: localData) else {
-                return nil
-        }
-
-        return response
+    enum Dates: String, CaseIterable {
+        case y2020 = "2020"
+        case y2019 = "2019"
+        case y2018 = "2018"
     }
 
-    // MARK: - Mocks generator
-
-    static func getMockedGenres() -> GenresResponse? {
-        guard let genresResponse: GenresResponse = getResponse() else {
-            return nil
-        }
-
-        return genresResponse
+    enum Strings: String {
+        case title = "Dog"
+        case otherTitle = "Other dog"
+        case search = "KILL"
+        case searchError = "aaaaaaaaaa"
+        case genreError = "Accctiiiiooonnnn"
+        case dateError = "2012132032"
+        case overview = "O trabalho do bilionário CEO de tecnologia Donovan Chalmers (Willis) é tão valioso que ele contrata mercenários para protegê-lo e um grupo terrorista sequestra sua filha apenas para obtê-lo."
+        case serverError = "Server error"
+        case communicationError = "Communication error"
+        case newCommunicationError = "New communication error"
     }
 
-    static func getMockedMoviesPopulariesResponse() -> MoviesPopulariesResponse? {
-        guard let moviesPopulariesResponse: MoviesPopulariesResponse = getResponse() else {
-            return nil
-        }
-
-        return moviesPopulariesResponse
+    static func getGenres() -> [String] {
+        return Genres.allCases.map { $0.rawValue }
     }
 
-    static func getMockedMovies() -> [Movie] {
-        guard let moviesPopulariesResponse = getMockedMoviesPopulariesResponse() else {
-            return []
-        }
+    static func getDates() -> [String] {
+        return Dates.allCases.map { $0.rawValue }
+    }
+
+    static func getMovie() -> Movie {
+        let movieResponse = MovieResponse(path: JSONMocks.movieResponse.rawValue)
+
+        return Movie(id: movieResponse.id, title: movieResponse.title, imageURL: .empty, genres: MocksHelper.Genres.action.rawValue, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
+    }
+
+    static func getMovies() -> [Movie] {
+        let moviesPopulariesResponse = MoviesPopulariesResponse(path: JSONMocks.moviesPopulariesResponse.rawValue)
 
         return moviesPopulariesResponse.moviesResponse.map { movieResponse -> Movie in
-            Movie(id: movieResponse.id, title: movieResponse.title, imageURL: Constants.MovieNetwork.baseImageURL.appending(movieResponse.imageURL), genres: Strings.mockGenres.localizable, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
+            Movie(id: movieResponse.id, title: movieResponse.title, imageURL: .empty, genres: MocksHelper.Genres.action.rawValue, releaseDate: movieResponse.releaseDate.year, overview: movieResponse.overview, isFavorite: false)
         }
     }
 
     static func getRandomMovies() -> [Movie] {
-        guard let genresResponse = getMockedGenres() else {
-            return []
-        }
+        let genresResponse = GenresResponse(path: JSONMocks.genresResponse.rawValue)
 
         let faker = Faker(locale: Constants.MovieDefaultParameters.language)
 
@@ -98,7 +85,7 @@ final class MocksHelper {
             let genresLabel = genres.count > 0 ? genres.joined(separator: Constants.Utils.genresSeparator) : nil
 
             let fakeDate = faker.business.creditCardExpiryDate()?.toString.year
-            let releaseDate = fakeDate ?? Strings.mockDate.localizable
+            let releaseDate = fakeDate ?? MocksHelper.Dates.y2020.rawValue
 
             let overview = faker.lorem.sentences()
 

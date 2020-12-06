@@ -7,8 +7,8 @@
 //
 
 protocol FavoritesBusinessLogic: AnyObject {
-    func fetchLocalMovies()
-    func fetchLocalMoviesBySearch(request: Favorites.FetchLocalMoviesBySearch.Request)
+    func fetchMovies()
+    func fetchMoviesBySearch(request: Favorites.FetchMoviesBySearch.Request)
     func deleteMovie(request: Favorites.DeleteMovie.Request)
 }
 
@@ -23,31 +23,36 @@ final class FavoritesInteractor: FavoritesBusinessLogic {
         self.presenter = presenter
     }
 
+    // MARK: - Private variables
+
+    private var movies: [Movie] = []
+
     // MARK: - FavoritesBusinessLogic conforms
 
-    func fetchLocalMovies() {
+    func fetchMovies() {
         worker.fetchMovies() { result in
             switch result {
             case let .success(response):
-                let localMovies = response.map { movie -> Movie in
+                let movies = response.map { movie -> Movie in
                     movie.isFavorite = true
                     return movie
                 }
 
-                if localMovies.count > 0 {
-                    let responseModel = Favorites.FetchLocalMovies.Response(movies: localMovies)
-                    self.presenter.presentFetchedLocalMovies(response: responseModel)
+                self.movies = movies
+
+                if movies.count > 0 {
+                    let responseModel = Favorites.FetchMovies.Response(movies: movies)
+                    self.presenter.presentFetchedMovies(response: responseModel)
                 } else {
-                    self.presenter.presentFetchedLocalMoviesEmpty()
+                    self.presenter.presentEmptyView()
                 }
             case let .failure(error):
-                self.presentGenericFailure(error: error)
+                self.presentFailure(error: error)
             }
         }
     }
 
-    func fetchLocalMoviesBySearch(request: Favorites.FetchLocalMoviesBySearch.Request) {
-        let movies = request.movies
+    func fetchMoviesBySearch(request: Favorites.FetchMoviesBySearch.Request) {
         let filter = request.filter
         let allDates = filter.date?.joined(separator: Constants.Utils.genresSeparator)
 
@@ -87,7 +92,7 @@ final class FavoritesInteractor: FavoritesBusinessLogic {
         )
 
         if moviesFiltered.count > 0 {
-            presenter.presentFetchedMoviesBySearch(response: Favorites.FetchLocalMoviesBySearch.Response(movies: moviesFiltered))
+            presenter.presentSearchedMovies(response: Favorites.FetchMoviesBySearch.Response(movies: moviesFiltered))
         } else {
             presenter.presentSearchedMoviesFailure(filter: filter)
         }
@@ -97,17 +102,20 @@ final class FavoritesInteractor: FavoritesBusinessLogic {
         worker.deleteMovie(movie: request.movie) { result in
             switch result {
             case .success():
-                self.presenter.presenterMovieUnfavorite()
+                if let index = self.movies.firstIndex(of: request.movie) {
+                    self.movies.remove(at: index)
+                    self.presenter.presentMovieUnfavorite()
+                }
             case let .failure(error):
-                self.presentGenericFailure(error: error)
+                self.presentFailure(error: error)
             }
         }
     }
 
     // MARK: - Private functions
 
-    private func presentGenericFailure(error: DatabaseError) {
-        print(error.errorDescription)
-        self.presenter.presentGenericFailure()
+    private func presentFailure(error: Error) {
+        print(error.localizedDescription)
+        self.presenter.presentFailure()
     }
 }

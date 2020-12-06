@@ -7,11 +7,11 @@
 //
 
 protocol FavoritesPresentationLogic: AnyObject {
-    func presentFetchedLocalMovies(response: Favorites.FetchLocalMovies.Response)
-    func presentFetchedLocalMoviesEmpty()
-    func presenterMovieUnfavorite()
-    func presentGenericFailure()
-    func presentFetchedMoviesBySearch(response: Favorites.FetchLocalMoviesBySearch.Response)
+    func presentFetchedMovies(response: Favorites.FetchMovies.Response)
+    func presentEmptyView()
+    func presentMovieUnfavorite()
+    func presentFailure()
+    func presentSearchedMovies(response: Favorites.FetchMoviesBySearch.Response)
     func presentSearchedMoviesFailure(filter: FilterSearch)
 }
 
@@ -20,26 +20,26 @@ final class FavoritesPresenter: FavoritesPresentationLogic {
 
     // MARK: - FavoritesPresentationLogic conforms
 
-    func presentFetchedLocalMovies(response: Favorites.FetchLocalMovies.Response) {
-        let viewModel = Favorites.FetchLocalMovies.ViewModel(movies: response.movies)
-        viewController?.displayLocalMovies(viewModel: viewModel)
+    func presentFetchedMovies(response: Favorites.FetchMovies.Response) {
+        let viewModel = Favorites.FetchMovies.ViewModel(movies: response.movies)
+        viewController?.displayMovies(viewModel: viewModel)
     }
 
-    func presentFetchedLocalMoviesEmpty() {
-        viewController?.displayFetchedLocalMoviesEmpty()
+    func presentEmptyView() {
+        viewController?.displayEmptyView()
     }
 
-    func presenterMovieUnfavorite() {
+    func presentMovieUnfavorite() {
         viewController?.displayMovieUnfavorite()
     }
 
-    func presentGenericFailure() {
-        viewController?.displayGenericError()
+    func presentFailure() {
+        viewController?.displayError()
     }
 
-    func presentFetchedMoviesBySearch(response: Favorites.FetchLocalMoviesBySearch.Response) {
-        let viewModel = Favorites.FetchLocalMoviesBySearch.ViewModel(movies: response.movies)
-        viewController?.displayMoviesBySearch(viewModel: viewModel)
+    func presentSearchedMovies(response: Favorites.FetchMoviesBySearch.Response) {
+        let viewModel = Favorites.FetchMoviesBySearch.ViewModel(movies: response.movies)
+        viewController?.displaySearchedMovies(viewModel: viewModel)
     }
 
     func presentSearchedMoviesFailure(filter: FilterSearch) {
@@ -47,6 +47,6 @@ final class FavoritesPresenter: FavoritesPresentationLogic {
         let date = filter.date?.joined(separator: Constants.Utils.genresSeparator) ?? .empty
         let genres = filter.genres?.joined(separator: Constants.Utils.genresSeparator) ?? .empty
         let searchText = search + .space + date + .space + genres
-        viewController?.displaySearchError(searchedText: searchText)
+        viewController?.displaySearchedError(searchedText: searchText.trimmingCharacters(in: .whitespaces))
     }
 }

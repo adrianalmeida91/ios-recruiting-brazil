@@ -53,8 +53,8 @@ final class ListCheckTableViewTests: FBSnapshotTestCase {
 
     private func getItems() -> [ListCheckItemViewModel] {
         return [
-            ListCheckItemViewModel(title: Strings.mockDog.localizable, value: Strings.mockDate.localizable, icon: .arrowForward),
-            ListCheckItemViewModel(title: Strings.mockOtherDog.localizable, value: Strings.mockGenres.localizable, icon: .arrowForward)
+            ListCheckItemViewModel(title: MocksHelper.Strings.title.rawValue, value: MocksHelper.Dates.y2020.rawValue, icon: .arrowForward),
+            ListCheckItemViewModel(title: MocksHelper.Strings.otherTitle.rawValue, value: MocksHelper.Genres.action.rawValue, icon: .arrowForward)
         ]
     }
 }

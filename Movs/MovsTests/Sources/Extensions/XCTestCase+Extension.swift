@@ -9,8 +9,13 @@
 import XCTest
 
 extension XCTestCase {
+    var keyWindow: UIWindow? {
+        return UIWindow(frame: UIScreen.main.bounds)
+//        return UIApplication.shared.windows.first { $0.isKeyWindow }
+    }
+
     func setRootViewController(_ viewController: UIViewController) {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+//        let navigationController = UINavigationController(rootViewController: viewController)
 
         keyWindow?.rootViewController = viewController
         keyWindow?.makeKeyAndVisible()
@@ -20,15 +25,11 @@ extension XCTestCase {
     }
 
     func popRootViewController() {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-
         keyWindow?.rootViewController?.navigationController?.popToRootViewController(animated: false)
         keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
     }
 
     func clearRootViewController() {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-
         keyWindow?.rootViewController = UINavigationController(
             rootViewController: UIViewController()
         )

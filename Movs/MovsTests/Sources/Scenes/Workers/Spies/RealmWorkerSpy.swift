@@ -11,23 +11,23 @@
 final class RealmWorkerSpy: RealmWorkerProtocol {
     private(set) var invokedFetchMovies = false
     private(set) var invokedFetchMoviesCount = 0
-    var stubbedFetchMoviesCompletionResult: (Result<[Movie], DatabaseError>, Void)?
+    var stubbedFetchMoviesCompletionResult: (Result<[Movie], Error>, Void)?
 
     private(set) var invokedSaveMovie = false
     private(set) var invokedSaveMovieCount = 0
     private(set) var invokedSaveMovieParameters: (movie: Movie, Void)?
     private(set) var invokedSaveMovieParametersList = [(movie: Movie, Void)]()
-    var stubbedSaveMovieCompletionResult: (Result<Void, DatabaseError>, Void)?
+    var stubbedSaveMovieCompletionResult: (Result<Void, Error>, Void)?
 
     private(set) var invokedDeleteMovie = false
     private(set) var invokedDeleteMovieCount = 0
     private(set) var invokedDeleteMovieParameters: (movie: Movie, Void)?
     private(set) var invokedDeleteMovieParametersList = [(movie: Movie, Void)]()
-    var stubbedDeleteMovieCompletionResult: (Result<Void, DatabaseError>, Void)?
+    var stubbedDeleteMovieCompletionResult: (Result<Void, Error>, Void)?
 
     // MARK: - RealmWorkerProtocol conforms
 
-    func fetchMovies(completion: @escaping (Result<[Movie], DatabaseError>) -> Void) {
+    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
         invokedFetchMovies = true
         invokedFetchMoviesCount += 1
         if let result = stubbedFetchMoviesCompletionResult {
@@ -35,7 +35,7 @@ final class RealmWorkerSpy: RealmWorkerProtocol {
         }
     }
 
-    func saveMovie(movie: Movie, completion: @escaping (Result<Void, DatabaseError>) -> Void) {
+    func saveMovie(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void) {
         invokedSaveMovie = true
         invokedSaveMovieCount += 1
         invokedSaveMovieParameters = (movie, ())
@@ -45,7 +45,7 @@ final class RealmWorkerSpy: RealmWorkerProtocol {
         }
     }
 
-    func deleteMovie(movie: Movie, completion: @escaping (Result<Void, DatabaseError>) -> Void) {
+    func deleteMovie(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void) {
         invokedDeleteMovie = true
         invokedDeleteMovieCount += 1
         invokedDeleteMovieParameters = (movie, ())

@@ -10,16 +10,35 @@ import XCTest
 @testable import Movs
 
 final class MoviesScreenFactoryTests: XCTestCase {
-    private lazy var sut = MoviesScreenFactory.make(delegate: delegateSpy)
-
     private let delegateSpy = MoviesViewControllerDelegateSpy()
 
     // MARK: - Test functions
 
-    func testShouldCreateMoviesViewControllerByFactory() {
-        _ = sut
+    func testMoviesScreenFactoryShouldMakeMoviesViewController() {
+        let sut = MoviesScreenFactory.make(delegate: delegateSpy)
 
+        verifySutType(sut: sut)
+
+        XCTAssertNil(sut.tabBarItem.image)
+        XCTAssertNil(sut.tabBarItem.title)
+    }
+
+    func testMoviesScreenFactoryShouldMakeMoviesViewControllertesForTabBar() {
+        let sut = MoviesScreenFactory.makeForTabBar(delegate: delegateSpy)
+
+        verifySutType(sut: sut)
+
+        XCTAssertNotNil(sut.tabBarItem.image)
+        XCTAssertEqual(sut.tabBarItem.title, "Movies")
+    }
+
+    // MARK: - Private functions
+
+    private func verifySutType(sut: UIViewController) {
         XCTAssertNotNil(sut)
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
+        XCTAssertTrue(sut is MoviesViewController)
+        XCTAssertTrue(sut is FilterProtocol)
+        XCTAssertTrue(sut is MoviesDisplayLogic)
     }
 }

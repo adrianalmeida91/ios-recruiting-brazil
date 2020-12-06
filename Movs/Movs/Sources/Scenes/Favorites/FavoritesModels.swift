@@ -9,7 +9,7 @@
 import Foundation
 
 enum Favorites {
-    enum FetchLocalMovies {
+    enum FetchMovies {
         struct Response {
             let movies: [Movie]
         }
@@ -25,9 +25,8 @@ enum Favorites {
         }
     }
 
-    enum FetchLocalMoviesBySearch {
+    enum FetchMoviesBySearch {
         struct Request {
-            let movies: [Movie]
             let filter: FilterSearch
         }
 

@@ -20,7 +20,9 @@ final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, Movies
     // MARK: - Coordinator conforms
 
     func start() {
-        let tabBarViewController = TabBarScreenFactory.make(tabBarDelegate: self, moviesDelegate: self)
+        let moviesViewController = MoviesScreenFactory.makeForTabBar(delegate: self)
+        let favoritesViwController = FavoritesScreenFactory.makeForTabBar()
+        let tabBarViewController = TabBarScreenFactory.make(viewControllers: [moviesViewController, favoritesViwController], tabBarDelegate: self)
         let navigationController = UINavigationController(rootViewController: tabBarViewController)
 
         rootController?.rootViewController = navigationController
@@ -34,13 +36,11 @@ final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, Movies
     }
 
     func filterSearchTapped(filter: FilterSearch, _ viewController: TabBarViewController) {
-        if let viewController = viewController.selectedViewController as? MoviesViewController {
-            viewController.filter(search: filter.search ?? .empty)
-        } else if let viewController = viewController.selectedViewController as? FavoritesViewController {
-            viewController.filter(newFilter: filter)
-        } else {
-            print(Strings.viewControllerNotFound.localizable)
+        guard let viewController = viewController.selectedViewController as? FilterProtocol else {
+            return print(Strings.viewControllerNotFound.localizable)
         }
+
+        viewController.filter(newFilter: filter)
     }
 
     // MARK: - MoviesViewControllerDelegate conforms
@@ -61,40 +61,48 @@ final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, Movies
         viewController.filter(filter: filter)
     }
 
+    func backButtonTapped(_ viewController: FilterViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+
     // MARK: - Private functions
 
     private func pushViewController(viewController: UIViewController, _ animated: Bool) {
+        navigationController?.pushViewController(viewController, animated: animated)
+    }
+
+    private func popViewController() {
         guard let rootController = rootController,
               let rootViewController = rootController.rootViewController,
               let navigationController = rootViewController as? UINavigationController else {
                 return
         }
 
-        navigationController.pushViewController(viewController, animated: animated)
+        navigationController.popViewController(animated: true)
     }
 
     private func popToViewController(viewController: UIViewController, _ animated: Bool) {
-        guard let rootController = rootController,
-              let rootViewController = rootController.rootViewController,
-              let navigationController = rootViewController as? UINavigationController else {
-                return
-        }
-
-        navigationController.popToViewController(viewController, animated: animated)
+        navigationController?.popToViewController(viewController, animated: animated)
     }
 
     private func fetchViewController<T: UIViewController>(_ type: T.Type)  -> T? {
-        guard let rootController = rootController,
-            let rootViewController = rootController.rootViewController,
-            let navigationController = rootViewController as? UINavigationController else {
-                return nil
-        }
-
-        let viewController = navigationController.viewControllers.first { $0 is T }
+        let viewController = navigationController?.viewControllers.first { $0 is T }
         if let viewController = viewController as? T {
             return viewController
         }
 
         return nil
+    }
+
+    // MARK: - Private computed variable
+
+    private var navigationController: UINavigationController? {
+        guard let rootController = rootController,
+              let rootViewController = rootController.rootViewController,
+              let navigationController = rootViewController as? UINavigationController else {
+                return nil
+        }
+
+        return navigationController
     }
 }

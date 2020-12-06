@@ -6,7 +6,6 @@
 //  Copyright © 2020 Adrian Almeida. All rights reserved.
 //
 
-import Fakery
 import FBSnapshotTestCase
 @testable import Movs
 
@@ -18,13 +17,11 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
         return viewController
     }()
 
-    private var interactorSpy = MoviesInteractorSpy()
-
-    private var delegateSpy = MoviesViewControllerDelegateSpy()
-
     // MARK: - Private constants
 
-    private let faker = Faker(locale: Constants.MovieDefaultParameters.language)
+    private let interactorSpy = MoviesInteractorSpy()
+
+    private let delegateSpy = MoviesViewControllerDelegateSpy()
 
     // MARK: - Override functions
 
@@ -45,142 +42,104 @@ final class MoviesViewControllerTests: FBSnapshotTestCase {
 
     // MARK: - Test functions
 
-    func testInitialization() {
+    func testInitializationShouldFetchMovies() throws {
         _ = sut
 
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchGenres)
-        XCTAssertFalse(interactorSpy.invokedFetchMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMoviesBySearch)
-        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
+        try verifyFetchedMovies()
+
+        XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
     }
 
-    func testViewDidLoadShouldCallFetchLocalMovies() {
-        //wait viewDidLoad
-        wait(for: Constants.Utils.sleep)
+    func testViewControllerShouldDisplayMovies() throws {
+        let viewModel = Movies.FetchMovies.ViewModel(page: 1, totalPages: 10, movies: MocksHelper.getMovies())
+        sut.displayMovies(viewModel: viewModel)
 
-        XCTAssertTrue(interactorSpy.invokedFetchLocalMovies)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesCount, 1)
-        XCTAssertFalse(interactorSpy.invokedFetchGenres)
-        XCTAssertFalse(interactorSpy.invokedFetchMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMoviesBySearch)
-        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
+        try verifyFetchedMovies()
+
+        XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
+
+        verify(sut)
     }
 
-    func testFetchGenresAfterFetchedLocalMovies() {
-        let movies = Movies.FetchLocalMovies.ViewModel(movies: MocksHelper.getRandomMovies())
-        sut.onFetchedLocalMovies(viewModel: movies)
+    func testViewControllerShouldDisplayError () throws {
+        sut.displayError()
 
-        XCTAssertTrue(interactorSpy.invokedFetchGenres)
-        XCTAssertEqual(interactorSpy.invokedFetchGenresCount, 1)
-        XCTAssertEqual(interactorSpy.invokedFetchGenresParameters?.request.language, Constants.MovieDefaultParameters.language)
-        XCTAssertEqual(interactorSpy.invokedFetchGenresParametersList.count, 1)
+        try verifyFetchedMovies()
 
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMoviesBySearch)
-        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
+        XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
+
+        verify(sut)
     }
 
-    func testFetchMoviesAfterFetchedGenres() {
-        guard let genres = MocksHelper.getMockedGenres()?.genres else {
-            return XCTFail()
+    func testViewControllerShouldDisplaySearchedMovies() throws {
+        let viewModel = Movies.FetchMoviesBySearch.ViewModel(movies: MocksHelper.getMovies().reversed())
+        sut.displaySearchedMovies(viewModel: viewModel)
+
+        try verifyFetchedMovies()
+
+        XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
+
+        verify(sut)
+    }
+
+    func testViewControllerShouldDisplaySearchError() throws {
+        let search = MocksHelper.Strings.search.rawValue
+        sut.displaySearchError(searchedText: search)
+
+        try verifyFetchedMovies()
+
+        XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
+
+        verify(sut)
+    }
+
+    func testViewControllerShouldFilterWithSearch() throws {
+        let search = MocksHelper.Strings.search.rawValue
+        let filter = FilterSearch(search: search)
+        sut.filter(newFilter: filter)
+
+        try verifyFetchedMovies()
+
+        let parameters = try XCTUnwrap(interactorSpy.invokedFetchMoviesBySearchParameters)
+
+        XCTAssertTrue(interactorSpy.invokedFetchMoviesBySearch)
+        XCTAssertEqual(interactorSpy.invokedFetchMoviesBySearchCount, 1)
+        XCTAssertEqual(parameters.request.filter, search)
+        XCTAssertEqual(interactorSpy.invokedFetchMoviesBySearchParametersList.count, 1)
+    }
+
+    func testViewControllerShouldReloadMoviesWhenClearSearch() throws {
+        let filter = FilterSearch(search: .empty)
+        sut.filter(newFilter: filter)
+
+        let parametersList = try XCTUnwrap(interactorSpy.invokedFetchMoviesParametersList)
+
+        XCTAssertTrue(interactorSpy.invokedFetchMovies)
+        XCTAssertEqual(interactorSpy.invokedFetchMoviesCount, 2)
+        XCTAssertEqual(interactorSpy.invokedFetchMoviesParametersList.count, 2)
+
+        parametersList.forEach { parameters in
+            XCTAssertEqual(parameters.request.language, Constants.MovieDefaultParameters.language)
+            XCTAssertEqual(parameters.request.page, Constants.MovieDefaultParameters.page)
         }
 
-        let viewModel = Movies.FetchGenres.ViewModel(genres: genres)
-        sut.onFetchedGenres(viewModel: viewModel)
+        XCTAssertTrue(sut.useOnlySearchFilter)
+        XCTAssertFalse(interactorSpy.invokedFetchMoviesBySearch)
+        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
+    }
+
+    // MARK: - Private functions
+
+    private func verifyFetchedMovies() throws {
+        let parameters = try XCTUnwrap(interactorSpy.invokedFetchMoviesParameters)
 
         XCTAssertTrue(interactorSpy.invokedFetchMovies)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesCount, 1)
-        XCTAssertEqual(interactorSpy.invokedFetchMoviesParameters?.request.language, Constants.MovieDefaultParameters.language)
-        XCTAssertEqual(interactorSpy.invokedFetchMoviesParameters?.request.page, Constants.MovieDefaultParameters.page)
-        XCTAssertEqual(interactorSpy.invokedFetchMoviesParameters?.request.genres.count, genres.count)
+        XCTAssertEqual(parameters.request.language, Constants.MovieDefaultParameters.language)
+        XCTAssertEqual(parameters.request.page, Constants.MovieDefaultParameters.page)
         XCTAssertEqual(interactorSpy.invokedFetchMoviesParametersList.count, 1)
 
-        XCTAssertFalse(interactorSpy.invokedFetchGenres)
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMoviesBySearch)
-        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
-    }
-
-    func testShouldDisplayMoviesAfterFetchedMovies() {
-        // waiting to start loading
-        wait(for: 1)
-        XCTAssertTrue(sut.view.hasLoading())
-        verify(sut, identifier: "loading")
-
-        let viewModel = Movies.FetchMovies.ViewModel(page: 1, totalPages: 10, movies: MocksHelper.getMockedMovies())
-        sut.displayMovies(viewModel: viewModel)
-        sut.view.layoutIfNeeded()
-
-        // waiting to load images
-        wait()
-
-        XCTAssertFalse(sut.view.hasLoading())
-        verify(sut)
-    }
-
-    func testShouldDisplayGenericError() {
-        sut.displayGenericError()
-
-        verify(sut)
-    }
-
-    func testShouldDisplayMoviesBySearch() {
-        let viewModel = Movies.FetchLocalMoviesBySearch.ViewModel(movies: MocksHelper.getMockedMovies())
-        sut.displayMoviesBySearch(viewModel: viewModel)
-        sut.view.layoutIfNeeded()
-
-        // waiting to load images
-        wait()
-
-        verify(sut)
-    }
-
-    func testShouldDisplaySearchError() {
-        let search = Strings.mockDog.localizable
-        sut.displaySearchError(searchedText: search)
-
-        verify(sut)
-    }
-
-    func testDisplayGenericErrorAfterFetchMovies() {
-        guard let genres = MocksHelper.getMockedGenres()?.genres else {
-            return XCTFail()
-        }
-
-        sut.displayGenericError()
-
-        let viewModel = Movies.FetchGenres.ViewModel(genres: genres)
-        sut.onFetchedGenres(viewModel: viewModel)
-
-        verify(sut)
-    }
-
-    func testShouldFilterWithSearch() {
-        let search = Strings.mockDog.localizable
-        sut.filter(search: search)
-
-        XCTAssertTrue(interactorSpy.invokedFetchLocalMoviesBySearch)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchCount, 1)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchParameters?.request.movies.count, 0)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchParameters?.request.filter, search)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesBySearchParametersList.count, 1)
-
-        XCTAssertFalse(interactorSpy.invokedFetchMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchGenres)
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMovies)
-        XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
-    }
-
-    func testShouldFilterSearchEmpty() {
-        sut.filter(search: .empty)
-
-        XCTAssertTrue(interactorSpy.invokedFetchLocalMovies)
-        XCTAssertEqual(interactorSpy.invokedFetchLocalMoviesCount, 1)
-        XCTAssertFalse(interactorSpy.invokedFetchGenres)
-        XCTAssertFalse(interactorSpy.invokedFetchMovies)
-        XCTAssertFalse(interactorSpy.invokedFetchLocalMoviesBySearch)
+        XCTAssertTrue(sut.useOnlySearchFilter)
         XCTAssertFalse(delegateSpy.invokedGalleryItemTapped)
     }
 }

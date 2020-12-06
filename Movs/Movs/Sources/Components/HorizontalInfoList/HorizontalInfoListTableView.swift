@@ -66,9 +66,7 @@ final class HorizontalInfoListTableView: UIView, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return UISwipeActionsConfiguration(actions: [
-            makeDeleteContextualAction(forRowAt: indexPath)
-        ])
+        return UISwipeActionsConfiguration(actions: [makeDeleteContextualAction(forRowAt: indexPath)])
     }
 
     // MARK: - Private functions
