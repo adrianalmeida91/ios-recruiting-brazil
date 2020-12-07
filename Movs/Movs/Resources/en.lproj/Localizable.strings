@@ -30,3 +30,9 @@
 "repositry_error_data_not_found" = "Data not found";
 "repositry_error_parse_json" = "Parse JSON Error";
 "view_controller_not_found" = "ViewController did not found";
+
+// Accessibility
+"favorite_value" = "favorite";
+"movie_marked_as" = "Movie is marked as";
+"poster_image_view" = "Poster from movie";
+"unfavorite_value" = "unfavorite";

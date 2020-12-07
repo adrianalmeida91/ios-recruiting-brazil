@@ -29,7 +29,7 @@ enum FavoritesScreenFactory {
         let favoritesTabBarItem = UITabBarItem()
         favoritesTabBarItem.image = UIImage(assets: .favoriteEmptyIcon)
         favoritesTabBarItem.title = Strings.favorites.localizable
-        favoritesTabBarItem.accessibilityIdentifier = MovsIdentifiers.favoritesTabBarItem.identifier
+        favoritesTabBarItem.accessibilityIdentifier = FavoritesIdentifiers.favoritesTabBarItem.identifier
         viewController.tabBarItem = favoritesTabBarItem
 
         return viewController

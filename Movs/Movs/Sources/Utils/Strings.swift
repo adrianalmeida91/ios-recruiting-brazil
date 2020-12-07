@@ -30,4 +30,11 @@ enum Strings: String, Localizable {
     case repositryErrorDataNotFound = "repositry_error_data_not_found"
     case repositryErrorParseJSON = "repositry_error_parse_json"
     case viewControllerNotFound = "view_controller_not_found"
+
+    // MARK: - Accessibility
+
+    case favoriteValue = "favorite_value"
+    case movieMarkedAs = "movie_marked_as"
+    case posterImageView = "poster_image_view"
+    case unfavoriteValue = "unfavorite_value"
 }

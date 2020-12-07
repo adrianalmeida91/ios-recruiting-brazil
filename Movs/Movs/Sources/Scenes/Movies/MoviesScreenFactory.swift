@@ -35,7 +35,7 @@ enum MoviesScreenFactory {
         let moviesTabBarItem = UITabBarItem()
         moviesTabBarItem.image = UIImage(assets: .listIcon)
         moviesTabBarItem.title = Strings.movies.localizable
-        moviesTabBarItem.accessibilityIdentifier = MovsIdentifiers.moviesTabBarItem.identifier
+        moviesTabBarItem.accessibilityIdentifier = MoviesIdentifiers.moviesTabBarItem.identifier
         viewController.tabBarItem = moviesTabBarItem
 
         return viewController

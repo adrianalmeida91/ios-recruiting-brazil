@@ -21,4 +21,8 @@ final class MoviesUITests: XCTestCase {
         XCTAssertTrue(moviesScreen.moviesTabBarItem.isSelected)
         XCTAssertFalse(moviesScreen.favoritesTabBarItem.isSelected)
     }
+
+    func testGalleryItemTapShouldOpenMovieDetailsScreen() {
+        moviesScreen.galleryItemIndexTap(at: 0)
+    }
 }
