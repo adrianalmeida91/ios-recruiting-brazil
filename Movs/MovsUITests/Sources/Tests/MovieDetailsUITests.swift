@@ -24,10 +24,10 @@ final class MovieDetailsUITests: XCTestCase {
     // MARK: - Test functions
 
     func testIconButtonTapShouldFavoriteAndUnfavorite() {
-        movieDetailsScreen.iconTap()
-            .iconTap()
-            .iconTap()
-            .iconTap()
+        movieDetailsScreen.favoriteIconTap()
+            .favoriteIconTap()
+            .favoriteIconTap()
+            .favoriteIconTap()
 
         XCTAssertTrue(movieDetailsScreen.iconButton.exists)
     }

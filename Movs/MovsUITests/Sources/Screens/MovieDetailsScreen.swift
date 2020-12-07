@@ -24,8 +24,7 @@ final class MovieDetailsScreen: ScreenTest {
     // MARK: - Functions
 
     @discardableResult
-    func iconTap() -> MovieDetailsScreen {
-        print(app.debugDescription)
+    func favoriteIconTap() -> MovieDetailsScreen {
         iconButton.tap()
 
         return self

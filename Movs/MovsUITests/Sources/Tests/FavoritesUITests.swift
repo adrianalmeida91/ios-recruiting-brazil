@@ -25,4 +25,9 @@ final class FavoritesUITests: XCTestCase {
     func testFilterIconTapShouldOpenFilterScreen() {
         favoritesScreen.filterIconTap()
     }
+
+    func testSwipeMovieShouldRemoveFromFavorites() {
+        // validate if there is at least one element before try unfavorite
+        favoritesScreen.unfavoriteMovie(at: 0)
+    }
 }
