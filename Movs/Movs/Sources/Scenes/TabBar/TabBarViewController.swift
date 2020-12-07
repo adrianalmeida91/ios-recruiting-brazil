@@ -92,6 +92,7 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
         let filterIcon = UIImage(assets: .filterIcon)
         let barButtonItem = shouldHide ? nil : UIBarButtonItem(image: filterIcon, style: .plain, target: self, action: #selector(didBarButtonItemTapped))
         barButtonItem?.tintColor = .appBlackLight
+        barButtonItem?.accessibilityIdentifier = TabBarIdentifiers.filterIcon.identifier
         navigationItem.rightBarButtonItem = barButtonItem
     }
 

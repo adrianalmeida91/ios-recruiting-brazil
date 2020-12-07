@@ -7,7 +7,7 @@
 //
 
 enum FavoritesIdentifiers: String, AccessibilityIdentifier {
-    case favoritesTabBarItem = "favorites_tab_bar_item"
+    case favoritesTabBarItem = "tabbar_item"
 
     // MARK: - AccessibilityIdentifier conforms
 

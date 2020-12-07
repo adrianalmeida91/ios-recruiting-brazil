@@ -7,7 +7,7 @@
 //
 
 enum MoviesIdentifiers: String, AccessibilityIdentifier {
-    case moviesTabBarItem = "movies_tab_bar_item"
+    case moviesTabBarItem = "tabbar_item"
 
     // MARK: - AccessibilityIdentifier conforms
 

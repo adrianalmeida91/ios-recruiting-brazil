@@ -117,6 +117,14 @@
 		A89A0CF9256AE97F009DE9C0 /* TabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89A0CF8256AE97F009DE9C0 /* TabBarViewControllerTests.swift */; };
 		A89A0CFC256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89A0CFB256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift */; };
 		A8A0F8C9254951B80049B5CB /* Kingfisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F8C8254951B80049B5CB /* Kingfisher+Extension.swift */; };
+		A8A9452A257DD73600B2668E /* MovieDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A94529257DD73600B2668E /* MovieDetailsUITests.swift */; };
+		A8A9452C257DE05900B2668E /* XCUIElement+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A9452B257DE05900B2668E /* XCUIElement+Extension.swift */; };
+		A8A9452E257DE40000B2668E /* FavoritesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A9452D257DE40000B2668E /* FavoritesScreen.swift */; };
+		A8A94530257DE4A900B2668E /* FavoritesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A9452F257DE4A900B2668E /* FavoritesUITests.swift */; };
+		A8A94532257DE5AE00B2668E /* TabBarIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A94531257DE5AE00B2668E /* TabBarIdentifiers.swift */; };
+		A8A94533257DE5BA00B2668E /* TabBarIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A94531257DE5AE00B2668E /* TabBarIdentifiers.swift */; };
+		A8A94535257DE70100B2668E /* FilterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A94534257DE70100B2668E /* FilterScreen.swift */; };
+		A8A94537257DE70F00B2668E /* FilterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A94536257DE70F00B2668E /* FilterUITests.swift */; };
 		A8AF17DE254F6069007D8C4E /* FilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF17DD254F6069007D8C4E /* FilterInteractor.swift */; };
 		A8AF17E0254F60C2007D8C4E /* FilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF17DF254F60C2007D8C4E /* FilterModels.swift */; };
 		A8AF17E2254F60F8007D8C4E /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF17E1254F60F8007D8C4E /* FilterPresenter.swift */; };
@@ -306,6 +314,13 @@
 		A89A0CF8256AE97F009DE9C0 /* TabBarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerTests.swift; sourceTree = "<group>"; };
 		A89A0CFB256AE9F4009DE9C0 /* TabBarViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
 		A8A0F8C8254951B80049B5CB /* Kingfisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Extension.swift"; sourceTree = "<group>"; };
+		A8A94529257DD73600B2668E /* MovieDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsUITests.swift; sourceTree = "<group>"; };
+		A8A9452B257DE05900B2668E /* XCUIElement+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Extension.swift"; sourceTree = "<group>"; };
+		A8A9452D257DE40000B2668E /* FavoritesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScreen.swift; sourceTree = "<group>"; };
+		A8A9452F257DE4A900B2668E /* FavoritesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUITests.swift; sourceTree = "<group>"; };
+		A8A94531257DE5AE00B2668E /* TabBarIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIdentifiers.swift; sourceTree = "<group>"; };
+		A8A94534257DE70100B2668E /* FilterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreen.swift; sourceTree = "<group>"; };
+		A8A94536257DE70F00B2668E /* FilterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUITests.swift; sourceTree = "<group>"; };
 		A8AF17DD254F6069007D8C4E /* FilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterInteractor.swift; sourceTree = "<group>"; };
 		A8AF17DF254F60C2007D8C4E /* FilterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModels.swift; sourceTree = "<group>"; };
 		A8AF17E1254F60F8007D8C4E /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
@@ -685,6 +700,7 @@
 		A8660EAB25455C5600D74934 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				A8A94531257DE5AE00B2668E /* TabBarIdentifiers.swift */,
 				A8660EAC25455C7C00D74934 /* TabBarScreenFactory.swift */,
 				A8660EA925455C0900D74934 /* TabBarViewController.swift */,
 				A89723DA254F03390022FB06 /* TabBarViewControllerDelegate.swift */,
@@ -1019,8 +1035,9 @@
 		A8EE24EF257D30CC00462124 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A8EE24F0257D318600462124 /* XCTestCase+Extension.swift */,
 				A8EE2507257D54E700462124 /* String+Extension.swift */,
+				A8EE24F0257D318600462124 /* XCTestCase+Extension.swift */,
+				A8A9452B257DE05900B2668E /* XCUIElement+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1036,8 +1053,10 @@
 		A8EE24F5257D429100462124 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				A8EE24F7257D432300462124 /* MoviesScreen.swift */,
+				A8A9452D257DE40000B2668E /* FavoritesScreen.swift */,
+				A8A94534257DE70100B2668E /* FilterScreen.swift */,
 				A8EE2509257D735700462124 /* MovieDetailsScreen.swift */,
+				A8EE24F7257D432300462124 /* MoviesScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1045,6 +1064,9 @@
 		A8EE24F6257D42B500462124 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A8A9452F257DE4A900B2668E /* FavoritesUITests.swift */,
+				A8A94536257DE70F00B2668E /* FilterUITests.swift */,
+				A8A94529257DD73600B2668E /* MovieDetailsUITests.swift */,
 				A8EE24FD257D4BDC00462124 /* MoviesUITests.swift */,
 			);
 			path = Tests;
@@ -1380,6 +1402,7 @@
 				A8660E5A254548A000D74934 /* Localizable.swift in Sources */,
 				A864B85625477BC500B5BC29 /* DataSource.swift in Sources */,
 				A8660EAD25455C7C00D74934 /* TabBarScreenFactory.swift in Sources */,
+				A8A94532257DE5AE00B2668E /* TabBarIdentifiers.swift in Sources */,
 				A864B8722548911B00B5BC29 /* GridGalleryItemViewModel.swift in Sources */,
 				A845877D254DE85100829BBE /* MovieRealmDbService.swift in Sources */,
 				A870EAAD2554B68A00BDC242 /* main.swift in Sources */,
@@ -1479,17 +1502,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A94530257DE4A900B2668E /* FavoritesUITests.swift in Sources */,
 				A8EE2513257DBCBF00462124 /* MovieDetailsIdentifiers.swift in Sources */,
 				A8EE2508257D54E700462124 /* String+Extension.swift in Sources */,
 				A8EE250A257D735700462124 /* MovieDetailsScreen.swift in Sources */,
+				A8A94533257DE5BA00B2668E /* TabBarIdentifiers.swift in Sources */,
 				A8EE24F8257D432300462124 /* MoviesScreen.swift in Sources */,
 				A8EE2505257D541E00462124 /* AccessibilityIdentifier.swift in Sources */,
 				A8EE24F4257D365400462124 /* ScreenTest.swift in Sources */,
 				A8EE2510257DBCA300462124 /* MoviesIdentifiers.swift in Sources */,
+				A8A94535257DE70100B2668E /* FilterScreen.swift in Sources */,
 				A8EE24F1257D318600462124 /* XCTestCase+Extension.swift in Sources */,
 				A8EE24FE257D4BDC00462124 /* MoviesUITests.swift in Sources */,
 				A8EE250F257DBC6E00462124 /* FavoritesIdentifiers.swift in Sources */,
 				A8EE2506257D543400462124 /* ComponentsIdentifiers.swift in Sources */,
+				A8A9452E257DE40000B2668E /* FavoritesScreen.swift in Sources */,
+				A8A94537257DE70F00B2668E /* FilterUITests.swift in Sources */,
+				A8A9452A257DD73600B2668E /* MovieDetailsUITests.swift in Sources */,
+				A8A9452C257DE05900B2668E /* XCUIElement+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

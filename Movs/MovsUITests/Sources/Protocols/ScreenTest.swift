@@ -40,6 +40,11 @@ extension ScreenTest {
         return app.descendants(matching: type)
     }
 
+    func sendText(element: XCUIElement, text: String) {
+        element.tap()
+        element.typeText(text)
+    }
+
     func printDebug() {
         print(app.debugDescription)
     }

@@ -25,4 +25,33 @@ final class MoviesUITests: XCTestCase {
     func testGalleryItemTapShouldOpenMovieDetailsScreen() {
         moviesScreen.galleryItemIndexTap(at: 0)
     }
+
+    func testSearchMovieAndTapShouldOpenMovieDetailsScreen() {
+        moviesScreen.searchText(text: "KILL")
+            .galleryItemIndexTap(at: 0)
+    }
+
+    func testSearchMovieWrongTextShouldDisplayErrorMessage() {
+        let searchText = "AAAAAAAAA"
+
+        XCTAssertTrue(moviesScreen.searchText(text: searchText)
+                        .verifyErrorMessage(text: searchText))
+    }
+
+    func testSearchMoviesAndCancelFieldShouldDisplayMovies() {
+        let searchText = "KILL"
+//        let searchText = "AAAAAAAAA" -> There is a bug here
+
+        XCTAssertFalse(moviesScreen.searchText(text: searchText)
+            .cancelSearchButtonTap()
+            .verifyErrorMessage(text: searchText))
+    }
+
+    func testSearchMoviesAndClearFieldShouldDisplayMovies() {
+        let searchText = "AAAAAAAAA"
+
+        XCTAssertFalse(moviesScreen.searchText(text: searchText)
+            .clearSearchText()
+            .verifyErrorMessage(text: searchText))
+    }
 }
