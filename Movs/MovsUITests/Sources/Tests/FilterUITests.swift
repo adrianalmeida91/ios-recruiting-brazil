@@ -30,6 +30,5 @@ final class FilterUITests: XCTestCase {
             .selectGenres(genres: ["Action"])
             .backTypeListButtonTap()
             .applyButtonTap()
-        print(app.debugDescription)
     }
 }
