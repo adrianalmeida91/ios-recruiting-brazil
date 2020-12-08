@@ -26,10 +26,11 @@ enum FavoritesScreenFactory {
     static func makeForTabBar() -> UIViewController {
         let viewController = make()
 
-        let favoritesTabBarIcon = UITabBarItem()
-        favoritesTabBarIcon.image = UIImage(assets: .favoriteEmptyIcon)
-        favoritesTabBarIcon.title = Strings.favorites.localizable
-        viewController.tabBarItem = favoritesTabBarIcon
+        let favoritesTabBarItem = UITabBarItem()
+        favoritesTabBarItem.image = UIImage(assets: .favoriteEmptyIcon)
+        favoritesTabBarItem.title = Strings.favorites.localizable
+        favoritesTabBarItem.accessibilityIdentifier = FavoritesIdentifiers.favoritesTabBarItem.identifier
+        viewController.tabBarItem = favoritesTabBarItem
 
         return viewController
     }

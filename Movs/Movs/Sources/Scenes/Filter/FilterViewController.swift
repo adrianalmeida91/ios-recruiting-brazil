@@ -32,6 +32,7 @@ final class FilterViewController: UIViewController, FilterDisplayLogic {
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.backgroundColor = .appYellowLight
+        button.accessibilityIdentifier = FilterIdentifiers.applyButton.identifier
 
         return button
     }()
@@ -94,6 +95,7 @@ final class FilterViewController: UIViewController, FilterDisplayLogic {
 
         let backButtonImage = UIImage(assets: .arrowBack)?.resize(size: CGSize(width: 20, height: 20))
         let barButtonItem = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: .didBackButtonTapped)
+        barButtonItem.accessibilityIdentifier = FilterIdentifiers.backButton.identifier
         navigationItem.leftBarButtonItem = barButtonItem
     }
 

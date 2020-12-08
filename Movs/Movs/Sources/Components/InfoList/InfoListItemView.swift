@@ -12,11 +12,17 @@ final class InfoListItemView: UIView {
     private lazy var title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
+        label.accessibilityIdentifier = ComponentsIdentifiers.infoListTitle.identifier
 
         return label
     }()
 
-    private lazy var iconButton = UIButton()
+    private lazy var iconButton: UIButton = {
+        let button = UIButton()
+        button.accessibilityIdentifier = ComponentsIdentifiers.infoListIconButton.identifier
+
+        return button
+    }()
 
     private lazy var titleButtonStackView: UIStackView = UIStackView(arrangedSubviews: [title, iconButton])
 
@@ -24,6 +30,7 @@ final class InfoListItemView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
+        label.accessibilityIdentifier = ComponentsIdentifiers.infoListDescription.identifier
 
         return label
     }()

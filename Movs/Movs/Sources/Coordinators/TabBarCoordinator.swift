@@ -72,13 +72,7 @@ final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, Movies
     }
 
     private func popViewController() {
-        guard let rootController = rootController,
-              let rootViewController = rootController.rootViewController,
-              let navigationController = rootViewController as? UINavigationController else {
-                return
-        }
-
-        navigationController.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 
     private func popToViewController(viewController: UIViewController, _ animated: Bool) {
@@ -87,6 +81,7 @@ final class TabBarCoordinator: Coordinator, TabBarViewControllerDelegate, Movies
 
     private func fetchViewController<T: UIViewController>(_ type: T.Type)  -> T? {
         let viewController = navigationController?.viewControllers.first { $0 is T }
+
         if let viewController = viewController as? T {
             return viewController
         }

@@ -10,17 +10,32 @@ import UIKit
 import Kingfisher
 
 final class GridGalleryItemView: UIView {
-    private lazy var movieImageView = UIImageView()
+    private lazy var movieImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.accessibilityLabel = Strings.posterImageView.localizable
+        imageView.accessibilityIdentifier = ComponentsIdentifiers.gridGalleryImageView.identifier
+        imageView.isAccessibilityElement = true
+
+        return imageView
+    }()
 
     private lazy var title: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .appYellowLight
+        label.accessibilityIdentifier = ComponentsIdentifiers.gridGalleryTitle.identifier
 
         return label
     }()
 
-    private lazy var favoriteImageView = UIImageView()
+    private lazy var favoriteImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.accessibilityLabel = Strings.movieMarkedAs.localizable
+        imageView.accessibilityIdentifier = ComponentsIdentifiers.gridGalleryFavoriteImageView.identifier
+        imageView.isAccessibilityElement = true
+
+        return imageView
+    }()
 
     private lazy var titleFavoriteImageView: UIView = {
         let view = UIView()
@@ -41,6 +56,7 @@ final class GridGalleryItemView: UIView {
 
     private var titleText: String = .empty {
         didSet {
+            movieImageView.accessibilityValue = titleText
             title.text = titleText
         }
     }
@@ -50,6 +66,7 @@ final class GridGalleryItemView: UIView {
             let imageAssets: UIImage.Assets = isFavorite ? .favoriteFullIcon : .favoriteGrayIcon
             let image = UIImage(assets: imageAssets)?.withInsets(insets: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
             favoriteImageView.image = image
+            favoriteImageView.accessibilityValue = isFavorite ? Strings.favoriteValue.localizable : Strings.unfavoriteValue.localizable
         }
     }
 
@@ -61,6 +78,7 @@ final class GridGalleryItemView: UIView {
         super.init(frame: .zero)
 
         setupLayout()
+        setupAccessibility()
     }
 
     @available(*, unavailable)
@@ -102,6 +120,11 @@ final class GridGalleryItemView: UIView {
         update(viewModel: viewModel)
 
         backgroundColor = .clear
+    }
+
+    private func setupAccessibility() {
+        accessibilityElements = [movieImageView, title, favoriteImageView]
+        accessibilityIdentifier = ComponentsIdentifiers.gridGalleryItemView.identifier
     }
 
     // MARK: - Functions

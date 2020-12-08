@@ -18,6 +18,9 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLog
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.kf.setImage(with: URL(string: movieDisplay.imageURL))
+        imageView.accessibilityLabel = Strings.posterImageView.localizable
+        imageView.accessibilityIdentifier = MovieDetailsIdentifiers.movieDetailsImageView.identifier
+        imageView.isAccessibilityElement = true
 
         return imageView
     }()
